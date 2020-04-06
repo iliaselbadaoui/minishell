@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_parser.c                                      :+:      :+:    :+:   */
+/*   get_last_item.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 10:32:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/04/05 12:26:48 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/04/06 12:13:17 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/04/06 12:22:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "map.h"
 
-int		line_parser(t_string line)
+t_map   *get_last_item(t_map *map)
 {
-	line = NULL;
-	return (CONTINUE);
+    if (map)
+    while (map->next)
+        map = map->next;
+    return (map);
 }

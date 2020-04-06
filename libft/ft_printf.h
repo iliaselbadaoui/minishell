@@ -6,12 +6,16 @@
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 11:42:05 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/03/07 20:29:30 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/04/06 12:16:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define RED "\33[0;31m"
+# define BLUE "\33[0;34m"
+#define GREEN "\33[0;32m"
+# define CYAN "\33[0;36m"
 # include <stdarg.h>
 # include <unistd.h>
 
@@ -77,4 +81,5 @@ int				ft_special(int value, int length);
 int				ft_zeros_spaces(int value, int length);
 void			ft_zero_process(t_format_container c);
 int				ft_printf(const char *format, ...);
+void			ft_colored_output(char *color, char *message);
 #endif

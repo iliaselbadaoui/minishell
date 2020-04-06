@@ -11,7 +11,7 @@ SRCS =	libft/ft_abs.c libft/ft_match_conversion.c libft/ft_strchr.c libft/ft_ato
 		libft/ft_processor.c libft/ft_toupper.c libft/ft_putchar_fd.c libft/ft_type_len.c\
 		libft/ft_putendl_fd.c libft/ft_zero_process.c libft/ft_putnbr_fd.c libft/ft_zeros_spaces.c\
 		libft/ft_putnbr_u_fd.c libft/get_next_line.c libft/ft_putstr_fd.c libft/get_next_line_utils.c\
-		libft/ft_split.c libft/star_help.c libft/ft_star_process.c
+		libft/ft_split.c libft/star_help.c libft/ft_star_process.c libft/safe_malloc.c libft/safe_free.c libft/collect_garbage.c
 BONUS = libft/ft_lstadd_back_bonus.c libft/ft_lstadd_front_bonus.c libft/ft_lstclear_bonus.c libft/ft_lstdelone_bonus.c libft/ft_lstiter_bonus.c\
 		libft/ft_lstlast_bonus.c libft/ft_lstmap_bonus.c libft/ft_lstnew_bonus.c libft/ft_lstsize_bonus.c
 OBJ =	ft_abs.o ft_match_conversion.o ft_strchr.o ft_atoi.o ft_memccpy.o ft_strdup.o\
@@ -29,7 +29,7 @@ BONUS_OBJ =	ft_lstadd_back_bonus.o ft_lstadd_front_bonus.o ft_lstclear_bonus.o f
 			ft_lstlast_bonus.o ft_lstmap_bonus.o ft_lstnew_bonus.o ft_lstsize_bonus.o
 
 NAME = libft.a
-INC = -I libft.h -I ft_printf.h -I get_next_line.h
+INC = -I libft.h -I ft_printf.h -I get_next_line.h -I g_collect.h
 ALLOBJ = $(wildcard *.o)
 all: $(NAME)
 	

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_parser.c                                      :+:      :+:    :+:   */
+/*   insert_item.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 10:32:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/04/05 12:26:48 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/04/06 11:54:53 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/04/06 12:16:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "map.h"
 
-int		line_parser(t_string line)
+void    insert_item(t_map *map,t_map *item)
 {
-	line = NULL;
-	return (CONTINUE);
+    if (!item)
+    {
+        ft_colored_output(RED, "An Error has occured");
+        exit(FAIL);
+    }
+    else
+    {
+        get_last_item(map)->next = item;
+    }
 }

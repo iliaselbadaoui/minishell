@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_parser.c                                      :+:      :+:    :+:   */
+/*   remove_item.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 10:32:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/04/05 12:26:48 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/04/06 12:23:19 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/04/06 12:39:35 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "map.h"
 
-int		line_parser(t_string line)
+void    remove_item(t_map *map, t_map *item)
 {
-	line = NULL;
-	return (CONTINUE);
+    if(item == map)
+    {
+        map = map->next;
+        safe_free(item);
+    }
+    while (map)
+    {
+        if(map->next == item)
+        {
+            map->next = item->next;
+            safe_free(item);
+            return ;
+        }
+        map = map->next;
+    }
 }

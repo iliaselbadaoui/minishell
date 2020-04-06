@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:33:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2019/12/04 16:53:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/04/06 12:09:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,11 @@ int		ft_printf(const char *format, ...)
 	len = ft_putchar_fd(' ', 0);
 	va_end(args);
 	return (len);
+}
+
+void	ft_colored_output(char *color, char *message)
+{
+	ft_printf(color); 
+	ft_printf("%s", message);
+	ft_printf("\033[0m");
 }

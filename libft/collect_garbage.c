@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_parser.c                                      :+:      :+:    :+:   */
+/*   collect_garbage.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 10:32:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/04/05 12:26:48 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/03/06 12:43:25 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/04/06 12:32:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "g_collect.h"
 
-int		line_parser(t_string line)
+int		collect_garbage()
 {
-	line = NULL;
-	return (CONTINUE);
+	if(!g_collection)
+		return (FAIL);
+	t_collection	*tmp;
+
+	while (g_collection)
+	{
+		tmp = g_collection;
+		free((tmp->data));
+		g_collection = g_collection->next;
+		free(tmp);
+	}
+	return (SUCCESS);
 }

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 10:35:08 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/04/05 10:45:51 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/04/05 14:17:54 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/04/06 12:48:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
-# include<stdlib.h>
+#ifndef MAP_H
+# define MAP_H
 # include "../types.h"
+# include "../libft/g_collect.h"
+# include "../libft/ft_printf.h"
 
-int			contains(t_string container, t_string content);
-int			equals(t_string s1, t_string s2);
-int			line_parser(t_string line);
+typedef struct  s_map
+{
+    t_string        key;
+    t_string        value;
+    struct s_map    *next;
+}               t_map;
+t_map   *g_map;
+t_map   *get_last_item(t_map *map);
+t_map   *init_item(key, value);
+void    insert_item(t_map *map,t_map *item);
+void    remove_item(t_map *map, t_map *item);
+void    clear_map(t_map *map);
 #endif
