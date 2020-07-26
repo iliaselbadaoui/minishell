@@ -1,20 +1,18 @@
-cc = gcc -Wall -Werror -Wextra
-makeft = make -f libft/Makefile
-makeparser = make -f parser/Makefile
-srcs = main.c
-INC = minishell.h
-NAME = ./minishell
-libs = parser.a libft.a
-all: $(NAME)
+compile = gcc -Wall -Werror -Wextra
+src = get_next_line.c get_next_line_utils.c  main.c
+
+NAME = minishell
+makeCore = make -C core/
+
+all:$(NAME)
 
 $(NAME):
-	@$(makeparser)
-	@$(makeft)
-	@$(CC) $(srcs) -I $(INC) $(libs)  -o $(NAME)
-	@rm -rf *.o
+	@$(makeCore)
+	@$(compile) $(src) core.a -o $(NAME)
 clean:
-	@rm -rf $(libs)
-	@rm -rf *.o
-fclean: clean
+	@rm -rf core.a
+fclean:clean
 	@rm -rf $(NAME)
-re: fclean all
+re:fclean all
+
+.PHONY: all clean fclean re

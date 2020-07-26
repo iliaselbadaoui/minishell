@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   equals.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/12/26 15:36:25 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/07/03 11:26:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "parser.h"
 
-int		main()
+int			equals(char *s1, char *s2)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
-
-	flag = 0;
-	while (!flag)
+	if (!s1 || !s2)
+		return (0);
+	if (s1 == s2)
+		return (1);
+	while (*s1 && *s2)
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
 	}
-	return (0);
+	if (*s1 != *s2)
+		return (0);
+	return (1);
 }

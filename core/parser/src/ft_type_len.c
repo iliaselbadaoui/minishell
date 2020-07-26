@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_type_len.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/12/04 18:23:38 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/12/06 10:36:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+int		ft_type_len(t_type t, char c)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
-
-	flag = 0;
-	while (!flag)
-	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
-	}
-	return (0);
+	if (c == 'i' || c == 'd')
+		return (ft_nb_length(t.i));
+	else if (c == 'u')
+		return (ft_nb_length(t.ui));
+	else if (c == 'x' || c == 'X')
+		return (ft_hex_len(t.ui));
+	else if (c == 'p')
+		return (ft_hex_len(t.l));
+	else if (c == 'c' || c == '%')
+		return (1);
+	else if (c == 's')
+		return (ft_strlen(t.s));
+	return (-1);
 }

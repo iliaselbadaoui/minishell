@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/10/11 08:32:21 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/11/19 11:26:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+char	*ft_strchr(const char *s, int c)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
+	char *res;
 
-	flag = 0;
-	while (!flag)
+	res = NULL;
+	while (*s)
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		if (*s == c)
+		{
+			res = (char *)s;
+			break ;
+		}
+		s++;
 	}
-	return (0);
+	if (*s == c)
+		res = (char *)s;
+	return (res);
 }

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/07/02 23:19:17 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/07/09 18:32:42 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "parser.h"
+#include <dirent.h>
 
-int		main()
+int			get_dir(const char *path, const char *command)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
+	DIR				*dir;
+	struct dirent	*ent;
 
-	flag = 0;
-	while (!flag)
+	dir = opendir(path);
+	readdir(dir);
+	readdir(dir);
+	while ((ent = readdir(dir)))
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		if(equals(ent->d_name, (char * )command))
+		{
+			closedir(dir);
+			return (1);
+		}
 	}
+	closedir(dir);
 	return (0);
 }

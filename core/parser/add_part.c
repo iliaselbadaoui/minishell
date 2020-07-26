@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/05/11 00:14:36 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/07/02 11:19:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "parser.h"
 
-int		main()
+void		add_part(t_part **head, t_part *part)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
-
-	flag = 0;
-	while (!flag)
+	if (*head == NULL)
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		*head = part;
 	}
-	return (0);
+	else
+	{
+		while ((*head)->next)
+			(*head) = (*head)->next;
+		(*head)->next = part;
+	}
+}
+
+void		free_double_char_arr(char **arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

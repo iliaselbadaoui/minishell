@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_char_times.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/12/02 17:07:20 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/12/03 18:55:41 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+void	ft_char_times(char c, int times)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
-
-	flag = 0;
-	while (!flag)
+	while (times > 0)
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		ft_putchar_fd(c, 1);
+		times--;
 	}
-	return (0);
 }

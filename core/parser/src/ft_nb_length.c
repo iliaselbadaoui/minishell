@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_nb_length.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/11/19 18:47:13 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/11/26 05:25:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+int		ft_nb_length(long long int nb)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
+	unsigned int	len;
 
-	flag = 0;
-	while (!flag)
+	if (!nb)
+		return (1);
+	len = 0;
+	if (nb < 0)
+		len++;
+	while ((nb / 10))
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		nb /= 10;
+		len++;
 	}
-	return (0);
+	if ((nb % 10))
+		len++;
+	return (len);
 }

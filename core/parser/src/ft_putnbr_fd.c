@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/10/22 22:03:29 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/11/23 13:54:23 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
+	unsigned int nb;
 
-	flag = 0;
-	while (!flag)
+	nb = n;
+	if (n < 0)
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		ft_putchar_fd('-', fd);
+		nb = n * -1;
 	}
-	return (0);
+	if (nb >= 10)
+	{
+		ft_putnbr_fd((nb / 10), fd);
+		ft_putchar_fd((nb % 10) + '0', fd);
+	}
+	else
+		ft_putchar_fd((nb + '0'), fd);
 }

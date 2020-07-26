@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_inits.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/12/01 13:14:24 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/12/03 18:58:56 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+void	ft_init_format(t_format_container *holder)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
+	holder->conv = 0;
+	holder->mins = 0;
+	holder->prec = 0;
+	holder->prec_no_spec = 0;
+	holder->star = 0;
+	holder->zero = 0;
+	ft_init_type(&(holder->type));
+}
 
-	flag = 0;
-	while (!flag)
-	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
-	}
-	return (0);
+void	ft_init_type(t_type *type)
+{
+	type->c = 0;
+	type->i = 0;
+	type->l = 0;
+	type->ui = 0;
+	type->s = 0;
 }

@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_zeros_spaces.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/14 23:50:34 by ielbadao         ###   ########.fr       */
+/*   Created: 2019/12/02 19:45:32 by ielbadao          #+#    #+#             */
+/*   Updated: 2019/12/06 11:43:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/parser/parser.h"
-#include "get_next_line.h"
+#include "../ft_printf.h"
 
-int		main()
+int		ft_zeros_spaces(int value, int length)
 {
-	char	*line;
-	char	**paths;
-	t_part	*parts;
-	int		flag;
+	int size;
 
-	flag = 0;
-	while (!flag)
+	size = value - length;
+	if (size >= 0)
 	{
-		ft_printf("minishell ➜ ");
-		get_next_line(0, &line);
-		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
-		free(line);
+		return (size);
 	}
-	return (0);
+	else
+	{
+		return (0);
+	}
+}
+
+int		ft_printable_length(int value, int length)
+{
+	if (value < length && value >= 0)
+	{
+		return (value);
+	}
+	else
+	{
+		return (length);
+	}
 }
