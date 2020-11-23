@@ -28,18 +28,6 @@ int		main(int argc, char **argv, char **envp)
 		ft_printf("minishell ➜ ");
 		get_next_line(0, &line);
 		parts = parser(line);
-<<<<<<< HEAD
-		ft_printf("%s", parts->command);
-=======
-		paths = get_path();
-		int i = 0;
-		while (!get_dir(paths[i], parts->command) && paths[i])
-		{
-			i++;
-		}
-		ft_printf("\nHERE found\n");
-		free_double_char_arr(paths);
->>>>>>> e6d09a4840205c79391067ab48c61631a3c7273a
 		free(line);
 	}
 	return (0);
