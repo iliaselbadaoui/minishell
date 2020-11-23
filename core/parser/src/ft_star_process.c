@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:30:38 by ielbadao          #+#    #+#             */
-/*   Updated: 2019/12/06 13:53:38 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/10/28 21:44:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void		ft_star_process(t_format_container c)
 {
 	if (c.values.star_value > 0 && !c.mins)
 		positive_star(c);
-	else if (c.values.star_value > 0 || c.values.star_value <= 0 || !c.mins)
+	else if (c.values.star_value <= 0 || !c.mins)
 		ft_negative_star(*(c.conv), c.type, c.values);
 }
