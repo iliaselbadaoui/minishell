@@ -13,22 +13,21 @@
 #include "core/parser/parser.h"
 #include "get_next_line.h"
 
-int		main()
+int		main(int argc, char **argv, char **envp)
 {
 	char	*line;
-	char	**paths;
+	// char	**paths;
 	t_part	*parts;
 	int		flag;
 
 	flag = 0;
+	g_path = envp;
 	while (!flag)
 	{
 		ft_printf("minishell ➜ ");
 		get_next_line(0, &line);
 		parts = parser(line);
-		paths = get_path();
-		get_dir(paths[0], parts->command);
-		free_double_char_arr(paths);
+		ft_printf("%s", parts->command);
 		free(line);
 	}
 	return (0);

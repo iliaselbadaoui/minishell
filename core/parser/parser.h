@@ -16,13 +16,24 @@
 # include <stdlib.h>
 # include "ft_printf.h"
 
+typedef	struct	s_redirection
+{
+	char					sense;
+	char					*file_name;
+	struct s_redirection	*next;
+}				t_redirection;
+
 typedef struct	s_part
 {
 	int				pipe_id;
 	char			*command;
 	char			**args;
+	t_redirection	*redirections;
 	struct s_part	*next;
 }				t_part;
+
+char		**g_path;
+
 size_t		length(char *string);
 char		**pipes(char *string);
 char		**parts(char *string);
