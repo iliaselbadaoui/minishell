@@ -11,7 +11,6 @@ all:$(NAME)
 
 $(NAME):
 	@$(CC) $(SRCS) $(INC)
-	@echo ${PATH} > path
 clean:
 	@rm -rf $(OBJ)
 fclean:clean

@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-/goinfre/ielbadao/brew/Cellar/minikube/1.15.1/bin:/goinfre/ielbadao/brew/Cellar/kubernetes-cli/1.19.4/bin:/goinfre/ielbadao/brew/Cellar/minikube/1.15.1/bin:/Users/ielbadao/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
-=======
-/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/opt/local/bin:/opt/local/sbin
->>>>>>> e6d09a4840205c79391067ab48c61631a3c7273a
