@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 15:29:09 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/02 11:06:11 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/08 11:36:49 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ t_part		*parser(char *line)
 		commands_tmp = commands;
 		while (*commands)
 		{
-			add_part(&cmd, sequencer(*commands));
+			// ft_printf("PIPE %d (%s)\n", g_pipe_id, *commands);
+			add_part(&cmd, sequencer(*commands, g_pipe_id));
 			commands++;
 		}
 		free_double_char_arr(commands_tmp);
 		pipe++;
+		g_pipe_id++;
 	}
 	free_double_char_arr(pipe_tmp);
 	return (cmd);

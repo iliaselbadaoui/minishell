@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sequencer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 22:23:34 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/02 11:18:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/08 10:57:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_cmd_name(char **cmd)
 	return (com);
 }
 
-t_part		*sequencer(char *cmd)
+t_part		*sequencer(char *cmd, int id)
 {
 	t_part	*prt;
 
@@ -58,6 +58,7 @@ t_part		*sequencer(char *cmd)
 		free(prt);
 		return (NULL);
 	}
+	prt->pipe_id = id;
 	prt->next = NULL;
 	return (prt);
 }

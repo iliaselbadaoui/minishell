@@ -2,5 +2,5 @@
 "echo" "hello world" "ilias" ";" "echo" "hello world" "ilias"
 "echo" "hello World" "ilias" ';' "echo" "ilias elbadaoui" world
 "echo" "hello World" "ilias" ; "echo" "ilias elbadaoui" world
-"echo" "hello World" "ilias" | "echo" "ilias elbadaoui" world
+"echo" "hello World" "ilias" | "echo" "ilias elbadaoui" world ; echo "HEllo world"
 echo ilias elbadaoui | grep h or x

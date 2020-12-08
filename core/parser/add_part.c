@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 00:14:36 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/07/02 11:19:33 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/08 11:36:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void		add_part(t_part **head, t_part *part)
 {
+	t_part	*tmp;
+
 	if (*head == NULL)
 	{
 		*head = part;
 	}
 	else
 	{
-		while ((*head)->next)
-			(*head) = (*head)->next;
-		(*head)->next = part;
+		tmp = *head;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = part;
 	}
 }
 
