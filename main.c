@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 14:25:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/08 11:37:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/08 11:54:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		main(int argc, char **argv, char **envp)
 			ft_printf("%d\n",parts->pipe_id);
 			g_pipe_id = 0;
 			free(line);
+			free_parts(parts);
 		}
 	}
 	return (0);

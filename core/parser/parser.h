@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 16:14:05 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/08 10:58:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/08 11:54:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ char		**get_path();
 int			get_dir(const char *path, const char *command);
 char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+void		free_parts(t_part *head);
 #endif
