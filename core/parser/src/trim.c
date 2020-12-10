@@ -6,12 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 13:04:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 14:31:13 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/10 14:47:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 #include <stdio.h>
+
 t_string		trim(t_string string)
 {
 	t_string	trimed;
@@ -27,7 +28,8 @@ t_string		trim(t_string string)
 	string += start;
 	out(string);
 	out("|\n");
-	end -= 2;
+	end -= 1;
+	printf("AT END : %c|\n", string[end]);
 	while (string[end] == ' ')
 		end--;
 	// string[end + 1] = '\0';
