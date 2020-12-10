@@ -5,47 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/23 16:14:05 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/09 08:22:54 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/10 13:54:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-# define CODE
+# define SYNTAX_ERROR 258
+# define CMMAND_NOT_FOUND 127
+# include "stdout/out.h"
 # include <stdlib.h>
-# include "ft_printf.h"
 
-typedef	struct	s_redirection
+t_string		*g_envp;
+typedef enum	e_bool
 {
-	char					sense;
-	char					*file_name;
-	struct s_redirection	*next;
-}				t_redirection;
+	false = 0,
+	true = 1
+}				t_bool;
 
-typedef struct	s_part
+typedef struct	s_redirect
 {
-	int				pipe_id;
-	char			*command;
-	char			**args;
-	t_redirection	*redirections;
-	struct s_part	*next;
-}				t_part;
+	char		type;
+	int			fd;
+	t_string	file_name;
+}				t_redirect;
 
-char		**g_path;
-int			g_pipe_id;
-size_t		length(char *string);
-char		**pipes(char *string);
-char		**parts(char *string);
-char		**arg_finder(char *cmd);
-void		add_part(t_part **head, t_part *part);
-void		free_double_char_arr(char **arr);
-t_part		*sequencer(char *cmd, int id);
-t_part		*parser(char *line);
-int			equals(char *s1, char *s2);
-char		**get_path();
-int			get_dir(const char *path, const char *command);
-char		**ft_split(char const *s, char c);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-void		free_parts(t_part **head);
+typedef struct	s_command
+{
+	t_string			*args;
+	t_redirect			*redirections;
+	struct s_command	*next;
+}				t_command;
+t_command		*parser(t_string line);
+void			libre_2d(char **arr);
+t_bool			includes(t_string string, t_string pattern);
+t_bool			equals(t_string s1, t_string s2);
+size_t			length(t_string string);
+t_bool			is_quote(t_string string);
+t_string		trim(t_string string);
 #endif

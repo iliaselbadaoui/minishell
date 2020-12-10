@@ -1,21 +1,17 @@
-MakeDir = make
 compile = gcc -Wall -Werror -Wextra -c
-src = src/*.c
-obj = *.o
-NAME = parser.a
-lib = parser.h
+src = src/out.c
+obj = out.o
+NAME = out.a
+lib = out.h
 
 all: $(NAME)
 
 $(NAME):
-	@$(MakeDir) -C stdout/
 	@$(compile) $(src) -I $(lib)
 	@ar -rc $(NAME) $(obj)
 clean:
-	@$(MakeDir) clean -C stdout/
 	@rm -rf $(obj)
 fclean: clean
-	@$(MakeDir) fclean -C stdout/
 	@rm -rf $(NAME)
 re: fclean all
 
