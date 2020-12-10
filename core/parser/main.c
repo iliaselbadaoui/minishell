@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 19:44:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/10 21:15:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,15 @@ int		main()
 	// {
 	// 	out("IT'S NOT\n");
 	// }
+	t_string str = strdup("     ilias     \0");
+	int i = 0;
+	while (1)
+	{
+		if (!i)
+			printf("|%s|",trim(str));
+		scanf("%d", &i);
+		free(str);
+	}
 	
-	printf("|%s|",trim(strdup("     ilias     \0")));
 	return (0);
 }
