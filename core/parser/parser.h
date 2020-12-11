@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 13:54:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/11 11:45:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ t_bool			equals(t_string s1, t_string s2);
 size_t			length(t_string string);
 t_bool			is_quote(t_string string);
 t_string		trim(t_string string);
+t_bool			syntax_checker(t_string line);
 #endif

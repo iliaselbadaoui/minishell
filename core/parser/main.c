@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 21:15:22 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/11 12:00:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		main()
 	// {
 	// 	out("IT'S NOT\n");
 	// }
-	t_string str = strdup("     ilias     \0");
+	// syntax_checker("\"echo\"");
+	t_string str = strdup("     ilias   \134      \0");
 	int i = 0;
 	while (1)
 	{

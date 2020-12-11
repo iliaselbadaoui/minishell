@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 13:04:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 19:44:37 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/11 12:39:12 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ t_string		trim(t_string string)
 	string += start;
 	end = length(string) - 1;
 	while (string[end] == ' ')
-		end--;
+	{
+		if (string[end - 1] != 92)
+			end--;
+		else
+			break ;
+	}
 	string[end + 1] = '\0';
 	return (string);
 }
