@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/11 11:45:47 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/11 22:37:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 
 t_string		*g_envp;
+int				g_error;
+int				g_int;
+char			g_char;
 typedef enum	e_bool
 {
 	false = 0,
@@ -44,5 +47,7 @@ t_bool			equals(t_string s1, t_string s2);
 size_t			length(t_string string);
 t_bool			is_quote(t_string string);
 t_string		trim(t_string string);
-t_bool			syntax_checker(t_string line);
+int				syntax_checker(t_string line);
+t_bool			check_args(t_string line);
+t_bool			is_redirection(char c);
 #endif
