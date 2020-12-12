@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/11 22:37:15 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/12 18:37:32 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define CMMAND_NOT_FOUND 127
 # include "stdout/out.h"
 # include <stdlib.h>
+# include <stdio.h>
 
 t_string		*g_envp;
 int				g_error;
