@@ -1,6 +1,6 @@
 compile = gcc -Wall -Werror -Wextra -c
-src = src/out.c
-obj = out.o
+src = src/out.c src/outc.c
+obj = out.o outc.o
 NAME = out.a
 lib = out.h
 

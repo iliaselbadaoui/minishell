@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 12:46:51 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 13:23:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/13 08:43:07 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 t_bool			is_quote(t_string string)
 {
-	if (!string || !length(string))
+	while (string[g_counter] != g_char && string[g_counter])
+		g_counter++;
+	if (!string[g_counter])
 		return (false);
-	if (string[0] == 34 && string[length(string) - 1] == 34)
+	else if(string[g_counter] == g_char)
+	{
+		g_counter++;
 		return (true);
-	else if (string[0] == 39 && string[length(string) - 1] == 39)
-		return (true);
+	}
 	else
-		return (false);
+		return (true);
 }

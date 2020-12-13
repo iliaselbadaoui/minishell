@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:25:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 09:02:27 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/13 13:04:48 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@
 
 typedef	char	*t_string;
 void		out(t_string str);
+void		outc(char c);
 #endif

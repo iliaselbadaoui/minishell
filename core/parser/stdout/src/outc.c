@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   outc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/13 13:44:19 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/13 13:03:38 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/13 13:35:24 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include <string.h>
-#include <stdio.h>
-int		main()
+#include "../out.h"
+
+void			outc(char c)
 {
-	// . ../ path/filename : should be handled
-	syntax_checker(strdup("ilias \"elbadaoui\" \"ilias"));
-	// t_string str = strdup("     ilias   \134      \0");
-	// int i = 0;
-	// while (1)
-	// {
-	// 	if (!i)
-	// 		printf("|%s|",trim(str));
-	// 	scanf("%d", &i);
-	// 	free(str);
-	// }
-	
-	return (0);
+	write(1, &c, 1);
 }

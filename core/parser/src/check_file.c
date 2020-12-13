@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/13 13:44:19 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/13 08:43:39 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/13 14:43:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include <string.h>
-#include <stdio.h>
-int		main()
+#include "../parser.h"
+
+t_bool		check_file(t_string line)
 {
-	// . ../ path/filename : should be handled
-	syntax_checker(strdup("ilias \"elbadaoui\" \"ilias"));
-	// t_string str = strdup("     ilias   \134      \0");
-	// int i = 0;
-	// while (1)
-	// {
-	// 	if (!i)
-	// 		printf("|%s|",trim(str));
-	// 	scanf("%d", &i);
-	// 	free(str);
-	// }
-	
-	return (0);
+	// int		flag;
+	int		count;
+
+	count = 0;
+	while (line[g_counter])
+	{
+		while (is_redirection(line[g_counter]))
+		{
+			if (count > 2)
+			{
+				g_char = line[g_counter];
+				return (false);
+			}
+			g_counter++;
+			count++;
+		}
+		g_counter++;
+	}
+	return (true);
 }
