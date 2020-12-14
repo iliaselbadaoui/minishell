@@ -6,12 +6,18 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/13 08:41:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/14 13:33:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+# define G_REDIRECT_ERR ">"
+# define L_REDIRECT_ERR "<"
+# define S_QUOTE_ERR "\'"
+# define D_QUOTE_ERR "\""
+# define NO_FULE_NAME_ERR "no file name"
+# define CHAR_ESC_ERR "escape character not satisfyed"
 # define SYNTAX_ERROR 258
 # define CMMAND_NOT_FOUND 127
 # include "stdout/out.h"
@@ -22,6 +28,7 @@ t_string		*g_envp;
 int				g_error;
 int				g_counter;
 char			g_char;
+t_string		g_err_msg;
 typedef enum	e_bool
 {
 	false = 0,
@@ -50,5 +57,8 @@ t_bool			is_quote(t_string string);
 t_string		trim(t_string string);
 int				syntax_checker(t_string line);
 t_bool			check_args(t_string line);
+t_bool			check_file(t_string line);
+t_bool			check_file_name(t_string line);
+t_bool			char_escape(t_string line);
 t_bool			is_redirection(char c);
 #endif

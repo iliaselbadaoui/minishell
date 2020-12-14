@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 21:01:13 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/13 13:08:41 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/14 13:08:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 t_bool			check_args(t_string line)
 {
+	t_bool		bol;
+
 	while (line[g_counter])
 	{
-		if (line[g_counter] == '\\' && line[g_counter + 1] != '\0')
-		{
-			g_counter += 2;
+		bol = char_escape(line);
+		if (bol == true)
 			continue ;
-		}
-		else if(line[g_counter] == '\\' && line[g_counter + 1] == '\0')
-		{
-			g_char = line[g_counter];
+		else if (bol == false)
 			return (false);
-		}
 		if (line[g_counter] == '\"' || line[g_counter] == '\'')
 		{
 			g_char = line[g_counter++];

@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_checker.c                                   :+:      :+:    :+:   */
+/*   char_escape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 11:23:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/14 13:34:55 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/14 09:04:11 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/14 13:34:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-int				syntax_checker(t_string line)
+
+t_bool		char_escape(t_string line)
 {
-	while (line[g_counter])
+	if (line[g_counter] == '\\' && line[g_counter + 1] != '\0')
 	{
-		if (!check_args(line) || !check_file(line))
-		{
-			out("minishell : syntax error near unexpected token `");
-			out(g_err_msg);
-			out("`\n");
-			return (1);
-		}
+		g_counter += 2;
+		return (true);
 	}
-	return (0);
+	else if(line[g_counter] == '\\' && line[g_counter + 1] == '\0')
+	{
+		g_char = line[g_counter];
+		g_err_msg = CHAR_ESC_ERR;
+		return (false);
+	}
+	return (2);
 }
