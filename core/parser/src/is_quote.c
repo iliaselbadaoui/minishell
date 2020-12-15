@@ -6,16 +6,26 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 12:46:51 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/14 13:36:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/15 14:28:01 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_bool			is_quote(t_string string)
+t_bool			is_quote(t_bool is_file, t_string string)
 {
+	static int		counter;
+
 	while (string[g_counter] != g_char && string[g_counter])
+	{
+		counter++;
 		g_counter++;
+	}
+	if (is_file && !counter)
+	{
+		g_err_msg = NO_FILE_NAME_ERR;
+		return (false);
+	}
 	if (!string[g_counter])
 	{
 		if (g_char == '\'')
@@ -28,7 +38,6 @@ t_bool			is_quote(t_string string)
 	{
 		g_counter++;
 		return (true);
-	}
-	else
-		return (true);
+	}	
+	return (true);
 }
