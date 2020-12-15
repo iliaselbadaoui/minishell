@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_checker.c                                   :+:      :+:    :+:   */
+/*   semi_colone_pipe_checker.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 11:23:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/15 12:59:05 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/15 10:29:06 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/15 11:12:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_bool			syntax_checker(t_string line)
+t_bool			semi_colone_pipe_checker(t_string line)
 {
-	while (line[g_counter])
+	g_err_msg = NULL;
+	if (line[0] == ';')
+		g_err_msg = SC_SYN_ERR;
+	else if (line[0] == '|')
+		g_err_msg = PIPE_SYN_ERR;
+	if (g_err_msg)
+		return (false);
+	if (line[g_counter] == '|')
 	{
-		if (!check_args(line) || !check_file(line) || 
-			!semi_colone_pipe_checker(line))
+		g_counter++;
+		while (line[g_counter] && line[g_counter] == ' ')
+			g_counter++;
+		if (!line[g_counter])
 		{
-			out("minishell : syntax error near unexpected token `");
-			out(g_err_msg);
-			out("`\n");
+			g_err_msg = PIPE_SYN_ERR;
 			return (false);
 		}
+	}
+	else
+	{
+		g_counter++;
+		while (line[g_counter] && line[g_counter] == ' ')
+			g_counter++;
 	}
 	return (true);
 }
