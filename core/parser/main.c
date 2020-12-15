@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/15 12:59:43 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/15 13:14:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main()
 {
 	// . ../ path/filename : should be handled
 	// syntax_checker(strdup("ilias \"elbadaoui\" \"ilias"));
-	if (syntax_checker(strdup("echo ilias | echo")))
+	if (syntax_checker(strdup("echo ilias | x |")))
 	{
 		out("IT'S WORKING");
 	}
