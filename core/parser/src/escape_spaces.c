@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   escape_spaces.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/15 18:07:10 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/15 18:23:30 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/15 18:29:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include <string.h>
-#include <stdio.h>
-int		main()
+#include "../parser.h"
+
+void			escape_spaces(t_string line)
 {
-	// . ../ path/filename : should be handled
-	// syntax_checker(strdup("ilias \"elbadaoui\" \"ilias"));
-	if (syntax_checker(strdup("> ;")))
+	while (line[g_counter] == ' ')
 	{
-		out("IT'S WORKING");
+		g_flag++;
+		g_counter++;
 	}
-	// if (check_file(">>>> ilias"))
-	// 	printf("TRUE\n");
-	// else
-	// 	printf("FALSE\n");
-	return (0);
 }

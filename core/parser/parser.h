@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/15 14:22:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/15 18:27:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ t_bool			check_file(t_string line);
 t_bool			check_file_name(t_string line);
 t_bool			semi_colone_pipe_checker(t_string line);
 t_bool			char_escape(t_string line);
+void			escape_spaces(t_string line);
 t_bool			is_redirection(char c);
 #endif
