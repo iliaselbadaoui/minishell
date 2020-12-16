@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:23:30 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/16 11:12:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:28:34 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void			escape_spaces(t_string line)
 {
 	while (line[g_counter] == ' ')
 		g_counter++;
-	if (!greate_question(line))
-		g_flag = 1;
+	if (!greate_question(line) && g_flag != 1)
+		g_flag = 2;
 }
