@@ -6,21 +6,12 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/15 19:52:04 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/16 09:30:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-# define G_REDIRECT_ERR ">"
-# define L_REDIRECT_ERR "<"
-# define S_QUOTE_ERR "\'"
-# define D_QUOTE_ERR "\""
-# define PIPE_SYN_ERR "|"
-# define SC_SYN_ERR ";"
-# define NO_FILE_NAME_ERR "no file name"
-# define DIR_NAME_ERR "file name is a directory"
-# define CHAR_ESC_ERR "escape character not satisfyed"
 # define SYNTAX_ERROR 258
 # define CMMAND_NOT_FOUND 127
 # include "stdout/out.h"
@@ -32,7 +23,6 @@ int				g_error;
 int				g_flag;
 int				g_counter;
 char			g_char;
-t_string		g_err_msg;
 typedef enum	e_bool
 {
 	false = 0,
@@ -48,6 +38,7 @@ typedef struct	s_redirect
 
 typedef struct	s_command
 {
+	int					id;
 	t_string			*args;
 	t_redirect			*redirections;
 	struct s_command	*next;
