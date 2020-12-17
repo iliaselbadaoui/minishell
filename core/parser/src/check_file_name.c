@@ -6,27 +6,25 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 08:53:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/16 13:46:52 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 14:01:14 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-
 t_bool			greate_question(t_string line)
 {
-	if (!is_redirection(line[g_counter]) && line[g_counter] && 
-		line[g_counter] != '|' && line[g_counter] != ';' && 
-		line[g_counter] != ' ')
+	if (!is_redirection(line[g_counter]) && line[g_counter] &&
+	line[g_counter] != '|' && line[g_counter] != ';' && line[g_counter] != ' ')
 		return (true);
 	else
-		return (false);	
+		return (false);
 }
 
 static t_bool	no_quote_file_name(t_string line)
-{	
+{
 	escape_spaces(line);
-	if (line[g_counter] == ';' && (!semi_colone_pipe_checker(line) || 
+	if (line[g_counter] == ';' && (!semi_colone_pipe_checker(line) ||
 	g_flag == 2))
 		return (false);
 	else if (line[g_counter] == '|' && (!semi_colone_pipe_checker(line) ||
@@ -39,9 +37,9 @@ t_bool			check_file_name(t_string line)
 {
 	while (line[g_counter] && line[g_counter] == ' ')
 		g_counter++;
-	if(!line[g_counter])
+	if (!line[g_counter])
 		return (false);
-	if(!char_escape(line))
+	if (!char_escape(line))
 		return (false);
 	if (line[g_counter] == '\"' || line[g_counter] == '\'')
 	{

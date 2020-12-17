@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 12:46:51 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/16 13:47:29 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 13:50:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_bool			is_quote(t_bool is_file, t_string string)
 		return (false);
 	if (!string[g_counter])
 		return (false);
-	else if(string[g_counter] == g_char)
+	else if (string[g_counter] == g_char)
 	{
 		g_counter++;
 		return (true);
-	}	
+	}
 	return (true);
 }

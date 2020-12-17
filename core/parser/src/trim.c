@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 13:04:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/11 12:39:12 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 14:02:35 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_string		trim(t_string string)
 {
 	int			start;
 	int			end;
-	
+
 	start = 0;
 	end = length(string);
 	if (!string || !end)
-	 return (NULL);
+		return (NULL);
 	while (string[start] == ' ' && string[start])
 		start++;
 	string += start;

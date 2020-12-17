@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/17 13:41:54 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 13:55:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int		main()
 		}
 	}
 	
-	// if (syntax_checker(strdup(">>> \\;")))
-	// {
-	// 	out("IT'S WORKING");
-	// }
+	if (syntax_checker(strdup(">>> \\;")))
+	{
+		out("IT'S WORKING");
+	}
 	// if (check_file(">>>> ilias"))
 	// 	printf("TRUE\n");
 	// else

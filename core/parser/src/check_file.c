@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 08:43:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/16 09:26:15 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 13:50:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_bool			check_file(t_string line)
 	int		count;
 
 	count = 1;
-	if (is_redirection(line[g_counter])){
+	if (is_redirection(line[g_counter]))
+	{
 		g_char = line[g_counter];
 		while (is_redirection(line[g_counter]))
 		{

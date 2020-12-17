@@ -6,12 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 09:04:11 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/16 13:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 13:49:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
-
 
 t_bool		char_escape(t_string line)
 {
@@ -21,7 +20,7 @@ t_bool		char_escape(t_string line)
 		g_counter += 2;
 		return (true);
 	}
-	else if(line[g_counter] == '\\' && line[g_counter + 1] == '\0')
+	else if (line[g_counter] == '\\' && line[g_counter + 1] == '\0')
 	{
 		g_char = line[g_counter];
 		return (false);
