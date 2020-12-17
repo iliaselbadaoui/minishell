@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 13:32:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/17 13:32:31 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 13:40:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		process_remain(char **remain, char **line)
 	return (0);
 }
 
-int		get_next_line(int fd, char **line)
+int		in(int fd, char **line)
 {
 	static char *remain[256];
 	char		*buffer;

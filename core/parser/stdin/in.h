@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 13:28:54 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/17 13:31:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/17 13:40:19 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+# define BUFFER_SIZE 4096
 
 char		*ft_strchr(const char *s, int c);
 int			ft_strlen(const char *str);
