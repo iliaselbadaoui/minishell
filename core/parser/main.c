@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/19 13:12:34 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/19 13:39:29 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,21 @@ int		main()
 {
 	// . ../ path/filename : should be handled
 	// syntax_checker(strdup("ilias \"elbadaoui\" \"ilias"));
-	t_string line;
+	t_string	line;
+	t_string	duped;
+
 	while (1)
 	{
 		out("minishell$ ");
 		in(0, &line);
-		if (syntax_checker(trim(line)))
+		duped = ft_strdup(trim(line));
+		if (syntax_checker(duped))
 		{
 			out("IT'S WORKING\n");
 		}
 	}
 	
-	// if (syntax_checker(strdup("> 'ilias'; ilias | cat")))
+	// if (syntax_checker(strdup("> 'ilias'; ilias; ;")))
 	// {
 	// 	out("IT'S WORKING\n");
 	// }printf("g_error : %d", g_error);
