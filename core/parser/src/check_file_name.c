@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 08:53:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/17 14:01:14 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/19 09:10:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ static t_bool	no_quote_file_name(t_string line)
 	escape_spaces(line);
 	if (line[g_counter] == ';' && (!semi_colone_pipe_checker(line) ||
 	g_flag == 2))
+	{
+		g_error = NO_FILE_DIR;
 		return (false);
+	}
 	else if (line[g_counter] == '|' && (!semi_colone_pipe_checker(line) ||
 	g_flag == 2))
+	{
+		g_error = NO_FILE_DIR;
 		return (false);
+	}
 	return (true);
 }
 

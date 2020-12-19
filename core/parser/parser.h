@@ -6,13 +6,14 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/17 13:41:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/19 11:58:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # define SYNTAX_ERROR 258
+# define NO_FILE_DIR 1
 # define CMMAND_NOT_FOUND 127
 # include "stdout/out.h"
 # include "stdin/in.h"
