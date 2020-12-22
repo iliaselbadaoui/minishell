@@ -1,2 +1,2 @@
 make re
-gcc -Wall -Werror -Wextra -g main.c parser.a stdout/out.a stdin/in.a
+gcc -Wall -Werror -Wextra main.c parser.a stdout/out.a stdin/in.a

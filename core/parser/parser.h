@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/19 11:58:54 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/22 21:15:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,19 @@ int				g_error;
 int				g_flag;
 int				g_counter;
 char			g_char;
+
 typedef enum	e_bool
 {
 	false = 0,
 	true = 1
 }				t_bool;
+
+typedef struct	s_map
+{
+	t_string		key;
+	t_string		value;
+	struct s_map	*next;
+}				t_map;
 
 typedef struct	s_redirect
 {
@@ -45,6 +53,7 @@ typedef struct	s_command
 	t_redirect			*redirections;
 	struct s_command	*next;
 }				t_command;
+
 t_command		*parser(t_string line);
 void			libre_2d(char **arr);
 t_bool			includes(t_string string, t_string pattern);
