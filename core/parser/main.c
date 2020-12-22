@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/22 22:38:03 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/22 22:38:53 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int		main(int argc, t_string *argv, t_string *envp)
 {
-	// t_string	line;
+	t_string	line;
 
 
 	// if (argc && argv)
@@ -27,16 +27,16 @@ int		main(int argc, t_string *argv, t_string *envp)
 	// 		envp++;
 	// 	}
 	// }
-	// while (1)
-	// {
-	// 	out("minishell$ ");
-	// 	in(0, &line);
-	// 	if (syntax_checker(trim(line)))
-	// 	{
-	// 		out("IT'S WORKING\n");
-	// 	}
-	// 	free(line);
-	// 	line = NULL;
-	// }
+	while (1)
+	{
+		out("minishell$ ");
+		in(0, &line);
+		if (syntax_checker(trim(line)))
+		{
+			out("IT'S WORKING\n");
+		}
+		free(line);
+		line = NULL;
+	}
 	return (0);
 }
