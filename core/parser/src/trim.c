@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 13:04:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/17 14:04:30 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/22 10:18:24 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ t_string		trim(t_string string)
 		else
 			break ;
 	}
-	string[end + 1] = '\0';
+	if (string[end] != '\\')
+		string[end + 1] = '\0';
+	else
+		string[end + 2] = '\0';
 	return (string);
 }
