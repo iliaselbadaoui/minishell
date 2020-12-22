@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 11:23:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/19 09:11:11 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/22 09:47:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ t_bool			syntax_checker(t_string line)
 			return (false);
 		}
 	}
+	g_flag = 0;
+	g_counter = 0;
 	return (true);
 }

@@ -1,5 +1,5 @@
 MakeDir = make
-compile = gcc -Wall -Werror -Wextra -c
+compile = gcc -Wall -Werror -Wextra -g -c
 src = src/*.c
 obj = *.o
 NAME = parser.a
