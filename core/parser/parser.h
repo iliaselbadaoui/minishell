@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/22 21:15:43 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/23 14:59:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ t_bool			check_file_name(t_string line);
 t_bool			semi_colone_pipe_checker(t_string line);
 t_bool			char_escape(t_string line);
 void			escape_spaces(t_string line);
+int				sequence_calculator(t_string line, char delimiter);
 t_bool			is_redirection(char c);
 #endif

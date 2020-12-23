@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/22 22:38:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/23 16:30:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <string.h>
 #include <stdio.h>
-
-int		main(int argc, t_string *argv, t_string *envp)
+//int argc, t_string *argv, t_string *envp
+int		main()
 {
-	t_string	line;
+	// t_string	line;
 
 
 	// if (argc && argv)
@@ -27,16 +27,17 @@ int		main(int argc, t_string *argv, t_string *envp)
 	// 		envp++;
 	// 	}
 	// }
-	while (1)
-	{
-		out("minishell$ ");
-		in(0, &line);
-		if (syntax_checker(trim(line)))
-		{
-			out("IT'S WORKING\n");
-		}
-		free(line);
-		line = NULL;
-	}
+	printf ("%d\n", sequence_calculator("ilias elbadaoui ; 'echo' hello \"word\" ; grep h", ';'));
+	// while (1)
+	// {
+	// 	out("minishell$ ");
+	// 	in(0, &line);
+	// 	if (syntax_checker(trim(line)))
+	// 	{
+	// 		out("IT'S WORKING\n");
+	// 	}
+	// 	free(line);
+	// 	line = NULL;
+	// }
 	return (0);
 }

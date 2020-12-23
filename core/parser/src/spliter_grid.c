@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spliter.c                                          :+:      :+:    :+:   */
+/*   spliter_grid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/10 09:38:37 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/23 15:01:35 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/23 16:30:45 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/23 16:42:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-// t_string		*spliter(t_string line, char delimiter)
-// {
-// 	t_string	*res;
-// 	int			sequences;
-	
-// 	if (!line)
-// 		return (NULL);
-// 	sequences = sequence_calculator(line, delimiter);
-// 	return (res);
-// }
+t_string			spliter_grid(t_string line, char delimiter)
+{
+	int			sequences;
+	t_string	*res;
+
+	sequences = sequence_calculator(line, delimiter);
+	res = (t_string *)malloc(sizeof(t_string) * sequences);
+}

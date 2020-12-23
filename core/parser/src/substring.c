@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spliter.c                                          :+:      :+:    :+:   */
+/*   substring.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/10 09:38:37 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/23 15:01:35 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/23 17:10:44 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/23 17:29:49 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-// t_string		*spliter(t_string line, char delimiter)
-// {
-// 	t_string	*res;
-// 	int			sequences;
+t_string			substring(t_string string, int start, int end)
+{
 	
-// 	if (!line)
-// 		return (NULL);
-// 	sequences = sequence_calculator(line, delimiter);
-// 	return (res);
-// }
+}
