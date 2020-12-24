@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/23 15:43:47 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/24 09:32:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int				sequence_calculator(t_string line, char delimiter)
 			sequences++;
 		g_counter++;
 	}
+	g_counter = 0;
 	return (sequences + 1);
 }

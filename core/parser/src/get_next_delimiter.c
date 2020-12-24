@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spliter_grid.c                                     :+:      :+:    :+:   */
+/*   get_next_delimiter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 16:30:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/24 11:41:36 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/24 11:10:52 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/24 11:39:01 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_string		*spliter_grid(t_string line, char delimiter)
+int				get_next_delimiter(t_string line, char delimiter)
 {
-	int			sequences;
-	int			start;
-	int			end;
-	t_string	*res;
+	int		sequences;
 
-	sequences = sequence_calculator(line, delimiter) + 1;
-	res = (t_string *)malloc(sizeof(t_string) * sequences);
-	res[sequences - 1] = NULL;
-	start = 0;
 	sequences = 0;
-	while (res[sequences])
+	while (line[g_counter])
 	{
-		end = get_next_delimiter(line, delimiter);
-		res[sequences] = substring(line, start, end);
-		start = end + 2;
-		sequences++;
+		if (line[g_counter] == '"' || line[g_counter] == '\'')
+		{
+			g_char = line[g_counter];
+			g_counter++;
+			while (line[g_counter] != g_char)
+				g_counter++;
+		}
+		if (line[g_counter] == '\\')
+			g_counter += 2;
+		if (line[g_counter] == delimiter)
+		{
+			g_counter++;
+			return (g_counter - 2);
+		}
+		g_counter++;
 	}
-	return (res);
+	return (g_counter - 1);
 }

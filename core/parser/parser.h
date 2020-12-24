@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/23 14:59:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/24 11:39:41 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ t_bool			semi_colone_pipe_checker(t_string line);
 t_bool			char_escape(t_string line);
 void			escape_spaces(t_string line);
 int				sequence_calculator(t_string line, char delimiter);
+int				get_next_delimiter(t_string line, char delimiter);
+t_string		substring(t_string string, int start, int end);
+t_string		*spliter_grid(t_string line, char delimiter);
 t_bool			is_redirection(char c);
 #endif

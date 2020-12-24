@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/23 16:30:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/24 11:51:42 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ int		main()
 	// 		envp++;
 	// 	}
 	// }
-	printf ("%d\n", sequence_calculator("ilias elbadaoui ; 'echo' hello \"word\" ; grep h", ';'));
+	// printf ("%d\n", sequence_calculator("ilias elbadaoui ; 'echo' hello \"word\" ; grep h", ';'));
+	t_string *seq = spliter_grid("ilias elbadaoui ; 'echo' hello \"word\" ; grep h", ';');
+	while (*seq)
+	{
+		printf("%s\n", trim(*seq));
+		seq++;
+	}
+	
 	// while (1)
 	// {
 	// 	out("minishell$ ");
