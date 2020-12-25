@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/24 11:51:42 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/24 16:09:55 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ int		main()
 	// 		envp++;
 	// 	}
 	// }
-	// printf ("%d\n", sequence_calculator("ilias elbadaoui ; 'echo' hello \"word\" ; grep h", ';'));
-	t_string *seq = spliter_grid("ilias elbadaoui ; 'echo' hello \"word\" ; grep h", ';');
+	t_string *seq = spliter_grid("ilias elbadaoui ; 'echo' hello \"word\" ; grep h ; > ilias echo brotherhood is the best > ilias ilias", ';');
 	while (*seq)
 	{
 		printf("%s\n", trim(*seq));
 		seq++;
 	}
-	
+	// printf("FUCK");
 	// while (1)
 	// {
 	// 	out("minishell$ ");
