@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 18:26:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/25 19:27:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int		main()
 	// 	printf("%s\n", trim(*seq));
 	// 	seq++;
 	// }
-	t_string *seq = args_extracter("> 'ilias' echo elbadaoui 'brotherhood' is the best > 'ilias' 'ilias'");
+	t_string *seq = args_extracter("> 'ilias' ");
 	while (*seq)
 	{
-		printf("%s\n", trim(*seq));
+		printf("|%s\n", *seq);
 		seq++;
 	}
+	printf("%s\n", *seq);
 	// printf("FUCK");
 	// while (1)
 	// {
