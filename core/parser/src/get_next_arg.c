@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_calculator.c                                  :+:      :+:    :+:   */
+/*   get_next_arg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 17:47:27 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/25 17:22:11 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/25 17:54:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-int				args_calculator(t_string command)
+t_coord			get_next_arg(t_string line)
 {
-	int		count;
-
-	count = 0;
-	while (command[g_counter])
+	t_coord		coord;
+	
+	while (line[g_counter])
 	{
-		skip_spaces(command);
+		skip_spaces(line);
 		g_char = 0;
-		if (is_redirection(command[g_counter]))
+		if (is_redirection(line[g_counter]))
 		{
 			g_counter++;
-			skip_spaces(command);
-			if (command[g_counter] == '\'' || command[g_counter] == '"')
-				g_char = command[g_counter++];
-			skip_word(command);
+			skip_spaces(line);
+			if (line[g_counter] == '\'' || line[g_counter] == '"')
+				g_char = line[g_counter++];
+			skip_word(line);
 		}
 		else
 		{
-			if (command[g_counter] == '\'' || command[g_counter] == '"')
-				g_char = command[g_counter++];
-			skip_word(command);
-			if (command[g_counter])
-				count++;
+			coord.start = g_counter;
+			if (line[g_counter] == '\'' || line[g_counter] == '"')
+				g_char = line[g_counter++];
+			skip_word(line);
+			coord.end = g_counter - 1;
+			return (coord);
 		}
 	}
-	return (count);
+	return ((t_coord){0,0});
 }

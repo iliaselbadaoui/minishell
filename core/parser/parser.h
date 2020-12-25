@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 15:01:28 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/25 17:31:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef struct	s_redirect
 	t_string	file_name;
 }				t_redirect;
 
+typedef struct	s_coord
+{
+	int			start;
+	int			end;
+}				t_coord;
+
 typedef struct	s_command
 {
 	int					id;
@@ -78,4 +84,5 @@ t_string		*spliter_grid(t_string line, char delimiter);
 t_bool			is_redirection(char c);
 t_string		*args_extracter(t_string command);
 int				args_calculator(t_string command);
+t_coord			get_next_arg(t_string line);
 #endif
