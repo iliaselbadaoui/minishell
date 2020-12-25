@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/24 11:39:41 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:01:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ void			escape_spaces(t_string line);
 int				sequence_calculator(t_string line, char delimiter);
 int				get_next_delimiter(t_string line, char delimiter);
 t_string		substring(t_string string, int start, int end);
+void			skip_word(t_string command);
+void			skip_spaces(t_string command);
 t_string		*spliter_grid(t_string line, char delimiter);
 t_bool			is_redirection(char c);
+t_string		*args_extracter(t_string command);
+int				args_calculator(t_string command);
 #endif

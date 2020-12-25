@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_extracter.c                                   :+:      :+:    :+:   */
+/*   skip.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/25 11:09:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 15:51:41 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/25 14:56:59 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/25 16:02:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_string		*args_extracter(t_string command)
+void			skip_word(t_string command)
 {
-	t_string	*args = NULL;
-	int c = args_calculator(command);
-	printf("HEY : %d", c);
-	return (args);
+	if (g_char > 0)
+	{
+		while (command[g_counter] != g_char)
+			g_counter++;
+		if (command[g_counter] == g_char)
+			g_counter++;
+	}
+	else
+		while (greate_question(command))
+			g_counter++;
+}
+
+void			skip_spaces(t_string command)
+{
+	while (command[g_counter] == ' ')
+		g_counter++;
 }

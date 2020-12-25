@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/24 16:09:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/25 16:59:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int		main()
 	// 		envp++;
 	// 	}
 	// }
-	t_string *seq = spliter_grid("ilias elbadaoui ; 'echo' hello \"word\" ; grep h ; > ilias echo brotherhood is the best > ilias ilias", ';');
-	while (*seq)
-	{
-		printf("%s\n", trim(*seq));
-		seq++;
-	}
+	// t_string *seq = spliter_grid("ilias elbadaoui ; 'echo' hello \"word\" ; grep h ; > ilias echo brotherhood is the best > ilias ilias", ';');
+	// while (*seq)
+	// {
+	// 	printf("%s\n", trim(*seq));
+	// 	seq++;
+	// }
+	args_extracter("> 'ilias' 'echo' elbadaoui 'brotherhood' is the best > 'ilias' 'ilias'");
 	// printf("FUCK");
 	// while (1)
 	// {
