@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 19:27:26 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/25 21:45:07 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,7 @@ int		main()
 	// 	printf("%s\n", trim(*seq));
 	// 	seq++;
 	// }
-	t_string *seq = args_extracter("> 'ilias' ");
-	while (*seq)
-	{
-		printf("|%s\n", *seq);
-		seq++;
-	}
-	printf("%s\n", *seq);
+	printf("%d", redirections_calculator("echo ilias > 'hello' > xhgjh"));
 	// printf("FUCK");
 	// while (1)
 	// {

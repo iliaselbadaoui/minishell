@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_calculator.c                                  :+:      :+:    :+:   */
+/*   redirections_calculator.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 22:09:32 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/25 21:21:55 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/25 22:08:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-int				args_calculator(t_string command)
+int				redirections_calculator(t_string command)
 {
 	int		count;
 
@@ -28,14 +28,13 @@ int				args_calculator(t_string command)
 			if (command[g_counter] == '\'' || command[g_counter] == '"')
 				g_char = command[g_counter++];
 			skip_word(command);
+			count++;
 		}
 		else
 		{
 			if (command[g_counter] == '\'' || command[g_counter] == '"')
 				g_char = command[g_counter++];
 			skip_word(command);
-			if (command[g_counter])
-				count++;
 		}
 	}
 	return (count);

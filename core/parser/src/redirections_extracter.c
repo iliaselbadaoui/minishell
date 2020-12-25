@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spliter_grid.c                                     :+:      :+:    :+:   */
+/*   redirections_extracter.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 16:30:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 21:04:56 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/25 21:20:44 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/25 22:16:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_string		*spliter_grid(t_string line, char delimiter)
+t_redirect		*redirections_extracter(t_string command)
 {
-	int			sequences;
-	int			start;
-	int			end;
+	t_redirect	*redirections;
+	int			count;
 	int			i;
-	t_string	*res;
-
-	sequences = sequence_calculator(line, delimiter) + 1;
-	res = (t_string *)malloc(sizeof(t_string) * sequences);
-	start = 0;
+	t_coord		coord;
+	t_redirect	red;
+	
+	count = redirections_calculator(command) + 1;
+	g_counter = 0;
+	redirections = malloc(sizeof(t_redirect) * count);
 	i = 0;
-	while (i < sequences - 1)
+	while (i < count - 1)
 	{
-		end = get_next_delimiter(line, delimiter);
-		res[i] = substring(line, start, end);
-		start = end + 2;
+		coord = get_next_arg(command);
+		red.type = coord.type;
+		if (coord.end)
+			red.file_name = substring(command, coord.start, coord.end);
 		i++;
 	}
-	res[i] = NULL;
-	return (res);
+	return (redirections);
 }
