@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 18:46:41 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 19:03:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 //int argc, t_string *argv, t_string *envp
 int		main()
 {
-	t_string	*args;
-	t_string	*pipes;
-	int 		counter=0;
-	int 		counter_extra;
-
-	args = spliter("echo ilias > 'ilias' | extra commands ; echo \"hello\"", ';');
-	while (args[counter])
+	t_string	line;
+	t_command	*list;
+	
+	while (1)
 	{
-		printf("PIPE : |%s|\n", args[counter]);
-		pipes = spliter(args[counter], '|');
-		counter_extra = 0;
-		while (pipes[counter_extra])
+		out("minishell$ ");
+		in(0, &line);
+		list = parser(line);
+		t_command	*tmp = list;
+		while (tmp)
 		{
-			printf("Command : |%s|\n", pipes[counter_extra]);
-			counter_extra++;
+			printf("%s\n", tmp->args[0]);
+			tmp=tmp->next;
 		}
-		counter++;
+		free(line);
+		free_commands(&list);
 	}
+	
 	return (0);
 }
