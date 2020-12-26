@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/24 09:32:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 12:57:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,27 @@ int				sequence_calculator(t_string line, char delimiter)
 	int		sequences;
 
 	sequences = 0;
+	g_counter = 0;
 	while (line[g_counter])
 	{
+		skip_spaces(line);
 		if (line[g_counter] == '"' || line[g_counter] == '\'')
 		{
-			g_char = line[g_counter];
-			g_counter++;
-			while (line[g_counter] != g_char)
+			g_char = line[g_counter++];
+			while (line[++g_counter - 1] != g_char)
+			{
 				g_counter++;
-		}
-		if (line[g_counter] == '\\')
-		{
-			g_counter += 2;
-		}
-		if (line[g_counter] == delimiter)
+			}
 			sequences++;
-		g_counter++;
+		}
+		else
+		{
+			while (line[g_counter] != delimiter && line[g_counter] != '"' &&
+			line[g_counter] != '\"' && line[g_counter])
+				g_counter++;
+			sequences++;
+		}
 	}
 	g_counter = 0;
-	return (sequences + 1);
+	return (sequences);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 22:13:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 11:19:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_string		*g_envp;
 int				g_error;
 int				g_flag;
 int				g_counter;
+int				g_counter_extra;
 char			g_char;
 
 typedef enum	e_bool
@@ -82,11 +83,15 @@ t_string		substring(t_string string, int start, int end);
 void			skip_word(t_string command);
 void			skip_redirection(t_string command);
 void			skip_spaces(t_string command);
-t_string		*spliter_grid(t_string line, char delimiter);
+t_string		*spliter(t_string line, char delimiter);
 t_bool			is_redirection(char c);
 t_string		*args_extracter(t_string command);
 int				args_calculator(t_string command);
 t_coord			get_next_arg(t_string line);
 t_redirect		*redirections_extracter(t_string command);
 int				redirections_calculator(t_string command);
+t_coord			get_next_redirection(t_string line);
+t_command		*init_command(t_string *args, t_redirect *redirections, int id);
+void			add_command_to_end(t_command **head, t_command *node);
+void			free_commands(t_command **head);
 #endif

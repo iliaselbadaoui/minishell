@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_extracter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:09:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 21:04:33 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 09:41:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_string		*args_extracter(t_string command)
 	int			count;
 	int			i;
 	t_coord		coord;
-	
+
 	count = args_calculator(command) + 1;
 	g_counter = 0;
 	args = (t_string *)malloc(sizeof(t_string) * count);

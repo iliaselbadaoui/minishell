@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_arg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:22:11 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 22:09:19 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 09:41:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_coord			get_next_arg(t_string line)
 {
 	t_coord		coord;
-	
+
 	while (line[g_counter])
 	{
 		skip_spaces(line);
@@ -38,5 +38,5 @@ t_coord			get_next_arg(t_string line)
 			return (coord);
 		}
 	}
-	return ((t_coord){0,0});
+	return ((t_coord){0, 0, 0});
 }

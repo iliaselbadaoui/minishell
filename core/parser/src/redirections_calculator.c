@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_calculator.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:21:55 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 22:08:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 10:06:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int				redirections_calculator(t_string command)
 	int		count;
 
 	count = 0;
+	g_counter = 0;
 	while (command[g_counter])
 	{
 		skip_spaces(command);

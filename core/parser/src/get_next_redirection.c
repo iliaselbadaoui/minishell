@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_redirection.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:36:37 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/25 22:12:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 10:00:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 static char		get_redirection_type(t_string command)
 {
-	if (command[g_counter] == '>')
-		return ('c');
-	else if (command[g_counter] == '>' && command[g_counter + 1] == '>')
+	if (command[g_counter] == '>' && command[g_counter + 1] == '>')
 		return ('a');
+	else if (command[g_counter] == '>')
+		return ('c');
 	else
 		return ('r');
+}
+
+static void		if_is_quote(t_string line)
+{
+	if (line[g_counter] == '\'' || line[g_counter] == '"')
+		g_char = line[g_counter++];
 }
 
 t_coord			get_next_redirection(t_string line)
 {
 	t_coord		coord;
-	
+
 	while (line[g_counter])
 	{
 		skip_spaces(line);
@@ -36,8 +42,7 @@ t_coord			get_next_redirection(t_string line)
 			skip_redirection(line);
 			skip_spaces(line);
 			coord.start = g_counter;
-			if (line[g_counter] == '\'' || line[g_counter] == '"')
-				g_char = line[g_counter++];
+			if_is_quote(line);
 			skip_word(line);
 			coord.end = g_counter - 1;
 			return (coord);
@@ -49,5 +54,5 @@ t_coord			get_next_redirection(t_string line)
 			skip_word(line);
 		}
 	}
-	return ((t_coord){0,0});
+	return ((t_coord){0, 0, 0});
 }
