@@ -6,17 +6,25 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 17:35:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/26 18:17:25 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
+static void		help(int *seq)
+{
+	if (!g_flag)
+		(*seq)++;
+	g_counter = 0;
+	g_flag = 0;
+}
+
 int				sequence_calculator(t_string line, char delimiter)
 {
 	int		sequences;
 
-	sequences = 0;
+	g_counter = sequences = 0;
 	while (line[g_counter])
 	{
 		if (line[g_counter] == '"' || line[g_counter] == '\'')
@@ -31,15 +39,11 @@ int				sequence_calculator(t_string line, char delimiter)
 		if (line[g_counter] == delimiter)
 		{
 			sequences++;
-			if (!g_flag)
+			if (!g_flag++)
 				sequences++;
-			g_flag = 1;
 		}
 		g_counter++;
 	}
-	if (!g_flag)
-		sequences++;
-	g_flag = 0;
-	g_counter = 0;
-	return (sequences);
+	help(&sequences);
+	return (sequences) ;
 }
