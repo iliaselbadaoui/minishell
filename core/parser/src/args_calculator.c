@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 02:11:30 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 12:32:41 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int				args_calculator(t_string command)
 	while (command[g_counter])
 	{
 		g_char = 0;
-		if(command[g_counter] == '\\')
-			g_counter += 2;
 		if (is_redirection(command[g_counter]))
 		{
 			skip_redirection(command);
