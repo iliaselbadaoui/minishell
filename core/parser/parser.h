@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 16:00:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/27 23:43:23 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int				g_error;
 int				g_flag;
 int				g_counter;
 int				g_counter_extra;
+int				g_spliter_counter;
+int				g_spliter_char;
 char			g_char;
 
 typedef enum	e_bool
@@ -68,6 +70,7 @@ t_bool			includes(t_string string, t_string pattern);
 t_bool			equals(t_string s1, t_string s2);
 size_t			length(t_string string);
 t_bool			is_quote(t_bool is_file, t_string string);
+t_bool			check_quote(char c);
 t_string		trim(t_string string);
 t_bool			syntax_checker(t_string line);
 t_bool			check_args(t_string line);

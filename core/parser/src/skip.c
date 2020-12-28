@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:56:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 08:58:15 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 02:07:34 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void			skip_word(t_string command)
 	{
 		while (command[g_counter] != g_char)
 			g_counter++;
-		if (command[g_counter] == g_char)
-			g_counter++;
+		g_counter++;
 	}
 	else
 		while (greate_question(command))

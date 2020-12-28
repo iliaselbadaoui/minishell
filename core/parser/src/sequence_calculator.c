@@ -6,44 +6,66 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 18:17:25 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 03:00:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-static void		help(int *seq)
+static void	help(t_string line, int *count, int *flag)
 {
-	if (!g_flag)
-		(*seq)++;
-	g_counter = 0;
-	g_flag = 0;
+	if (check_quote(line[g_spliter_counter]))
+	{
+		if (!(*flag))
+		{
+			(*count)++;
+			*flag = 1;
+		}
+		g_spliter_char = line[g_spliter_counter++];
+		while (line[g_spliter_counter] != g_spliter_char)
+			g_spliter_counter++;
+		g_spliter_counter++;
+	}
+}
+
+static void	help2(t_string line, char delimiter, int *count, int *flag)
+{
+	if(line[g_spliter_counter] != delimiter)
+	{
+		if (!(*flag))
+		{
+			(*count)++;
+			*flag = 1;
+		}
+		while (!check_quote(line[g_spliter_counter]) && 
+		line[g_spliter_counter] != delimiter && line[g_spliter_counter])
+		{
+			if (line[g_spliter_counter] == '\\')
+				g_spliter_counter += 2;
+			else
+				g_spliter_counter++;
+		}
+	}
 }
 
 int				sequence_calculator(t_string line, char delimiter)
 {
-	int		sequences;
+	int		count;
+	int		flag;
 
-	g_counter = sequences = 0;
-	while (line[g_counter])
+	count = 0;
+	flag = 0;
+	g_spliter_counter = 0;
+	g_spliter_char = 0;
+	while (line[g_spliter_counter])
 	{
-		if (line[g_counter] == '"' || line[g_counter] == '\'')
-		{
-			g_char = line[g_counter];
-			g_counter++;
-			while (line[g_counter] != g_char)
-				g_counter++;
-		}
-		if (line[g_counter] == '\\')
-			g_counter += 2;
-		if (line[g_counter] == delimiter)
-		{
-			sequences++;
-			if (!g_flag++)
-				sequences++;
-		}
-		g_counter++;
+		help(line, &count, &flag);
+		help2(line, delimiter, &count, &flag);
+		if (line[g_spliter_counter] == delimiter)
+			flag = 0;
+		g_spliter_counter++;
 	}
-	help(&sequences);
-	return (sequences) ;
+	g_spliter_counter = 0;
+	g_spliter_char = 0;
+	return (count);
 }

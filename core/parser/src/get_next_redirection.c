@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:36:37 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 10:00:54 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 02:30:49 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_coord			get_next_redirection(t_string line)
 
 	while (line[g_counter])
 	{
-		skip_spaces(line);
 		g_char = 0;
 		if (is_redirection(line[g_counter]))
 		{
@@ -53,6 +52,7 @@ t_coord			get_next_redirection(t_string line)
 				g_char = line[g_counter++];
 			skip_word(line);
 		}
+		g_counter++;
 	}
 	return ((t_coord){0, 0, 0});
 }

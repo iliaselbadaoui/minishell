@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 12:34:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 19:13:52 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 10:19:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static void		help(t_command **list, t_string *pipes, int id)
 {
-	add_command_to_end(list, init_command(
-	args_extracter(pipes[g_counter_extra]),
-	NULL, id));
+	t_string	trimed;
+
+	trimed = trim(pipes[g_counter_extra]);
+	add_command_to_end(list, init_command(args_extracter(trimed),
+	redirections_extracter(trimed), id));
 	g_counter_extra++;
 }
 
@@ -25,22 +27,22 @@ t_command		*parser(t_string line)
 	t_string	*commands;
 	t_string	*pipes;
 	static int	id;
+	int			counter;
 	t_command	*list;
 
 	commands = spliter(line, ';');
 	list = NULL;
-	g_counter = 0;
-	while (commands[g_counter])
+	counter = 0;
+	while (commands[counter])
 	{
-		g_counter_extra=0;
-		pipes = spliter(commands[g_counter], '|');
+		g_counter_extra = 0;
+		pipes = spliter(trim(commands[counter]), '|');
 		while (pipes[g_counter_extra])
 			help(&list, pipes, id);
 		libre_2d(pipes);
 		id++;
-		g_counter++;
+		counter++;
 	}
-	printf("HELLO\n");
 	id = 0;
 	libre_2d(commands);
 	return (list);

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 19:03:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 10:27:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int		main()
 	
 	while (1)
 	{
+		// args_extractor and redirection
 		out("minishell$ ");
 		in(0, &line);
-		list = parser(line);
+		list = parser(trim(line));
 		t_command	*tmp = list;
 		while (tmp)
 		{
-			printf("%s\n", tmp->args[0]);
-			tmp=tmp->next;
+			printf("ARG |%s| id: %d\nFILE : [type: %c, file : %s]\n", tmp->args[0], tmp->id,(tmp->redirections)[0].type, (tmp->redirections)[0].file_name);
+			tmp = tmp->next;
 		}
 		free(line);
 		free_commands(&list);
 	}
-	
 	return (0);
 }
