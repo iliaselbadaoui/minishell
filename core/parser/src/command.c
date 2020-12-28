@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:33:40 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 02:44:15 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 14:52:42 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ void			add_command_to_end(t_command **head, t_command *node)
 	}
 }
 
+void			free_redirection(t_redirect	**redirection)
+{
+	t_redirect	*tmp;
+
+	tmp = *redirection;
+	while (tmp->file_name)
+	{
+		free(tmp->file_name);
+		free(tmp);
+		tmp++;
+	}
+}
+
 void			free_commands(t_command **head)
 {
 	t_command	*tmp;
@@ -48,7 +61,7 @@ void			free_commands(t_command **head)
 		tmp = *head;
 		*head = (*head)->next;
 		libre_2d(tmp->args);
-		free(tmp->redirections);
+		free_redirection(&(tmp->redirections));
 		free(tmp);
 	}
 }

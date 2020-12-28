@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 12:34:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 10:19:33 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 14:55:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_command		*parser(t_string line)
 	int			counter;
 	t_command	*list;
 
+	if (!line)
+		return (NULL);
 	commands = spliter(line, ';');
 	list = NULL;
 	counter = 0;

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/27 23:43:23 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 14:45:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ t_coord			get_next_redirection(t_string line);
 t_command		*init_command(t_string *args, t_redirect *redirections, int id);
 void			add_command_to_end(t_command **head, t_command *node);
 void			free_commands(t_command **head);
+void			free_redirection(t_redirect	**redirection);
 #endif
