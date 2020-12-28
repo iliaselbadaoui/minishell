@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:33:40 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 14:52:42 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/28 21:41:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,16 @@ void			add_command_to_end(t_command **head, t_command *node)
 void			free_redirection(t_redirect	**redirection)
 {
 	t_redirect	*tmp;
+	t_redirect	*to_free;
 
 	tmp = *redirection;
 	while (tmp->file_name)
 	{
-		free(tmp->file_name);
-		free(tmp);
+		to_free = tmp;
 		tmp++;
+		free(to_free->file_name);
 	}
+	free(*redirection);
 }
 
 void			free_commands(t_command **head)
