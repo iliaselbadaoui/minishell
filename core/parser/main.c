@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/29 22:37:39 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/29 23:01:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if(syntax_checker(trim(line)))
 			{
 				list = parser(trim(line));
-				t_command	*tmp = list;
-				while (tmp)
-				{
-					printf("ARG |%s| id: %d\nFILE : [type: %c, file : %s]\n", tmp->args[0], tmp->id,(tmp->redirections)[0].type, (tmp->redirections)[0].file_name);
-					tmp = tmp->next;
-				}
+				// YOUR EXECUTION FUNCTION HERE
 			}
 			free(line);
 			free_commands(&list);
