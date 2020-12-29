@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 16:00:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/29 22:33:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define CMMAND_NOT_FOUND 127
 # include "stdout/out.h"
 # include "stdin/in.h"
+# include "split/ft_split.h"
 # include <stdlib.h>
 # include <stdio.h>
 
@@ -25,6 +26,8 @@ int				g_error;
 int				g_flag;
 int				g_counter;
 int				g_counter_extra;
+int				g_spliter_counter;
+int				g_spliter_char;
 char			g_char;
 
 typedef enum	e_bool
@@ -67,7 +70,9 @@ void			libre_2d(char **arr);
 t_bool			includes(t_string string, t_string pattern);
 t_bool			equals(t_string s1, t_string s2);
 size_t			length(t_string string);
+t_string		ft_itoa(int n);
 t_bool			is_quote(t_bool is_file, t_string string);
+t_bool			check_quote(char c);
 t_string		trim(t_string string);
 t_bool			syntax_checker(t_string line);
 t_bool			check_args(t_string line);
@@ -94,4 +99,11 @@ t_coord			get_next_redirection(t_string line);
 t_command		*init_command(t_string *args, t_redirect *redirections, int id);
 void			add_command_to_end(t_command **head, t_command *node);
 void			free_commands(t_command **head);
+void			free_redirection(t_redirect	**redirection);
+t_map			*init_map(t_string key, t_string value);
+void			add_to_map(t_map **head, t_map	*node);
+t_string		get_value_by_key(t_map *head, t_string key);
+void			free_by_key(t_map **head, t_string key);
+void			free_map(t_map	**head);
+t_map			*fill_env(t_string *envp);
 #endif

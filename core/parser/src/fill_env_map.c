@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libre_2d.c                                         :+:      :+:    :+:   */
+/*   fill_env_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 13:37:21 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 00:40:17 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/12/29 21:13:08 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/12/29 21:31:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-void		libre_2d(char **arr)
+t_map			*fill_env(t_string *envp)
 {
-	char	**cp;
+	t_map	*map;
 
-	if (!arr)
-		return ;
-	cp = arr;
-	while (*arr)
+	map = NULL;
+	while (*envp)
 	{
-		free(*arr);
-		*arr = NULL;
-		arr++;
+		t_string *env = ft_split(*envp, '=');
+		add_to_map(&map, init_map(ft_strdup(env[0]), ft_strdup(env[1])));
+		libre_2d(env);
+		envp++;
 	}
-	free(cp);
-	cp = NULL;
+	return (map);
 }

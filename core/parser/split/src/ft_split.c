@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libre_2d.c                                         :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 13:37:21 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 00:40:17 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/11/24 11:47:58 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/11/25 12:42:38 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser.h"
+#include "../ft_split.h"
 
-void		libre_2d(char **arr)
+char		**ft_split(char *str, char delimiter)
 {
-	char	**cp;
+	char	**res;
+	int		count;
 
-	if (!arr)
-		return ;
-	cp = arr;
-	while (*arr)
+	if (!str)
+		return (NULL);
+	count = ft_count(str, delimiter) + 1;
+	if (count)
 	{
-		free(*arr);
-		*arr = NULL;
-		arr++;
+		if (!(res = (char **)malloc(count * sizeof(char *))))
+			return (NULL);
 	}
-	free(cp);
-	cp = NULL;
+	else
+		return (NULL);
+	res[count - 1] = NULL;
+	create_grid(res, str, delimiter);
+	fill_grid(res, str, delimiter);
+	return (res);
 }

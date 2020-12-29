@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libre_2d.c                                         :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 13:37:21 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 00:40:17 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/11/24 14:35:56 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/11/25 12:42:38 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser.h"
+#include "../ft_split.h"
 
-void		libre_2d(char **arr)
+void	escape_deilimter(char **str, char delimiter)
 {
-	char	**cp;
+	while (**str == delimiter)
+		(*str)++;
+}
 
-	if (!arr)
-		return ;
-	cp = arr;
-	while (*arr)
+int		ft_count(char *str, char delimiter)
+{
+	int		count;
+
+	count = 0;
+	escape_deilimter(&str, delimiter);
+	while (*str)
 	{
-		free(*arr);
-		*arr = NULL;
-		arr++;
+		if (*str == delimiter)
+		{
+			escape_deilimter(&str, delimiter);
+			if (*str)
+				count++;
+		}
+		str++;
 	}
-	free(cp);
-	cp = NULL;
+	return (count + 1);
 }

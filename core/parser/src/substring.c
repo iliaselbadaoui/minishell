@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 17:10:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 12:46:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2020/12/27 23:50:35 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,15 @@
 
 t_string		substring(t_string string, int start, int end)
 {
-	int			len;
+	t_string	sub;
 	int			i;
-	t_string	res;
 
+	if (!string || end < start || start < 0)
+		return (NULL);
 	i = 0;
-	len = end - start + 2;
-	res = (t_string)malloc(len);
+	sub = (t_string)malloc((end - start) + 2);
 	while (start <= end)
-	{
-		res[i] = string[start];
-		start++;
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
+		sub[i++] = string[start++];
+	sub[i] = 0;
+	return (sub);
 }

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libre_2d.c                                         :+:      :+:    :+:   */
+/*   ../ft_split.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 13:37:21 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 00:40:17 by ielbadao         ###   ########.fr       */
+/*   Created: 2020/11/24 11:50:19 by ielbadao          #+#    #+#             */
+/*   Updated: 2020/11/25 11:22:34 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser.h"
+#ifndef FT_SPLIT_H
+# define FT_SPLIT_H
+# include <stdlib.h>
+# include <stdio.h>
 
-void		libre_2d(char **arr)
-{
-	char	**cp;
-
-	if (!arr)
-		return ;
-	cp = arr;
-	while (*arr)
-	{
-		free(*arr);
-		*arr = NULL;
-		arr++;
-	}
-	free(cp);
-	cp = NULL;
-}
+char		**ft_split(char *str, char delimiter);
+int			ft_count(char *str, char delimiter);
+void		escape_deilimter(char **str, char delimiter);
+void		create_grid(char **arr, char *str, char delimiter);
+void		fill_grid(char **arr, char *str, char delimiter);
+#endif
