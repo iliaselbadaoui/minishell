@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 03:00:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/06 10:33:56 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	help(t_string line, int *count, int *flag)
 
 static void	help2(t_string line, char delimiter, int *count, int *flag)
 {
-	if(line[g_spliter_counter] != delimiter)
+	if (line[g_spliter_counter] != delimiter)
 	{
 		if (!(*flag))
 		{
 			(*count)++;
 			*flag = 1;
 		}
-		while (!check_quote(line[g_spliter_counter]) && 
+		while (!check_quote(line[g_spliter_counter]) &&
 		line[g_spliter_counter] != delimiter && line[g_spliter_counter])
 		{
 			if (line[g_spliter_counter] == '\\')
