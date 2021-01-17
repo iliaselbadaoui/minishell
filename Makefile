@@ -5,6 +5,8 @@ src = main.c
 headers = -Icore/parser/parser.h -Icore/executer/executer.h
 # core/executer/executer.a => add this WHEN A FUNCTION WITHIN EXECUTER IS DONE
 libs = core/parser/parser.a core/parser/stdout/out.a core/parser/stdin/in.a core/parser/split/ft_split.a
+all: $(NAME)
+	
 $(NAME):
 	@# UNCOMMENT ONLY WHEN A FUNCTION WITHIN EXECUTER IS DONE
 	@# @$(MakeDir) -C core/executer/
