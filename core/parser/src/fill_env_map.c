@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 21:13:08 by ielbadao          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/01/18 00:18:16 by ielbadao         ###   ########.fr       */
-=======
-/*   Updated: 2021/01/06 10:30:32 by ielbadao         ###   ########.fr       */
->>>>>>> 828092d177da354b40d7381cbafff2f609711962
+/*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/01/29 20:52:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "../parser.h"
 
@@ -24,11 +22,7 @@ t_map			*fill_env(t_string *envp)
 	map = NULL;
 	while (*envp)
 	{
-<<<<<<< HEAD
-		t_string *env = ft_split_first(*envp, '=');
-=======
-		env = ft_split(*envp, '=');
->>>>>>> 828092d177da354b40d7381cbafff2f609711962
+		env = ft_split_first(*envp, '=');
 		add_to_map(&map, init_map(ft_strdup(env[0]), ft_strdup(env[1])));
 		libre_2d(env);
 		envp++;
