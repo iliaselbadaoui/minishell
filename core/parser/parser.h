@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/29 22:33:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 11:43:38 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_string		*g_envp;
 int				g_error;
 int				g_flag;
 int				g_counter;
+int				g_args_counter;
 int				g_counter_extra;
 int				g_spliter_counter;
 int				g_spliter_char;

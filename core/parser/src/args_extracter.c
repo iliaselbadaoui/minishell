@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:09:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/06 10:30:04 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 13:02:51 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_string		*args_extracter(t_string command)
 	while (i < count - 1)
 	{
 		coord = get_next_arg(command);
-		if (coord.end)
+		if (coord.end >= coord.start)
 			args[i] = substring(command, coord.start, coord.end);
 		i++;
 	}
