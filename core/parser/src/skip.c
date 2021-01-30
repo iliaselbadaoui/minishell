@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:56:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 12:36:18 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 12:20:44 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void			skip_word(t_string command)
 		if (command[g_counter] == '\\')
 		{
 			g_counter += 2;
-			return ;
 		}
 		while (greate_question(command))
 			g_counter++;

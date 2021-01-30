@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:30:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 10:21:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/06 10:34:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_string		*spliter(t_string line, char delimiter)
 	int			end;
 	int			i;
 	t_string	*res;
-	
+
 	g_spliter_counter = 0;
 	g_spliter_char = 0;
 	sequences = sequence_calculator(line, delimiter) + 1;

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:33:40 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 21:41:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 12:42:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_command		*init_command(t_string *args, t_redirect *redirections, int id)
 {
 	t_command	*command;
-	
+
 	command = (t_command *)malloc(sizeof(t_command));
 	command->args = args;
 	command->redirections = redirections;
@@ -39,7 +39,7 @@ void			add_command_to_end(t_command **head, t_command *node)
 	}
 }
 
-void			free_redirection(t_redirect	**redirection)
+void			free_redirection(t_redirect **redirection)
 {
 	t_redirect	*tmp;
 	t_redirect	*to_free;

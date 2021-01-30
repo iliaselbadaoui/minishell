@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:20:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/29 10:52:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 13:01:32 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_redirect			*redirections_extracter(t_string command)
 	while (i < count - 1)
 	{
 		coord = get_next_redirection(command);
-		if (coord.end)
+		if (coord.end >= coord.start)
 			filename = substring(command, coord.start, coord.end);
 		redirections[i] = init_redirection(coord.type, filename);
 		i++;

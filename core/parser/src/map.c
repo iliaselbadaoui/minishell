@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/29 17:01:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/06 10:32:52 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_map			*init_map(t_string key, t_string value)
 {
 	t_map		*node;
-	
+
 	node = (t_map *)malloc(sizeof(t_map));
 	node->key = key;
 	node->value = value;
@@ -23,7 +23,7 @@ t_map			*init_map(t_string key, t_string value)
 	return (node);
 }
 
-void			add_to_map(t_map **head, t_map	*node)
+void			add_to_map(t_map **head, t_map *node)
 {
 	t_map	*tmp;
 
@@ -63,14 +63,14 @@ void			free_by_key(t_map **head, t_string key)
 			free(tmp->key);
 			free(tmp->value);
 			free(tmp);
-			navigator->next = tmp->next;		
-			break;
+			navigator->next = tmp->next;
+			break ;
 		}
 		navigator = navigator->next;
 	}
 }
 
-void			free_map(t_map	**head)
+void			free_map(t_map **head)
 {
 	t_map	*tmp;
 	t_map	*navigator;
