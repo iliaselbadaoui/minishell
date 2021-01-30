@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 13:10:41 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 16:44:48 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (syntax_checker(trim(line)))
 			{
 				list = parser(trim(line));
-				// YOUR EXECUTION FUNCTION HERE LIKE => execute(list);
+				execute(list);
 			}
 			free(line);
 			free_commands(&list);

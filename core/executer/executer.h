@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/19 13:06:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/30 16:44:32 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTER_H
 # define EXECUTER_H
 # include "../parser/parser.h"
+
+int		execute(t_command *list);
+
 #endif
