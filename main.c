@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 16:44:48 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/01/31 09:41:02 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (syntax_checker(trim(line)))
 			{
 				list = parser(trim(line));
-				execute(list);
+				if (!execute(list))
+					continue ;
 			}
 			free(line);
 			free_commands(&list);
