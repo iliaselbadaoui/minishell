@@ -13,6 +13,15 @@ t_bool is_cmd(t_string cmd)
 	return (false);
 }
 
+void	signal_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		out("\nminishell$ ");
+		// signal(SIGINT, signal_handler);
+	}
+}
+
 // void print_struct(t_command *list)
 // {
 // 	while (list)
