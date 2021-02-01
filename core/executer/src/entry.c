@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/01/31 19:59:49 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/01 12:55:27 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,39 @@ void	signal_handler(int signo)
 	if (signo == SIGINT)
 	{
 		out("\nminishell$ ");
-		// signal(SIGINT, signal_handler);
+		signal(SIGINT, signal_handler);
 	}
 }
 
-// void print_struct(t_command *list)
-// {
-// 	while (list)
-// 	{
-// 		printf("\n__________________________\n");
-// 		printf("\nID: [%d]\n", list->id);
-// 		int i = 0;
-// 		while (list->args[i])
-// 			printf("[%s]\t", list->args[i++]);
-// 		printf("\ntype: [%c]", list->redirections->type);
-// 		printf("\nfd: [%d]", list->redirections->fd);
-// 		printf("\nfile_name: [%s]", list->redirections->file_name);
-// 		printf("\n__________________________\n");
-// 		list = list->next;
-// 	}
-// }
+void	print_struct(t_command *list)
+{
+	int i;
 
-int		execute(t_command *list)
+	while (list)
+	{
+		// printf("\n__________________________\n");
+		// printf("\nID: [%d]\n", list->id);
+		out("cmd:\t");
+		out(list->args[0]);
+		out("\nargs:\t");
+		i = 1;
+		while (list->args[i])
+		{
+			out(list->args[i++]);
+			out("   ");
+		}
+		out("\n");
+		// printf("\ntype: [%c]", list->redirections->type);
+		// printf("\nfd: [%d]", list->redirections->fd);
+		// printf("\nfile_name: [%s]", list->redirections->file_name);
+		// printf("\n__________________________\n");
+		list = list->next;
+	}
+}
+
+int		exec_cmds(t_command *list)
 {
 	if (list)
-	{
 		if (!is_cmd(list->args[0]))
 		{
 			out("minishell: ");
@@ -62,8 +70,6 @@ int		execute(t_command *list)
 			out(": command not found\n");
 			return (0);
 		}
-	}
-
-	// print_struct(list);
-	return (1);
+	print_struct(list);
+	return (0);
 }
