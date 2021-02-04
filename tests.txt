@@ -6,3 +6,4 @@ echo square is ilias 'and' "ilias is me" so pipe this and | grep -C i ; ps | gre
 
 mkdir test;  cd test ; rm -rf ../test;
 cd ./././././
+> 3 echo > 5 > 6 hfwhefwhef > final

@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/01 12:55:39 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/04 19:00:32 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		main(int argc, t_string *argv, t_string *envp)
 		while (1)
 		{
 			out("minishell$ ");
-			signal(SIGINT, signal_handler);
 			in(0, &line);
-			if (syntax_checker(trim(line)))
+			signal(SIGINT, signal_handler);
+			if (syntax_checker(trim(line)) && *line != '\0')
 			{
 				list = parser(trim(line));
 				ret = exec_cmds(list);

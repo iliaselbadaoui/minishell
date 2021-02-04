@@ -6,32 +6,64 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/01 12:55:27 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/04 19:03:42 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-t_bool	is_cmd(t_string cmd)
+int		cd()
 {
-	if (!ft_strcmp(cmd, "echo") ||
-		!ft_strcmp(cmd, "cd") ||
-		!ft_strcmp(cmd, "pwd") ||
-		!ft_strcmp(cmd, "export") ||
-		!ft_strcmp(cmd, "unset") ||
-		!ft_strcmp(cmd, "env") ||
-		!ft_strcmp(cmd, "exit"))
-		return (true);
-	return (false);
+	out("cd \n");
+	return (0);
 }
 
-void	signal_handler(int signo)
+int		pwd(void)
 {
-	if (signo == SIGINT)
-	{
-		out("\nminishell$ ");
-		signal(SIGINT, signal_handler);
-	}
+	char	buff[1024];
+
+	if (getcwd(buff, sizeof(buff)) == NULL)
+		return (-1);
+	out(buff);
+	out("\n");
+	return (0);
+}
+
+int		export()
+{
+	out("export \n");
+	return (0);
+}
+
+int		unset()
+{
+	out("unset \n");
+	return (0);
+}
+
+int		env(void)
+{
+	out("env \n");
+	return (0);
+}
+
+int		check_builtins(t_command *cmd)
+{
+	if (!ft_strcmp(cmd->args[0], "exit"))
+		return (-1);
+	else if (!ft_strcmp(cmd->args[0], "echo"))
+		return (echo(cmd->args));
+	else if (!ft_strcmp(cmd->args[0], "cd"))
+		return (cd());
+	else if (!ft_strcmp(cmd->args[0], "pwd"))
+		return (pwd());
+	else if (!ft_strcmp(cmd->args[0], "export"))
+		return (export());
+	else if (!ft_strcmp(cmd->args[0], "unset"))
+		return (unset());
+	else if (!ft_strcmp(cmd->args[0], "env"))
+		return (env());
+	return (0);
 }
 
 void	print_struct(t_command *list)
@@ -59,17 +91,40 @@ void	print_struct(t_command *list)
 		list = list->next;
 	}
 }
+void	signal_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		out("\nminishell$ ");
+		signal(SIGINT, signal_handler);
+	}
+}
+int	exec_cmd(t_command *cmd)
+{
+	int	ret;
+
+	ret = 0;
+	// Check builtins
+	if ((ret = check_builtins(cmd)) == 0)
+		return (ret);
+	// Check bins
+	return (0);
+}
 
 int		exec_cmds(t_command *list)
 {
-	if (list)
-		if (!is_cmd(list->args[0]))
-		{
-			out("minishell: ");
-			out(list->args[0]);
-			out(": command not found\n");
-			return (0);
-		}
-	print_struct(list);
-	return (0);
+	int		ret;
+	// int		i;
+
+	// i = 0;
+	ret = 0;
+	// while (list)
+	// {
+		ret = exec_cmd(list);
+	// 	if (ret == -1)
+	// 		break ;
+	// 	list++;
+	// }
+	// print_struct(list);
+	return (ret);
 }
