@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/06 16:17:49 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/06 16:22:00 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int		is_executable(t_string cmd_path, t_command *cmd)
 }
 
 // Returns all the paths inside $PATH
+// Still path variable has leaks
 static t_string	*get_paths(void)
 {
 	t_map		*tmp;
