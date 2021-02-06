@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/04 19:00:32 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/06 09:26:43 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@ int		main(int argc, t_string *argv, t_string *envp)
 {
 	t_string	line;
 	t_command	*list;
-	t_map		*map;
 	int			ret;
 
-	map = fill_env(envp);
+	g_map = fill_env(envp);
 	if (argc && argv)
 		while (1)
 		{
 			out("minishell$ ");
 			in(0, &line);
-			signal(SIGINT, signal_handler);
+			// signal(SIGINT, signal_handler);
 			if (syntax_checker(trim(line)) && *line != '\0')
 			{
 				list = parser(trim(line));
@@ -38,6 +37,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (ret == -1)
 				break ;
 		}
-	free_map(&map);
+	free_map(&g_map);
 	return (0);
 }

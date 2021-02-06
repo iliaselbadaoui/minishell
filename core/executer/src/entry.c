@@ -6,46 +6,11 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/04 19:03:42 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/06 14:47:00 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
-
-int		cd()
-{
-	out("cd \n");
-	return (0);
-}
-
-int		pwd(void)
-{
-	char	buff[1024];
-
-	if (getcwd(buff, sizeof(buff)) == NULL)
-		return (-1);
-	out(buff);
-	out("\n");
-	return (0);
-}
-
-int		export()
-{
-	out("export \n");
-	return (0);
-}
-
-int		unset()
-{
-	out("unset \n");
-	return (0);
-}
-
-int		env(void)
-{
-	out("env \n");
-	return (0);
-}
 
 int		check_builtins(t_command *cmd)
 {
@@ -66,13 +31,54 @@ int		check_builtins(t_command *cmd)
 	return (0);
 }
 
+t_string	get_path(t_command *cmd)
+{
+	t_map		*tmp;
+	char		**path;
+	int			i;
+
+	tmp = g_map;
+	path = NULL;
+	i = -1;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->key, "PATH"))
+		{
+			path = spliter(tmp->value, ':');
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	while (path && path[++i])
+		// !ft_strcmp(cmd->args[0], path[i])
+		if (ft_strchr(cmd->args[0], '/'))
+			return(cmd->args[0]);
+		else
+		{
+			return(ft_strjoin(ft_strjoin(path[i], "/"), cmd->args[0]));
+
+		}
+	return (NULL);
+}
+
+int		check_bins(t_command *cmd)
+{
+	t_string path;
+
+	path = get_path(cmd);
+
+	out(path);
+	out("\n");
+	return (1);
+}
+
 void	print_struct(t_command *list)
 {
 	int i;
 
 	while (list)
 	{
-		// printf("\n__________________________\n");
+		printf("\n__________________________\n");
 		// printf("\nID: [%d]\n", list->id);
 		out("cmd:\t");
 		out(list->args[0]);
@@ -87,10 +93,11 @@ void	print_struct(t_command *list)
 		// printf("\ntype: [%c]", list->redirections->type);
 		// printf("\nfd: [%d]", list->redirections->fd);
 		// printf("\nfile_name: [%s]", list->redirections->file_name);
-		// printf("\n__________________________\n");
+		printf("\n__________________________\n");
 		list = list->next;
 	}
 }
+
 void	signal_handler(int signo)
 {
 	if (signo == SIGINT)
@@ -99,32 +106,37 @@ void	signal_handler(int signo)
 		signal(SIGINT, signal_handler);
 	}
 }
+
 int	exec_cmd(t_command *cmd)
 {
 	int	ret;
 
 	ret = 0;
 	// Check builtins
-	if ((ret = check_builtins(cmd)) == 0)
-		return (ret);
+	if ((ret = check_builtins(cmd)))
+		return (0);
 	// Check bins
+	if (check_bins(cmd))
+		return (0);
+	out("\nminishell$: Command not found: \n");
+	exit(0);
+	if (ret < 0)
+		return (-1);
 	return (0);
 }
 
 int		exec_cmds(t_command *list)
 {
 	int		ret;
-	// int		i;
 
-	// i = 0;
 	ret = 0;
-	// while (list)
-	// {
+	while (list)
+	{
 		ret = exec_cmd(list);
-	// 	if (ret == -1)
-	// 		break ;
-	// 	list++;
-	// }
+		if (ret == -1)
+			break ;
+		list = list->next;
+	}
 	// print_struct(list);
 	return (ret);
 }
