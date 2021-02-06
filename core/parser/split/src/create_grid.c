@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 13:57:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/18 00:11:27 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/06 16:28:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ static int			count_to_next_delimiter(char *str, char delimiter)
 	return (count);
 }
 
+static int			count_to_next_delimiter_split(char *str, char delimiter)
+{
+	int		count;
+
+	count = 0;
+	while (str[count] && str[count] != delimiter)
+	{
+		count++;
+	}
+	return (count);
+}
+
 static void			free_grid(char **arr)
 {
 	while (*arr)
@@ -48,7 +60,7 @@ void				create_grid(char **arr, char *str, char delimiter)
 	while (*str)
 	{
 		escape_deilimter(&str, delimiter);
-		count = count_to_next_delimiter(str, delimiter);
+		count = count_to_next_delimiter_split(str, delimiter);
 		if (count)
 		{
 			if (!(*arr = (char *)malloc(count + 1)))
