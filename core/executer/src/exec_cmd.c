@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/06 16:22:00 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/06 18:07:08 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static t_string	*get_paths(void)
 	{
 		if (!ft_strcmp(tmp->key, "PATH"))
 		{
-			path = spliter(tmp->value, ':');
+			path = ft_split(tmp->value, ':');
 			break ;
 		}
 		tmp = tmp->next;
