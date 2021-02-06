@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/06 09:24:31 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/06 15:07:07 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		cd()
 {
-	out("cd \n");
+	out("cd still need work \n");
 	return (1);
 }
 
@@ -31,13 +31,13 @@ int		pwd(void)
 
 int		export(void)
 {
-	out("export \n");
+	out("export still need work \n");
 	return (1);
 }
 
 int		unset()
 {
-	out("unset \n");
+	out("unset still need work \n");
 	return (1);
 }
 
