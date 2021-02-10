@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 12:46:51 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/27 23:43:34 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/10 18:41:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ t_bool			is_quote(t_bool is_file, t_string string)
 
 	while (string[g_counter] != g_char && string[g_counter])
 	{
+		if (string[g_counter] == '\\' && string[g_counter + 1] == g_char)
+		{
+			g_counter += 2;
+			continue;
+		}
 		counter++;
 		g_counter++;
 	}
