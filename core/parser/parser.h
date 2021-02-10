@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 18:35:24 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/10 19:23:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int				g_args_counter;
 int				g_counter_extra;
 int				g_spliter_counter;
 int				g_spliter_char;
+int				g_envp_count;
 char			g_char;
 
 typedef enum	e_bool
