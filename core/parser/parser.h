@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 19:23:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/10 21:38:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int				g_counter_extra;
 int				g_spliter_counter;
 int				g_spliter_char;
 int				g_envp_count;
+int				g_envp_size;
+int				g_envp_times;
 char			g_char;
 
 typedef enum	e_bool
@@ -109,4 +111,9 @@ t_string		get_value_by_key(t_map *head, t_string key);
 void			free_by_key(t_map **head, t_string key);
 void			free_map(t_map	**head);
 t_map			*fill_env(t_string *envp);
+void			envp_handler(t_string	*envp);
+void			envp_double_size();
+void			envp_reduce_size();
+void			add_to_envp(t_string key, t_string value);
+void			remove_from_envp(int index);
 #endif
