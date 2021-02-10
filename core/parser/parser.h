@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 11:43:38 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/10 18:35:24 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char			g_char;
 typedef enum	e_bool
 {
 	false = 0,
-	true = 1
+	true = 1,
+	quantic = 2
 }				t_bool;
 
 typedef struct	s_map

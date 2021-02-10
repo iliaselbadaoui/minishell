@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/06 15:34:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/10 15:53:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_map			*fill_env(t_string *envp)
 	t_string	*env;
 
 	map = NULL;
+	g_envp = envp;
 	while (*envp)
 	{
 		env = ft_split_first(*envp, '=');
