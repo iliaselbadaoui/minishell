@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 14:54:37 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:25:01 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,6 @@ void			envp_reduce_size(void);
 void			add_to_envp(t_string key, t_string value);
 void			remove_from_envp(int index);
 void			remove_and_resize(int index);
+t_string		delete_quotes(t_string str);
+t_string		delete_dollar_mark(t_string str);
 #endif
