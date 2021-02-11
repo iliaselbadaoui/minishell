@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:30:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 12:51:46 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:55:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_string		*spliter(t_string line, char delimiter)
 	g_spliter_counter = 0;
 	g_spliter_char = 0;
 	sequences = sequence_calculator(line, delimiter) + 1;
-	printf("SEQ : %d\n", sequences);
 	res = (t_string *)malloc(sizeof(t_string) * sequences);
 	i = 0;
 	while (i < sequences - 1)

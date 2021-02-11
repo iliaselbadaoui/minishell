@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:01 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/06 16:25:48 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:23:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ char delimiter)
 	return (count);
 }
 
-static int			copy_to_next_delimiter_split(char *grid_case, char *str, char delimiter)
+static int			copy_to_next_delimiter_split(char *grid_case, char *str,
+char delimiter)
 {
 	int		count;
 
@@ -54,35 +55,35 @@ static int			copy_to_next_delimiter_split(char *grid_case, char *str, char delim
 	return (count);
 }
 
-void	fill_grid(char **arr, char *str, char delimiter)
+void				fill_grid(char **arr, char *str, char delimiter)
 {
 	int		count;
 	int		arr_index;
-	
+
 	if (!str || !arr)
 		return ;
 	arr_index = 0;
 	while (*str)
 	{
 		escape_deilimter(&str, delimiter);
-		count =	copy_to_next_delimiter_split(arr[arr_index], str, delimiter);
+		count = copy_to_next_delimiter_split(arr[arr_index], str, delimiter);
 		str += count;
 		arr_index++;
 	}
 }
 
-void	fill_grid_first(char **arr, char *str, char delimiter)
+void				fill_grid_first(char **arr, char *str, char delimiter)
 {
 	int		count;
 	int		arr_index;
-	
+
 	if (!str || !arr)
 		return ;
 	arr_index = 0;
 	while (*str)
 	{
 		escape_deilimter(&str, delimiter);
-		count =	copy_to_next_delimiter(arr[arr_index], str, delimiter);
+		count = copy_to_next_delimiter(arr[arr_index], str, delimiter);
 		str += count;
 		arr_index++;
 	}

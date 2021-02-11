@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 10:14:56 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:54:37 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ void			free_by_key(t_map **head, t_string key);
 void			free_map(t_map	**head);
 t_map			*fill_env(t_string *envp);
 void			envp_handler(t_string	*envp);
-void			envp_double_size();
-void			envp_reduce_size();
+void			envp_double_size(void);
+void			envp_reduce_size(void);
 void			add_to_envp(t_string key, t_string value);
 void			remove_from_envp(int index);
+void			remove_and_resize(int index);
 #endif

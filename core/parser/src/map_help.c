@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_env_map.c                                     :+:      :+:    :+:   */
+/*   map_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 14:47:32 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/11 14:43:49 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/02/11 14:54:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_map			*fill_env(t_string *envp)
+void				remove_and_resize(int index)
 {
-	t_map		*map;
-	t_string	*env;
-
-	map = NULL;
-	envp_handler(envp);
-	g_map_fill_first_time = 1;
-	while (*envp)
+	if ((g_envp_count - 1 > g_envp_size / 2 && g_envp_size > 256) ||
+	(g_envp_count - 1 > g_envp_size && g_spliter_char == 256))
+		remove_from_envp(index);
+	else
 	{
-		env = ft_split_first(*envp, '=');
-		add_to_map(&map, init_map(ft_strdup(env[0]), ft_strdup(env[1])));
-		libre_2d(env);
-		envp++;
+		envp_reduce_size();
+		remove_from_envp(index);
 	}
-	g_map_fill_first_time = 0;
-	return (map);
 }

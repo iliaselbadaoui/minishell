@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 11:20:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:28:32 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-void			envp_handler(t_string	*envp)
+void			envp_handler(t_string *envp)
 {
 	if (!g_envp_size && !g_envp_times)
 	{
@@ -28,7 +28,7 @@ void			envp_handler(t_string	*envp)
 	g_envp[g_envp_count] = NULL;
 }
 
-void			envp_double_size()
+void			envp_double_size(void)
 {
 	t_string	*envp_copy;
 
@@ -45,7 +45,7 @@ void			envp_double_size()
 	libre_2d(envp_copy);
 }
 
-void			envp_reduce_size()
+void			envp_reduce_size(void)
 {
 	t_string	*envp_copy;
 

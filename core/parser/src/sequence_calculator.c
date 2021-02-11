@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 12:53:43 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:53:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-static void	help(t_string line, int *count, int *flag)
+static void		help(t_string line, int *count, int *flag)
 {
 	if (check_quote(line[g_spliter_counter]))
 	{
@@ -22,13 +22,14 @@ static void	help(t_string line, int *count, int *flag)
 			*flag = 1;
 		}
 		g_spliter_char = line[g_spliter_counter++];
-		while (line[g_spliter_counter] != g_spliter_char && line[g_spliter_counter])
+		while (line[g_spliter_counter] != g_spliter_char &&
+		line[g_spliter_counter])
 			g_spliter_counter++;
 		g_spliter_counter++;
 	}
 }
 
-static void	help2(t_string line, char delimiter, int *count, int *flag)
+static void		help2(t_string line, char delimiter, int *count, int *flag)
 {
 	if (line[g_spliter_counter] != delimiter)
 	{

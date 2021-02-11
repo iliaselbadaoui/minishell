@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 11:26:29 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:54:19 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,7 @@ void			free_by_key(t_map **head, t_string key)
 			break ;
 		navigator = navigator->next;
 	}
-	if ((g_envp_count - 1 > g_envp_size / 2 && g_envp_size > 256) ||
-	(g_envp_count - 1 > g_envp_size && g_spliter_char == 256))
-		remove_from_envp(index);
-	else
-	{
-		envp_reduce_size();
-		remove_from_envp(index);
-	}
+	remove_and_resize(index);
 }
 
 void			free_map(t_map **head)
