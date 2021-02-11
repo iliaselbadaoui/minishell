@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 21:01:13 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 18:38:28 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:05:47 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_bool			check_args(t_string line)
 			continue ;
 		else if (bol == false)
 			return (false);
-		printf("HERE\n");
 		if (line[g_counter] == '\"' || line[g_counter] == '\'')
 		{
 			g_char = line[g_counter++];
