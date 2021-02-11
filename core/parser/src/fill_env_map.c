@@ -6,11 +6,9 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 14:33:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/11 18:57:33 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../parser.h"
 
@@ -20,7 +18,8 @@ t_map			*fill_env(t_string *envp)
 	t_string	*env;
 
 	map = NULL;
-	g_envp = envp;
+	envp_handler(envp);
+	g_map_fill_first_time = 1;
 	while (*envp)
 	{
 		env = ft_split_first(*envp, '=');
@@ -28,5 +27,6 @@ t_map			*fill_env(t_string *envp)
 		libre_2d(env);
 		envp++;
 	}
+	g_map_fill_first_time = 0;
 	return (map);
 }

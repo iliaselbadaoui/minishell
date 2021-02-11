@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:36:37 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 12:33:01 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:40:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ static void		if_is_quote(t_string line)
 		g_char = line[g_counter++];
 }
 
+static void		help_function(t_string line, t_coord *coord)
+{
+	skip_redirection(line);
+	skip_spaces(line);
+	coord->start = g_counter;
+	if_is_quote(line);
+}
+
 t_coord			get_next_redirection(t_string line)
 {
 	t_coord		coord;
@@ -39,10 +47,7 @@ t_coord			get_next_redirection(t_string line)
 		if (is_redirection(line[g_counter]))
 		{
 			coord.type = get_redirection_type(line);
-			skip_redirection(line);
-			skip_spaces(line);
-			coord.start = g_counter;
-			if_is_quote(line);
+			help_function(line, &coord);
 			skip_word(line);
 			coord.end = g_counter - 1;
 			return (coord);
