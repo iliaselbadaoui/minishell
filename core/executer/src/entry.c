@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/06 15:46:44 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/10 19:25:24 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ int	exec_cmd(t_command *cmd)
 
 	ret = 0;
 	// Check builtins functions and bins
-	if ((ret = check_builtins(cmd)) || check_bins(cmd))
+	if (!(ret = check_builtins(cmd)))
 		return (0);
-	if (ret < 0)
+	if (ret == -1)
 		return (-1);
+	if (check_bins(cmd))
+		return (0);
+
 	out("minishell$: ");
 	out(cmd->args[0]);
 	out(": command not found\n");
-	return (0);
+	return (CMMAND_NOT_FOUND);
 }
 
 int		exec_cmds(t_command *list)

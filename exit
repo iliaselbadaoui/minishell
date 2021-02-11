@@ -1,0 +1,55 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exit -1  => exit 								(exited)
+exit a 1 => exit: a: numeric argument required	(exited)
+exit 1 a => exit: too many arguments			(didn't exit)
+
+first argument should be numeric  => it exits
+
+
+
+
+
+is_digit(arg[1]) && arg[2] == NULL	=> exit
+
+is_digit(arg[1]) && arg[2] != NULL	=> bash: exit: too many arguments
+
+!is_digit(arg[1]) 					=> exit: (...): numeric argument required
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------
+
+bash-3.2$ export
+declare -x Key="value"
+
+export aaa_a1=value   Good => env   : aaa_a1=value
+export aaa_a1=        Good => env   : aaa_a1=
+export key= value     Good => env   : key=
+export aaa-aa=value   Bad  => export: `aaa-aa=efe': not a valid identifier
+export 1aaa=value     Bad  => export: `1aaa=efe': not a valid identifier
+export a =b		      Bad  => export: `=b': not a valid identifier
+
+the '=' should be next to key and value without spaces
+Key: must not start with a number, without -
