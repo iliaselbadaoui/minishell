@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/05 12:57:23 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:33:50 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char			g_char;
 typedef enum	e_bool
 {
 	false = 0,
-	true = 1
+	true = 1,
+	quantic = 2
 }				t_bool;
 
 typedef struct	s_map

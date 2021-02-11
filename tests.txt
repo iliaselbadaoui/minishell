@@ -2,12 +2,6 @@ ilias elbadaoui > extra life here | cat -g ; "ECHO" seed 'ernest'
 echo ilias > ie < hey >> ilias < 'single one' >> "take double" extra args  | heres \'another \>one > file ; new command < read
 >ilias >> ie < hey < xtra echo "siiiir hta tji hak" lo3ab > hak > wahd < "l file" > 'ha wahd akhor' < yalah < safi >> baraka > 3lik
 echo square is ilias 'and' "ilias is me" so pipe this and | grep -C i ; ps | grep minishell | grep -v 'grep' | grep -C minishell
-
-
-mkdir test;  cd test ; rm -rf ../test;
-cd ./././././
-> 3 echo > 5 > 6 hfwhefwhef > final
-
-
-
-cd - (export OLDPWD=)
+echo "fwefwef'fwefwe'""\""
+echo 'fwefwef"fwefwe"''\''
+echo "fwefwef'fwefwe'"""
