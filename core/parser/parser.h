@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 21:38:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 10:14:56 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 t_string		*g_envp;
 int				g_error;
 int				g_flag;
+int				g_map_fill_first_time;
 int				g_counter;
 int				g_args_counter;
 int				g_counter_extra;

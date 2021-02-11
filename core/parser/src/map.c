@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 21:43:34 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 11:26:29 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,17 @@ void			add_to_map(t_map **head, t_map *node)
 			tmp = tmp->next;
 		tmp->next = node;
 	}
-	if (g_envp_count < g_envp_size - 1)
+	if (!g_map_fill_first_time)
 	{
-		add_to_envp(node->key, node->value);
-	}
-	else
-	{
-		envp_double_size();
-		add_to_envp(node->key, node->value);
+		if (g_envp_count < g_envp_size - 1)
+		{
+			add_to_envp(node->key, node->value);
+		}
+		else
+		{
+			envp_double_size();
+			add_to_envp(node->key, node->value);
+		}
 	}
 }
 
@@ -62,10 +65,12 @@ void			free_by_key(t_map **head, t_string key)
 {
 	t_map	*tmp;
 	t_map	*navigator;
+	t_bool	found;
 	int		index;
 
 	navigator = *head;
 	index = 0;
+	found = false;
 	while (navigator)
 	{
 		if (equals(navigator->next->key, key))
@@ -75,18 +80,20 @@ void			free_by_key(t_map **head, t_string key)
 			free(tmp->value);
 			free(tmp);
 			navigator->next = tmp->next;
-			break ;
+			found = true;
 		}
+		index++;
+		if (found)
+			break ;
 		navigator = navigator->next;
 	}
-	if (g_envp_count > g_envp_size / 2)
-	{
-		remove_envp(index);
-	}
+	if ((g_envp_count - 1 > g_envp_size / 2 && g_envp_size > 256) ||
+	(g_envp_count - 1 > g_envp_size && g_spliter_char == 256))
+		remove_from_envp(index);
 	else
 	{
 		envp_reduce_size();
-		remove_envp(index);
+		remove_from_envp(index);
 	}
 }
 

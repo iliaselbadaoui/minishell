@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 21:44:33 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 11:20:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../parser.h"
 
 void			envp_handler(t_string	*envp)
 {
@@ -33,7 +33,7 @@ void			envp_double_size()
 	t_string	*envp_copy;
 
 	envp_copy = g_envp;
-	g_envp_size *= ++g_envp_times;
+	g_envp_size = 256 * ++g_envp_times;
 	g_envp = (t_string *)malloc(sizeof(t_string) * g_envp_size);
 	g_envp_count = 0;
 	while (envp_copy[g_envp_count])
@@ -50,7 +50,9 @@ void			envp_reduce_size()
 	t_string	*envp_copy;
 
 	envp_copy = g_envp;
-	g_envp_size *= --g_envp_times;
+	if (g_envp_times - 1 > 0)
+		--g_envp_times;
+	g_envp_size = 256 * g_envp_times;
 	g_envp = (t_string *)malloc(sizeof(t_string) * g_envp_size);
 	g_envp_count = 0;
 	while (envp_copy[g_envp_count])

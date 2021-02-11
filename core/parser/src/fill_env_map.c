@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 20:22:18 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 10:33:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_map			*fill_env(t_string *envp)
 	t_string	*env;
 
 	map = NULL;
-	g_envp = envp;
+	envp_handler(envp);
+	g_map_fill_first_time = 1;
 	while (*envp)
 	{
 		env = ft_split_first(*envp, '=');
@@ -28,5 +29,6 @@ t_map			*fill_env(t_string *envp)
 		libre_2d(env);
 		envp++;
 	}
+	g_map_fill_first_time = 0;
 	return (map);
 }

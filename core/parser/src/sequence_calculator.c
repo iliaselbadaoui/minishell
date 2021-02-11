@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:51:10 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 17:17:43 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 12:53:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int				sequence_calculator(t_string line, char delimiter)
 
 	count = 0;
 	flag = 0;
+	g_spliter_counter = 0;
+	g_spliter_char = 0;
 	while (line[g_spliter_counter])
 	{
 		help(line, &count, &flag);
@@ -63,5 +65,7 @@ int				sequence_calculator(t_string line, char delimiter)
 			flag = 0;
 		g_spliter_counter++;
 	}
+	g_spliter_counter = 0;
+	g_spliter_char = 0;
 	return (count);
 }
