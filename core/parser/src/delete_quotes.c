@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:11:13 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 15:25:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:27:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_string		delete_quotes(t_string str)
 	return (no_quote);
 }
 
-t_string		delete_dollar_mark(t_string str)
+t_string		variable_name_extracter(t_string str)
 {
 	t_string no_dollar;
 
