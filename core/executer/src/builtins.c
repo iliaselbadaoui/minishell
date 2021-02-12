@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/12 11:13:03 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/12 11:25:25 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int				exit_shell(t_command *cmd)
 	is_number = 0;
 	out("exit\n");
 	while (cmd->args[1] && cmd->args[1][i])
+	{
+		if (cmd->args[1][0] == '-')
+			i++;
 		if (! (is_number = ft_isdigit(cmd->args[1][i++])))
 		{
 			out("minishell: exit: ");
@@ -28,6 +31,7 @@ int				exit_shell(t_command *cmd)
 			out(": numeric argument required\n");
 			return (-1);
 		}
+	}
 	if (cmd->args[2])
 	{
 		out("minishell: exit: too many arguments\n");
