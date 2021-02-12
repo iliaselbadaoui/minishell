@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 19:13:48 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/12 12:43:17 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ int		unset(void);
 // Libft funcions
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isdigit(int c);
+
+// Tmp functionss
+void	print_struct(t_command *list);
 
 #endif
