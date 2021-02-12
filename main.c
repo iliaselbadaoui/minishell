@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 18:57:11 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:38:08 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (syntax_checker(trim(line)) && *line != '\0')
 			{
 				list = parser(trim(line));
-				printf("%d\n", list->id);
 				ret = exec_cmds(list);
 			}
 			free(line);
 			free_commands(&list);
-			// printf("%d\n", ret);
 			if (ret == -1)
 				break ;
 		}

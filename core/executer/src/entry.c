@@ -6,13 +6,11 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/11 15:16:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:48:08 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
-
-
 
 void	print_struct(t_command *list)
 {
@@ -54,17 +52,14 @@ int	exec_cmd(t_command *cmd)
 
 	ret = 0;
 	// Check builtins functions and bins
-	if (!(ret = check_builtins(cmd)))
+	if ((ret = check_builtins(cmd)) == 1 || check_bins(cmd))
 		return (0);
 	if (ret == -1)
 		return (-1);
-	if (check_bins(cmd))
-		return (0);
-
 	out("minishell$: ");
 	out(cmd->args[0]);
 	out(": command not found\n");
-	return (CMMAND_NOT_FOUND);
+	return (0);
 }
 
 int		exec_cmds(t_command *list)
@@ -72,14 +67,13 @@ int		exec_cmds(t_command *list)
 	int		ret;
 
 	ret = 0;
-	// while (list)
-	// {
-	// 	ret = exec_cmd(list);
-	// 	if (ret == -1)
-	// 		break ;
-	// 	list = list->next;
-	// }
+	while (list)
+	{
+		ret = exec_cmd(list);
+		if (ret == -1)
+			return (-1);
+		list = list->next;
+	}
 	// print_struct(list);
-	(void)list;
 	return (ret);
 }

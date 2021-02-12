@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/10 17:42:56 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/12 11:07:52 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ static t_string	*get_paths(void)
 // Check is the command builtin
 int				check_builtins(t_command *cmd)
 {
-	if (!ft_strcmp(cmd->args[0], "exit"))
+	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));
-	else if (!ft_strcmp(cmd->args[0], "echo"))
+	else if (equals(cmd->args[0], "echo"))
 		return (echo(cmd->args));
-	else if (!ft_strcmp(cmd->args[0], "cd"))
+	else if (equals(cmd->args[0], "cd"))
 		return (cd());
-	else if (!ft_strcmp(cmd->args[0], "pwd"))
+	else if (equals(cmd->args[0], "pwd"))
 		return (pwd());
-	else if (!ft_strcmp(cmd->args[0], "export"))
+	else if (equals(cmd->args[0], "export"))
 		return (export());
-	else if (!ft_strcmp(cmd->args[0], "unset"))
+	else if (equals(cmd->args[0], "unset"))
 		return (unset());
-	else if (!ft_strcmp(cmd->args[0], "env"))
+	else if (equals(cmd->args[0], "env"))
 		return (env());
 	return (0);
 }
