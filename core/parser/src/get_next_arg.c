@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:22:11 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 14:42:34 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/17 08:37:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_coord			get_next_arg(t_string line)
 		else
 		{
 			coord.start = g_counter;
+			if (line[g_counter - 1] == ' ')
+				coord.start = g_counter - 1;
 			if (line[g_counter] == '\'' || line[g_counter] == '"')
 				g_char = line[g_counter++];
 			skip_word(line);
