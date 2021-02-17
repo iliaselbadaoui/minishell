@@ -14,8 +14,9 @@ void	print_struct(t_command *list)
 		i = 1;
 		while (list->args[i])
 		{
+			out("[");
 			out(list->args[i++]);
-			out("   ");
+			out("]   ");
 		}
 		out("\n");
 		printf("\ntype: [%c]", list->redirections->type);

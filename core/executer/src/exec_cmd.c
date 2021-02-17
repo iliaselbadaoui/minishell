@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/17 12:16:02 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:24:32 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int				check_builtins(t_command *cmd)
 	return (0);
 }
 
-void	ft_freestrarr(char **arr)
+void			ft_freestrarr(char **arr)
 {
 	int i;
 
@@ -92,7 +92,7 @@ void	ft_freestrarr(char **arr)
 	arr = NULL;
 }
 
-t_string	path_maker(t_string path, t_string arg)
+t_string		path_maker(t_string path, t_string arg)
 {
 	char		*half_path;
 	char		*full_path;
