@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/12 14:25:14 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:16:02 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ static int		is_executable(t_string cmd_path, t_command *cmd)
 
 	ret = 1;
 	if (open(cmd_path, O_RDONLY) <= 0) // Check the path to file is exist
+	{
 		ret = 0; // Failed
+		free(cmd_path);
+	}
 	else if (!run_cmd(cmd_path, cmd->args)) // Run the Command
 		ret = 0; // Failed
-	// free(cmd_path);
-	// cmd_path = NULL;
 	return (ret); // Successed
 }
 
@@ -78,6 +79,30 @@ int				check_builtins(t_command *cmd)
 	return (0);
 }
 
+void	ft_freestrarr(char **arr)
+{
+	int i;
+
+	if (!arr)
+		return ;
+	i = -1;
+	while (arr[++i])
+		free(arr[i]);
+	free(arr);
+	arr = NULL;
+}
+
+t_string	path_maker(t_string path, t_string arg)
+{
+	char		*half_path;
+	char		*full_path;
+
+	half_path = ft_strjoin(path, "/");
+	full_path = ft_strjoin(half_path, arg);
+	free(half_path);
+	return (full_path);
+}
+
 int		check_bins(t_command *cmd)
 {
 	t_string	*path;
@@ -87,17 +112,15 @@ int		check_bins(t_command *cmd)
 	i = -1;
 	ret = 0;
 	if (cmd->args[0] && ft_strchr(cmd->args[0], '/'))
-		return(is_executable(cmd->args[0], cmd));
+		return (is_executable(cmd->args[0], cmd));
 	path = get_paths();
 	while (path && path[++i])
 	{
-		ret = is_executable(ft_strjoin(ft_strjoin(path[i], "/"), cmd->args[0]), cmd);
-		free(path[i]);
-		path[i] = NULL;
+		ret = is_executable(path_maker(path[i], cmd->args[0]), cmd);
 		if (ret == 1)
 			break ;
 	}
-	// free(path[i]);
+	ft_freestrarr(path);
 	if (ret == 1)
 		return (1);
 	return (0);
