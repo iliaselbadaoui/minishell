@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/17 12:33:45 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:38:02 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 			{
 				list = parser(trim(line));
 				ret = exec_cmds(list);
-				print_struct(list);
 			}
 			free(line);
 			free_commands(&list);

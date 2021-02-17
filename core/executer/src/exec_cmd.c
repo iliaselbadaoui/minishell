@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/17 12:24:32 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:42:36 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				run_cmd(t_string path, t_string *args)
 	return (1);
 }
 
-static int		is_executable(t_string cmd_path, t_command *cmd)
+static int		is_executable(t_string cmd_path, t_string *args)
 {
 	int	ret;
 
@@ -43,7 +43,7 @@ static int		is_executable(t_string cmd_path, t_command *cmd)
 		ret = 0; // Failed
 		free(cmd_path);
 	}
-	else if (!run_cmd(cmd_path, cmd->args)) // Run the Command
+	else if (!run_cmd(cmd_path, args)) // Run the Command
 		ret = 0; // Failed
 	return (ret); // Successed
 }
@@ -112,11 +112,11 @@ int		check_bins(t_command *cmd)
 	i = -1;
 	ret = 0;
 	if (cmd->args[0] && ft_strchr(cmd->args[0], '/'))
-		return (is_executable(cmd->args[0], cmd));
+		return (is_executable(ft_strdup(cmd->args[0]), cmd->args));
 	path = get_paths();
 	while (path && path[++i])
 	{
-		ret = is_executable(path_maker(path[i], cmd->args[0]), cmd);
+		ret = is_executable(path_maker(path[i], cmd->args[0]), cmd->args);
 		if (ret == 1)
 			break ;
 	}
