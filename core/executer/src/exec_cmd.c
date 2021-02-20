@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/17 12:42:36 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/19 18:25:40 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				check_builtins(t_command *cmd)
 	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));
 	else if (equals(cmd->args[0], "echo"))
-		return (echo(cmd->args));
+		return (echo(cmd->args, 1));
 	else if (equals(cmd->args[0], "cd"))
 		return (cd());
 	else if (equals(cmd->args[0], "pwd"))

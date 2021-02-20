@@ -12,11 +12,3 @@ export a =b		      Bad  => export: `=b': not a valid identifier
 the '=' should be next to key and value without spaces
 Key: must not start with a number, without -
 
-
-
-
-
-
-Check if there i a leak if we use /bin/ls as a command
-
-
