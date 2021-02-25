@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 18:57:30 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:00:57 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_map			*fill_env(t_string *envp);
 void			envp_handler(t_string	*envp);
 void			envp_double_size(void);
 void			envp_reduce_size(void);
+t_bool			is_option(t_string arg);
 void			add_to_envp(t_string key, t_string value);
 void			remove_from_envp(int index);
 void			remove_and_resize(int index);
