@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_env_map.c                                     :+:      :+:    :+:   */
+/*   delete_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 14:47:32 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/11 15:11:13 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/02/11 15:27:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_map			*fill_env(t_string *envp)
+t_string		delete_quotes(t_string str)
 {
-	t_map		*map;
-	t_string	*env;
+	t_string no_quote;
 
-	map = NULL;
-	envp_handler(envp);
-	g_map_fill_first_time = 1;
-	while (*envp)
-	{
-		env = ft_split_first(*envp, '=');
-		add_to_map(&map, init_map(ft_strdup(env[0]), ft_strdup(env[1])));
-		libre_2d(env);
-		envp++;
-	}
-	g_map_fill_first_time = 0;
-	return (map);
+	no_quote = substring(str, 1, ft_strlen(str) - 2);
+	return (no_quote);
+}
+
+t_string		variable_name_extracter(t_string str)
+{
+	t_string no_dollar;
+
+	no_dollar = substring(str, 1, ft_strlen(str) - 1);
+	return (no_dollar);
 }

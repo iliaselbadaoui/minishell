@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 12:41:14 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:50:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void		if_is_quote(t_string line)
 {
 	if (check_quote(line[g_counter]))
 		g_char = line[g_counter++];
+	skip_word(line);
 }
 
 int				args_calculator(t_string command)
@@ -33,7 +34,6 @@ int				args_calculator(t_string command)
 			skip_redirection(command);
 			skip_spaces(command);
 			if_is_quote(command);
-			skip_word(command);
 		}
 		else
 		{

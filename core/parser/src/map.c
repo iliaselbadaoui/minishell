@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/06 10:32:52 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:54:19 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ void			add_to_map(t_map **head, t_map *node)
 			tmp = tmp->next;
 		tmp->next = node;
 	}
+	if (!g_map_fill_first_time)
+	{
+		if (g_envp_count < g_envp_size - 1)
+		{
+			add_to_envp(node->key, node->value);
+		}
+		else
+		{
+			envp_double_size();
+			add_to_envp(node->key, node->value);
+		}
+	}
 }
 
 t_string		get_value_by_key(t_map *head, t_string key)
@@ -53,8 +65,12 @@ void			free_by_key(t_map **head, t_string key)
 {
 	t_map	*tmp;
 	t_map	*navigator;
+	t_bool	found;
+	int		index;
 
 	navigator = *head;
+	index = 0;
+	found = false;
 	while (navigator)
 	{
 		if (equals(navigator->next->key, key))
@@ -64,10 +80,14 @@ void			free_by_key(t_map **head, t_string key)
 			free(tmp->value);
 			free(tmp);
 			navigator->next = tmp->next;
-			break ;
+			found = true;
 		}
+		index++;
+		if (found)
+			break ;
 		navigator = navigator->next;
 	}
+	remove_and_resize(index);
 }
 
 void			free_map(t_map **head)

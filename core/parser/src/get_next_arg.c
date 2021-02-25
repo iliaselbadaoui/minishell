@@ -6,11 +6,20 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:22:11 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 12:32:19 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/17 08:37:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
+
+static void		help_function(t_string line)
+{
+	skip_redirection(line);
+	skip_spaces(line);
+	if (line[g_counter] == '\'' || line[g_counter] == '"')
+		g_char = line[g_counter++];
+	skip_word(line);
+}
 
 t_coord			get_next_arg(t_string line)
 {
@@ -21,16 +30,12 @@ t_coord			get_next_arg(t_string line)
 		g_char = 0;
 		skip_spaces(line);
 		if (is_redirection(line[g_counter]))
-		{
-			skip_redirection(line);
-			skip_spaces(line);
-			if (line[g_counter] == '\'' || line[g_counter] == '"')
-				g_char = line[g_counter++];
-			skip_word(line);
-		}
+			help_function(line);
 		else
 		{
 			coord.start = g_counter;
+			if (line[g_counter - 1] == ' ')
+				coord.start = g_counter - 1;
 			if (line[g_counter] == '\'' || line[g_counter] == '"')
 				g_char = line[g_counter++];
 			skip_word(line);
