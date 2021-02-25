@@ -9,7 +9,7 @@ all: $(NAME)
 $(NAME):
 	@$(MakeDir) -C core/executer/
 	@$(MakeDir) -C core/parser/
-	@$(compile) $(src) -I $(headers) $(libs) -o $(NAME)
+	@$(compile) $(src) -I $(headers) $(libs) -o $(NAME) -g
 
 clean:
 	@$(MakeDir) clean -C core/executer/
@@ -19,7 +19,7 @@ fclean: clean
 	@$(MakeDir) fclean -C core/executer/
 	@$(MakeDir) fclean -C core/parser/
 	@rm -rf $(NAME)
-	
+
 re: fclean all
 
 .PHONY: all clean fclean re

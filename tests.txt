@@ -5,22 +5,6 @@ echo square is ilias 'and' "ilias is me" so pipe this and | grep -C i ; ps | gre
 
 
 
-Echo Command Examples:
-
-echo "aaaaa'aaaa'""\""
-echo 'aaaaa"aaaa"''\''
-echo 'aaaaa''\''
-echo "aaaaa'aaaa'"""
-echo "aaaa aaaaa aaaaa aaaaa" aaaa aaaa
-echo aaa aaa aaa 'aaa' "aaaa aaa aaa" aaa aaaaaaaa
-echo [aaaa]  '[bbbb]'       "[cccc]"
-echo aaa'aaa'aaa aaa'aaa'aaa'$PATH'"$PATH"
-echo [aa'$user'aa] [aa$useraa] [aa"$user"aa] [aaa'$user'$user"$user"aaa]
-
-
-
-
-
 
 t_string		delete_quotes(t_string str);
 t_string		variable_name_extracter(t_string str);
@@ -29,16 +13,23 @@ t_bool			is_quote(t_bool is_file, t_string string);
 t_bool			equals(t_string s1, t_string s2);
 t_bool			includes(t_string string, t_string pattern);
 
-test'test'test\' aaaaaaaaa aaaaaaaaa aaaaa'aaaa'
-test'test'test\' aaaaaaaaa aaaaaaaaa aaaaa'aaaa'e
 
 
-[aa$useraa] [aa] [aaaa] [aaa$useraaa]
-[aa$useraa] [aa...... [aa....aa] [aaa$user........aaa]
+Echo Command Examples:
+echo -n -n -n test tout
+echo "$TEST$TEST$TEST"
+echo "$TEST$TEST=lol$TEST"
+echo "   $TEST lol $TEST"
+echo $TEST$TEST$TEST
+echo $TEST$TEST=lol$TEST""lol
+echo    $TEST lol $TEST
+echo "$=TEST"
+echo "$"
+echo "$?TEST"
+echo $TEST $TEST
+echo "$1TEST"
 
 
 
-echo aaa'bbb'ccc"ddd"eee'$PATH'jjj"$PATH"'test"test"test'
-
-
-
+exit 9223372036854775808
+exit -9223372036854775810

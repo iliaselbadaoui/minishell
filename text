@@ -12,3 +12,4 @@ export a =b		      Bad  => export: `=b': not a valid identifier
 the '=' should be next to key and value without spaces
 Key: must not start with a number, without -
 
+Supported characters:	alphabets		digits		_
