@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/12 12:52:42 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:55:09 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		exec_cmds(t_command *list)
 	while (list)
 	{
 		ret = exec_cmd(list);
-		g_error = ret;
+		g_error = ret == -1 ? 1 : ret;
 		if (ret == -1)
 			return (-1);
 		list = list->next;

@@ -17,11 +17,7 @@ t_bool			includes(t_string string, t_string pattern);
 
 Echo Command Examples:
 echo -n -n -n test tout
-echo "$TEST$TEST$TEST"
-echo "$TEST$TEST=lol$TEST"
-echo "   $TEST lol $TEST"
-echo $TEST$TEST$TEST
-echo $TEST$TEST=lol$TEST""lol
+
 echo    $TEST lol $TEST
 echo "$=TEST"
 echo "$"

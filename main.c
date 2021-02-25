@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/17 12:38:02 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:04:29 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 			free_commands(&list);
 			if (ret == -1)
 				break ;
-			// printf("g_error: %d\n", g_error);
 		}
 	free_map(&g_map);
 	return (0);
