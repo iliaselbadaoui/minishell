@@ -29,3 +29,6 @@ echo "$1TEST"
 
 exit 9223372036854775808
 exit -9223372036854775810
+
+echo -nnnnnnnn test
+echo -----n test
