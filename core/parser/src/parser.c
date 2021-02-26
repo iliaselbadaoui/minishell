@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 12:34:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 12:50:34 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 10:20:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ static void		help(t_command **list, t_string *pipes, int id)
 {
 	t_string	trimed;
 
-	trimed = trim(pipes[g_counter_extra]);
-	add_command_to_end(list, init_command(args_extracter(trimed),
-	redirections_extracter(trimed), id));
+	trimed = ft_strdup(trim(pipes[g_counter_extra]));
+	add_command_to_end(list, init_command(
+	args_extracter(trimed), redirections_extracter(trimed), id));
+	free(trimed);
 	g_counter_extra++;
 }
 
@@ -40,7 +41,7 @@ t_command		*parser(t_string line)
 		g_counter_extra = 0;
 		pipes = spliter(trim(commands[counter]), '|');
 		while (pipes[g_counter_extra])
-			help(&list, pipes, id);
+			help(&list, pipes, id);	
 		id++;
 		counter++;
 		libre_2d(pipes);
