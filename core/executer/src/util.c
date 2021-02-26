@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_env_map.c                                     :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 18:57:33 by mait-si-         ###   ########.fr       */
+/*   Created: 2021/02/10 18:00:36 by mait-si-          #+#    #+#             */
+/*   Updated: 2021/02/19 17:57:19 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser.h"
-
-t_map			*fill_env(t_string *envp)
+int		ft_isalpha(int c)
 {
-	t_map		*map;
-	t_string	*env;
+	if (c >= 65 && c <= 90)
+		return (1);
+	if (c >= 97 && c <= 122)
+		return (1);
+	return (0);
+}
 
-	map = NULL;
-	envp_handler(envp);
-	g_map_fill_first_time = 1;
-	while (*envp)
-	{
-		env = ft_split_first(*envp, '=');
-		add_to_map(&map, init_map(ft_strdup(env[0]), ft_strdup(env[1])));
-		libre_2d(env);
-		envp++;
-	}
-	g_map_fill_first_time = 0;
-	return (map);
+int		ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
+int		ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 || *s2)
+		if (*s1++ != *s2++)
+			return (*(unsigned char*)(s1 - 1) - *(unsigned char*)(s2 - 1));
+	return (0);
 }

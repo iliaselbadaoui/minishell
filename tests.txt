@@ -2,6 +2,34 @@ ilias elbadaoui > extra life here | cat -g ; "ECHO" seed 'ernest'
 echo ilias > ie < hey >> ilias < 'single one' >> "take double" extra args  | heres \'another \>one > file ; new command < read
 >ilias >> ie < hey < xtra echo "siiiir hta tji hak" lo3ab > hak > wahd < "l file" > 'ha wahd akhor' < yalah < safi >> baraka > 3lik
 echo square is ilias 'and' "ilias is me" so pipe this and | grep -C i ; ps | grep minishell | grep -v 'grep' | grep -C minishell
-echo "fwefwef'fwefwe'""\""
-echo 'fwefwef"fwefwe"''\''
-echo "fwefwef'fwefwe'"""
+
+
+
+
+t_string		delete_quotes(t_string str);
+t_string		variable_name_extracter(t_string str);
+t_bool			check_quote(char c);
+t_bool			is_quote(t_bool is_file, t_string string);
+t_bool			equals(t_string s1, t_string s2);
+t_bool			includes(t_string string, t_string pattern);
+
+
+
+Echo Command Examples:
+echo -n -n -n test tout
+echo "$TEST$TEST$TEST"
+echo "$TEST$TEST=lol$TEST"
+echo "   $TEST lol $TEST"
+echo $TEST$TEST$TEST
+echo $TEST$TEST=lol$TEST""lol
+echo    $TEST lol $TEST
+echo "$=TEST"
+echo "$"
+echo "$?TEST"
+echo $TEST $TEST
+echo "$1TEST"
+
+
+
+exit 9223372036854775808
+exit -9223372036854775810

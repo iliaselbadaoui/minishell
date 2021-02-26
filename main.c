@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 10:39:07 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 10:41:14 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 			free_commands(&list);
 			if (ret == -1)
 				break ;
-			// printf("g_error: %d\n", g_error);
 		}
 	free_map(&g_map);
 	return (0);

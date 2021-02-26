@@ -1,0 +1,7 @@
+.DS_Store
+*.o
+*.a
+minishell
+libft/
+.vscode/settings.json
+exit

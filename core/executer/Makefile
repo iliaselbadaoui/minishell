@@ -8,17 +8,17 @@ lib = executer.h
 all: $(NAME)
 
 $(NAME):
-	@$(compile) $(src) -I $(lib)
+	@$(compile) $(src) -I $(lib) -g
 	@ar -rc $(NAME) $(obj)
 clean:
-	# @$(MakeDir) clean -C stdout/
-	# @$(MakeDir) clean -C stdin/
-	# @$(MakeDir) clean -C split/
+	@#$(MakeDir) clean -C stdout/
+	@#$(MakeDir) clean -C stdin/
+	@#$(MakeDir) clean -C split/
 	@rm -rf $(obj)
 fclean: clean
-	# @$(MakeDir) fclean -C stdout/
-	# @$(MakeDir) fclean -C stdin/
-	# @$(MakeDir) fclean -C split/
+	@#$(MakeDir) fclean -C stdout/
+	@#$(MakeDir) fclean -C stdin/
+	@#$(MakeDir) fclean -C split/
 	@rm -rf $(NAME)
 re: fclean all
 

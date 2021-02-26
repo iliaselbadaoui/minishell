@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 11:47:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/25 18:35:44 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/26 10:40:47 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/02/26 10:40:55 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # define SYNTAX_ERROR 258
 # define NO_FILE_DIR 1
 # define CMMAND_NOT_FOUND 127
-# include "stdout/out.h"
-# include "stdin/in.h"
-# include "split/ft_split.h"
+# include "./stdout/out.h"
+# include "./stdin/in.h"
+# include "./split/ft_split.h"
 # include <stdlib.h>
 # include <stdio.h>
 

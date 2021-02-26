@@ -11,7 +11,7 @@ $(NAME):
 	@$(MakeDir) -C stdout/
 	@$(MakeDir) -C stdin/
 	@$(MakeDir) -C split/
-	@$(compile) $(src) -I $(lib)
+	@$(compile) $(src) -I $(lib) -g
 	@ar -rc $(NAME) $(obj)
 clean:
 	@$(MakeDir) clean -C stdout/
