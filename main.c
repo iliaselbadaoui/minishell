@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/25 21:49:26 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 07:53:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (syntax_checker(trim(line)))
 			{
 				list = parser(trim(line));
-				t_string	*args = list->args;
-				int			i = 0;
-				while (args[i])
-				{
-					printf("'%s'\n", args[i]);
-					i++;
-				}
-				
 				// YOUR EXECUTION FUNCTION HERE LIKE => execute(list);
 			}
 			free(line);
