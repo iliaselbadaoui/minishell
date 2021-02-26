@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/25 19:20:59 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:24:40 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,36 +78,39 @@ void			put_argument(t_string str, int fd, int j)
 			write(fd, &str[j], 1);
 }
 
+int				check_option(t_string str)
+{
+	str++;
+	if (*str++ == '-' && *str == 'n')
+	{
+		while (*str++ == 'n');
+		if (*str != '\0')
+			return (0);
+		return (1);
+	}
+	return (0);
+}
+
 int				echo(t_string *args, int fd)
 {
 	int			i;
 	int			j;
-	t_bool		n_option;
+	int			n_option;
 
+	n_option = 0;
 	i = 0;
-	n_option = false;
+	j = -1;
 	while (args[++i])
-	{
-		out("[");
-		out(args[i]);
-		out("]");
-		j = 1;
-		// if (args[i][0] == '-' && args[i][1] == 'n')
-		// {
-		// 	n_option = true;
-		// 	while (args[i][++j] == 'n');
-		// 	if (args[i][j] != '\0' && args[i][j] != 'n')
-		// 		n_option = false;
-		// }
-		// else
-		// {
-		// 	j = n_option ? 0 : -1;
-		// 	put_argument(args[i], fd, j);
-		// }
-		// if (n_option)
-		// 	continue ;
-		// j = n_option ? 0 : -1;
-	}
+		if (check_option(args[i]))
+			n_option = 1;
+		else
+			break ;
+	// if (n_option)
+	// 	i--;
+	// else
+	// 	write(fd, " ", 1);
+	while (args[i])
+		put_argument(args[i++], fd, j);
 	if (!n_option)
 		write(fd, "\n", 1);
 	return (1);
