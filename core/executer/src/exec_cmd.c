@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/19 18:25:40 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:34:19 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				check_builtins(t_command *cmd)
 	else if (equals(cmd->args[0], "pwd"))
 		return (pwd());
 	else if (equals(cmd->args[0], "export"))
-		return (export());
+		return (export(cmd->args));
 	else if (equals(cmd->args[0], "unset"))
 		return (unset());
 	else if (equals(cmd->args[0], "env"))

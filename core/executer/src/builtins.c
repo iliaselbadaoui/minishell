@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/25 18:00:51 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:51:19 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ int		pwd(void)
 		return (-1);
 	out(buff);
 	out("\n");
-	return (1);
-}
-
-int		export(void)
-{
-	out("export still need work \n");
-
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/25 17:00:14 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:34:39 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		env(void);
 int		pwd(void);
 int		exit_shell(t_command *cmd);
 int		echo(t_string *args, int fd);
-int		export(void);
+int		export(t_string *args);
 int		unset(void);
 int		cd(void);
 
