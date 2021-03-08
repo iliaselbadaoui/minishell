@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/26 17:24:40 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/08 20:11:13 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,27 @@ int				echo(t_string *args, int fd)
 	i = 0;
 	j = -1;
 	while (args[++i])
-		if (check_option(args[i]))
-			n_option = 1;
+	{
+		// out("[");
+		// out(args[i]);
+		// out("]");
+		j = 1;
+		if (args[i][0] == '-' && args[i][1] == 'n')
+		{
+			n_option = true;
+			while (args[i][++j] == 'n');
+			if (args[i][j] != '\0' && args[i][j] != 'n')
+				n_option = false;
+		}
 		else
-			break ;
-	// if (n_option)
-	// 	i--;
-	// else
-	// 	write(fd, " ", 1);
-	while (args[i])
-		put_argument(args[i++], fd, j);
+		{
+			j = n_option ? 0 : -1;
+			put_argument(args[i], fd, j);
+		}
+		if (n_option)
+			continue ;
+		j = n_option ? 0 : -1;
+	}
 	if (!n_option)
 		write(fd, "\n", 1);
 	return (1);
