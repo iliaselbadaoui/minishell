@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/10 15:15:38 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:39:14 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-static int				print_variable(t_string str, int i, int fd)
+int				print_variable(t_string str, int i, int fd)
 {
 	int				start;
 	int				end;
@@ -50,7 +50,7 @@ static int				print_variable(t_string str, int i, int fd)
 	return (i - 1);
 }
 
-static int				double_quote(t_string str, int j, int fd)
+int				double_quote(t_string str, int j, int fd)
 {
 	while (str[++j] && str[j] != '"')
 		if (str[j] == '$')
@@ -66,15 +66,15 @@ void	filter(t_string str, int fd)
 
 	i = -1;
 	while (str[++i])
-		if (str[i] == '\\')
-			write(fd, &str[++i], 1);
-		else if (str[i] == '\'')
-			while (str[++i] && str[i] != '\'')
-				write(fd, &str[i], 1);
-		else if (str[i] == '"')
-			i = double_quote(str, i, fd);
-		else if (str[i] == '$')
-			i = print_variable(str, i, fd);
-		else
+		// if (str[i] == '\\')
+		// 	write(fd, &str[++i], 1);
+		// else if (str[i] == '\'')
+		// 	while (str[++i] && str[i] != '\'')
+		// 		write(fd, &str[i], 1);
+		// else if (str[i] == '"')
+		// 	i = double_quote(str, i, fd);
+		// else if (str[i] == '$')
+		// 	i = print_variable(str, i, fd);
+		// else
 			write(fd, &str[i], 1);
 }
