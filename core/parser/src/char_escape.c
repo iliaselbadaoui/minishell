@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 09:04:11 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 18:35:49 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:27:30 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool		char_escape(t_string line)
 {
-	if (line[g_counter] == '\\' && line[g_counter + 1] != '\0')
+	if (line[g_counter] == '\\')
 	{
 		g_flag = 1;
 		g_counter += 2;
