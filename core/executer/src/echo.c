@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/10 17:50:16 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:25:44 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@
 
 int				check_option(t_string str)
 {
-	str++;
-	if (*str++ == '-' && *str == 'n')
+	int i;
+
+	i = 0;
+	if (str[i] == '-' && str[++i] == 'n')
 	{
-		while (*str++ == 'n');
+		while (str[++i] == 'n');
 		if (*str != '\0')
 			return (0);
 		return (1);
@@ -102,25 +104,28 @@ int				echo(t_string *args, int fd)
 	j = -1;
 	while (args[++i])
 	{
-		out("[");
-		out(args[i]);
-		out("]\n");
+		// out("[");
+		// out(args[i]);
+		// out("]\n");
 		j = 1;
-		// if (args[i][0] == '-' && args[i][1] == 'n')
-		// {
-		// 	n_option = true;
-		// 	while (args[i][++j] == 'n');
-		// 	if (args[i][j] != '\0' && args[i][j] != 'n')
-		// 		n_option = false;
-		// }
-		// else
-		// {
-		// 	j = n_option ? 0 : -1;
-		// 	// put_argument(args[i], fd, j);
-		// }
-		// if (n_option)
-		// 	continue ;
-		// j = n_option ? 0 : -1;
+		if (args[i][0] == '-' && args[i][1] == 'n')
+		{
+			n_option++;
+			while (args[i][++j] == 'n');
+			if (args[i][j] != '\0')
+				n_option = 0;
+		}
+		else
+		{
+			j = n_option ? 0 : -1;
+			// put_argument(args[i], fd, j);
+		}
+		if (n_option)
+			continue ;
+		j = n_option ? 0 : -1;
+
+		if (n_option)
+			out();
 	}
 	if (!n_option)
 		write(fd, "\n", 1);
