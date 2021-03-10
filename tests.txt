@@ -24,7 +24,7 @@ echo "$"
 echo "$?TEST"
 echo $TEST $TEST
 echo "$1TEST"
-
+echo "Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
 
 
 exit 9223372036854775808

@@ -13,3 +13,5 @@ the '=' should be next to key and value without spaces
 Key: must not start with a number, without -
 
 Supported characters:	alphabets		digits		_
+
+export test="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
