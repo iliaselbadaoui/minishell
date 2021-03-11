@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/10 17:55:14 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:18:10 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int		export(t_string *args)
 	// 	put_env();
 	while (args[++i])
 	{
-		out("[");
-		out(args[i]);
-		out("]\n");
+		printf("[%s]\n", args[i]);
 		// j = -1;
 		// while (args[i][++j] && args[i][j] != '='); // j is index of '='
 		// key = substring(args[i], 0, j - 1);
