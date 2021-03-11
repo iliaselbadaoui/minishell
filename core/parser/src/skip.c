@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:56:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 09:38:29 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:28:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void			skip_word(t_string command)
 		while (greate_question(command))
 		{
 			if (check_quote(command[g_counter]))
-				break ;
+			{
+				g_char = command[g_counter++];
+				while (command[g_counter] != g_char)
+					g_counter++;
+			}
 			g_counter++;
 		}	
 	}
