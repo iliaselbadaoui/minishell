@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 10:43:29 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 10:43:31 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/11 09:37:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ void			remove_from_envp(int index);
 void			remove_and_resize(int index);
 t_string		delete_quotes(t_string str);
 t_string		variable_name_extracter(t_string str);
+t_bool			greate_question_quote(t_string line);
 #endif
