@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/11 12:50:04 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:00:06 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				print_variable(t_string str, int i, int fd)
 	// Extract variable name
 	name = substring(str, start, end);
 	// Print variable value
-	out(get_env_value(name));
+	write(fd, get_env_value(name), ft_strlen(get_env_value(name)));
 	free(name);
 	// Return index (to keep printing the rest of strings)
 	return (i - 1);
@@ -62,19 +62,29 @@ int				double_quote(t_string str, int j, int fd)
 
 t_string	filter(t_string str)
 {
-	// int		i;
+	int			i;
+	int			fd;
+	t_string	line;
 
-	// i = -1;
-	// while (str[++i])
-		// if (str[i] == '\\')
-		// 	write(fd, &str[++i], 1);
-		// else if (str[i] == '\'')
-		// 	while (str[++i] && str[i] != '\'')
-		// 		write(fd, &str[i], 1);
-		// else if (str[i] == '"')
-		// 	i = double_quote(str, i, fd);
-		// else if (str[i] == '$')
-		// 	i = print_variable(str, i, fd);
-		// else
-			// write(fd, &str[i], 1);
+	i = -1;
+	fd = open("tmp.txt", O_RDWR|O_APPEND);
+	while (str[++i])
+		if (str[i] == '\\')
+			write(fd, &str[++i], 1);
+		else if (str[i] == '\'')
+			while (str[++i] && str[i] != '\'')
+				write(fd, &str[i], 1);
+		else if (str[i] == '"')
+			i = double_quote(str, i, fd);
+		else if (str[i] == '$')
+			i = print_variable(str, i, fd);
+		else
+			write(fd, &str[i], 1);
+	close(fd);
+	fd = open("tmp.txt", O_RDONLY);
+	get_next_line(fd, &line);
+	close(fd);
+	fd = open("tmp.txt", O_RDONLY | O_WRONLY | O_TRUNC);
+	close(fd);
+	return (line);
 }

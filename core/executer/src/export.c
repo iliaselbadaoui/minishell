@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/11 12:48:05 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:06:19 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 int		export(t_string *args)
 {
 	int			i;
-	int			j;
-	t_string	key;
-	t_string	value;
+	// int			j;
+	// t_string	key;
+	// t_string	value;
 	// t_map		*tmp;
 
 	i = 0;
@@ -37,12 +37,14 @@ int		export(t_string *args)
 	// 	put_env();
 	while (args[++i])
 	{
-		j = -1;
-		while (args[i][++j] && args[i][j] != '='); // j is index of '='
-		key = substring(args[i], 0, j - 1);
-		value = substring(args[i], j + 1, ft_strlen(args[i]) - 1);
+		// j = -1;
+		// while (args[i][++j] && args[i][j] != '='); // j is index of '='
+		// key = substring(args[i], 0, j - 1);
+		// value = substring(args[i], j + 1, ft_strlen(args[i]) - 1);
+		// key = filter(key);
+		// value = filter(value);
 		// printf("[%s] [%s]\n", key, value);
-		// filter(value);
+		printf("[%s]\n", args[i]);
 		// Check Valid Key
 		// if (!is_valid(key))
 		// {
@@ -65,6 +67,5 @@ int		export(t_string *args)
 
 		// }
 	}
-	// close(fd);
 	return (1);
 }
