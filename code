@@ -1,0 +1,17 @@
+g_char = 0;
+		skip_spaces(command);
+		if (is_redirection(command[g_counter]))
+		{
+			skip_redirection(command);
+			skip_spaces(command);
+			if_is_quote(command);
+		}
+		else
+		{
+			if (check_quote(command[g_counter]))
+				g_char = command[g_counter++];
+			skip_word(command);
+			count++;
+		}
+		if (command[g_counter])
+			g_counter++;
