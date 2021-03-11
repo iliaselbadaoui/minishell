@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:12:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/10 18:45:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/11 09:45:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (syntax_checker(trim(line)) && *line != '\0')
 			{
 				list = parser(trim(line));
-				t_string	*args = list->args;
-				while (*args)
-				{
-					printf("ARG : '%s'\n", *args);
-					args++;
-				}
-				
 				ret = exec_cmds(list);
 			}
 			free(line);
