@@ -6,11 +6,28 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:56:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 11:28:33 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:23:44 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
+
+static void		help(t_string command)
+{
+	if (command[g_counter] == '\\' && command[g_counter + 1] != '\'' &&
+	g_char != '\'')
+		g_counter += 2;
+	while (greate_question(command))
+	{
+		if (check_quote(command[g_counter]))
+		{
+			g_char = command[g_counter++];
+			while (command[g_counter] != g_char)
+				g_counter++;
+		}
+		g_counter++;
+	}
+}
 
 void			skip_word(t_string command)
 {
@@ -27,23 +44,10 @@ void			skip_word(t_string command)
 			g_counter++;
 		}
 		g_counter++;
+		help(command);
 	}
 	else
-	{
-		if (command[g_counter] == '\\' && command[g_counter + 1] != '\'' &&
-		g_char != '\'')
-			g_counter += 2;
-		while (greate_question(command))
-		{
-			if (check_quote(command[g_counter]))
-			{
-				g_char = command[g_counter++];
-				while (command[g_counter] != g_char)
-					g_counter++;
-			}
-			g_counter++;
-		}	
-	}
+		help(command);
 }
 
 void			skip_spaces(t_string command)
