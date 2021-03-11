@@ -1,0 +1,92 @@
+
+bash-3.2$ export
+declare -x Key="value"
+
+export aaa_a1=value   Good => env   : aaa_a1=value
+export aaa_a1=        Good => env   : aaa_a1=
+export key= value     Good => env   : key=
+export aaa-aa=value   Bad  => export: `aaa-aa=efe': not a valid identifier
+export 1aaa=value     Bad  => export: `1aaa=efe': not a valid identifier
+export a =b		      Bad  => export: `=b': not a valid identifier
+
+the '=' should be next to key and value without spaces
+Key: must not start with a number, without -
+
+Supported characters:	alphabets		digits		_
+
+export test="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
+
+
+
+
+
+export
+export $?
+export TEST
+export TEST=
+export TEST=123
+export ___TEST=123
+export --TEST=123
+export ""=""
+export ''=''
+export "="="="
+export '='='='
+export TE\\\ST=100
+export TE-ST=100
+export -TEST=100
+export TEST-=100
+export _TEST=100
+export TEST
+export ==========
+export 1TEST=
+export TEST
+export TES=T=""
+export TE+S=T=""
+export TES\\\\T=123
+export TES.T=123
+export TES\\\$T=123
+export TES\\\\T
+export TES.T=123
+export TES+T=123
+export TES=T=123
+export TES}T=123
+export TES{T=123
+export TES-T=123
+export -TEST=123
+export _TEST=123
+export TES_T=123
+export TEST_=123
+export TE*ST=123
+export TES#T=123
+export TES@T=123
+export TES!T=123
+export TES$?T=123
+export =============123
+export +++++++=123
+export ________=123
+export export
+export echo
+export pwd
+export cd
+export export
+export unset
+export sudo
+export TES^T=123
+export TES!T=123
+export TES\~T=123
+export TEST+=100
+export TEST=123 0$TEST=0123
+export TEST
+export TEST=
+export TEST=""
+export TEST=''
+export TEST=100 TEST2=100
+export TEST=100 TEST1=200
+export TEST="100"
+export TEST='"$USER"'
+export TEST="$USER"
+export TEST="$USER$USER"
+export TEST="'$USER'""test"
+export TEST="$USER" TEST1=$TEST
+export TEST=LOL
+export TEST=LOL
