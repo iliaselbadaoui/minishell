@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:56:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 09:19:46 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/11 09:38:29 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void			skip_word(t_string command)
 {
 	if (g_char > 0)
 	{
-		printf("HERE\n");
 		while (command[g_counter] != g_char)
 		{
 			if (command[g_counter] == '\\' && command[g_counter + 1] != '\'' &&

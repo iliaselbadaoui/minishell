@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:09:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/10 18:46:29 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/11 09:38:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_string		*args_extracter(t_string command)
 	g_counter = 0;
 	first = 0;
 	count = args_calculator(command) + 1;
-	printf("COUNT: %d\n", count);
 	g_counter = 0;
 	args = (t_string *)malloc(sizeof(t_string) * count);
 	i = 0;
