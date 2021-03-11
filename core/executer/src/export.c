@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/11 11:52:39 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:48:05 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,16 @@ int		export(t_string *args)
 	// t_map		*tmp;
 
 	i = 0;
-	// int fd = open("tmp.txt", O_RDWR | O_CREAT);
 	// if (!args[i+1])
 	// 	put_env();
 	while (args[++i])
 	{
-		printf("Argument =========>\t[%s]\n\n", args[i]);
 		j = -1;
 		while (args[i][++j] && args[i][j] != '='); // j is index of '='
 		key = substring(args[i], 0, j - 1);
 		value = substring(args[i], j + 1, ft_strlen(args[i]) - 1);
-		printf("Key = [%s] | Value = [%s]\n", key, value);
-		// if (value)
-		// 	out(value);
-		// filter(value, 1);
+		// printf("[%s] [%s]\n", key, value);
+		// filter(value);
 		// Check Valid Key
 		// if (!is_valid(key))
 		// {

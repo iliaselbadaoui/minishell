@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/10 15:39:14 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:50:04 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ int				double_quote(t_string str, int j, int fd)
 	return (j);
 }
 
-void	filter(t_string str, int fd)
+t_string	filter(t_string str)
 {
-	int		i;
+	// int		i;
 
-	i = -1;
-	while (str[++i])
+	// i = -1;
+	// while (str[++i])
 		// if (str[i] == '\\')
 		// 	write(fd, &str[++i], 1);
 		// else if (str[i] == '\'')
@@ -76,5 +76,5 @@ void	filter(t_string str, int fd)
 		// else if (str[i] == '$')
 		// 	i = print_variable(str, i, fd);
 		// else
-			write(fd, &str[i], 1);
+			// write(fd, &str[i], 1);
 }

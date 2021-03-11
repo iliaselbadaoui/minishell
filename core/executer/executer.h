@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/10 15:14:51 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:49:49 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		signal_handler(int signo);
 int			check_builtins(t_command *cmd);
 int			check_bins(t_command *cmd);
 t_string	get_env_value(t_string key);
-void		filter(t_string str, int fd);
+t_string	filter(t_string str);
 
 // Builtin Functions
 int		env(void);
