@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/10 17:56:12 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:24:07 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int		exec_cmd(t_command *cmd)
 
 	ret = 0;
 	// Check builtins functions then check bins
-	if ((ret = check_builtins(cmd)) == 1 || check_bins(cmd))
+	if ((ret = check_builtins(cmd)) == 1)
+		return (0);
+	else if (check_bins(cmd))
 		return (0);
 	if (ret == -1)
 		return (-1);
