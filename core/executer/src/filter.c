@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/11 17:40:12 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/15 11:27:00 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ t_string	filter(t_string str)
 			i = print_variable(str, i, fd);
 		else
 			write(fd, &str[i], 1);
-	free(str);
 	close(fd);
 	fd = open("tmp.txt", O_RDONLY);
 	get_next_line(fd, &line);

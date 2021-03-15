@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/12 12:58:08 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/15 10:32:35 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int				export(t_string *args)
 			update_key(key, value);
 		else
 			add_to_map(&g_map, init_map(key, value));
-		free(key);
-		free(value);
+		// free(key);
+		// free(value);
 	}
 	return (1);
 }
