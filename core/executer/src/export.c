@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/15 10:32:35 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:57:10 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static int		put_env(void)
 	tmp = g_map;
 	while (tmp)
 	{
-		printf("declare -x %s=%s\n", tmp->key, tmp->value);
+		if (tmp->value == NULL)
+			printf("declare -x %s\n", tmp->key);
+		else
+			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (1);
@@ -70,14 +73,23 @@ static void		update_key(t_string key, t_string value)
 
 static int		set_data(t_string args, t_string *key, t_string *value)
 {
-	int j;
+	int		j;
+	t_bool	null;
 
 	j = -1;
+	null = false;
 	while (args[++j] && args[j] != '=');
+	if (args[j] != '=')
+		null = true;
 	*key = substring(args, 0, j - 1);
 	*key = !*key ? "" : filter(*key);
-	*value = substring(args, j + 1, ft_strlen(args) - 1);
-	*value = !*value ? "" : filter(*value);
+	if (!null)
+	{
+		*value = substring(args, j + 1, ft_strlen(args) - 1);
+		*value = !*value ? "" : filter(*value);
+	}
+	else
+		*value = NULL;
 	if (!is_valid(*key))
 	{
 		printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
@@ -103,7 +115,10 @@ int				export(t_string *args)
 		if ((ret = set_data(args[i], &key, &value)) == 1)
 			return (1);
 		if (is_exist(key))
-			update_key(key, value);
+		{
+			if (value != NULL)
+				update_key(key, value);
+		}
 		else
 			add_to_map(&g_map, init_map(key, value));
 		// free(key);

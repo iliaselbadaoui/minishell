@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/07 12:51:19 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:53:05 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ int		env(void)
 	tmp = g_map;
 	while (tmp)
 	{
-		out(tmp->key);
-		out("=");
-		out(tmp->value);
-		out("\n");
+		if (tmp->value != NULL)
+			printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (1);

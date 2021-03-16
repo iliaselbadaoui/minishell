@@ -86,3 +86,10 @@ export TEST="'$USER'""test"
 export TEST="$USER" TEST1=$TEST
 export TEST=LOL
 export TEST=LOL
+
+
+
+
+
+env: print Variables with value, even ""
+eport print all variables
