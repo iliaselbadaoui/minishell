@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/07 12:34:19 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:41:08 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int		is_executable(t_string cmd_path, t_string *args)
 }
 
 // Returns all programs path from $PATH
-static t_string	*get_paths(void)
+static t_string		*get_paths(void)
 {
 	t_map		*tmp;
 	t_string	*path;
@@ -60,7 +60,7 @@ static t_string	*get_paths(void)
 }
 
 // Check is the command builtin
-int				check_builtins(t_command *cmd)
+int					check_builtins(t_command *cmd)
 {
 	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));
@@ -73,26 +73,13 @@ int				check_builtins(t_command *cmd)
 	else if (equals(cmd->args[0], "export"))
 		return (export(cmd->args));
 	else if (equals(cmd->args[0], "unset"))
-		return (unset());
+		return (unset(cmd->args));
 	else if (equals(cmd->args[0], "env"))
 		return (env());
 	return (0);
 }
 
-void			ft_freestrarr(char **arr)
-{
-	int i;
-
-	if (!arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
-	arr = NULL;
-}
-
-t_string		path_maker(t_string path, t_string arg)
+static t_string		path_maker(t_string path, t_string arg)
 {
 	char		*half_path;
 	char		*full_path;
@@ -103,7 +90,7 @@ t_string		path_maker(t_string path, t_string arg)
 	return (full_path);
 }
 
-int		check_bins(t_command *cmd)
+int					check_bins(t_command *cmd)
 {
 	t_string	*path;
 	int			i;
@@ -120,7 +107,7 @@ int		check_bins(t_command *cmd)
 		if (ret == 1)
 			break ;
 	}
-	ft_freestrarr(path);
+	free_2d_arr(path);
 	if (ret == 1)
 		return (1);
 	return (0);

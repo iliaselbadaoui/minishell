@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 15:06:52 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:32:59 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			check_bins(t_command *cmd);
 t_string	get_env_value(t_string key);
 t_string	filter(t_string str);
 int			get_next_line(int fd, char **line);
+t_bool		is_valid_key(t_string key);
+void		free_2d_arr(char **arr);
 
 // Builtin Functions
 int			env(void);
@@ -39,7 +41,7 @@ int			pwd(void);
 int			exit_shell(t_command *cmd);
 int			echo(t_string *args, int fd);
 int			export(t_string *args);
-int			unset(void);
+int			unset(t_string *args);
 int			cd(void);
 
 // Libft funcions

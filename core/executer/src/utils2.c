@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/11 15:04:14 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:32:03 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ void		*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (ptr);
+}
+
+void			free_2d_arr(char **arr)
+{
+	int i;
+
+	if (!arr)
+		return ;
+	i = -1;
+	while (arr[++i])
+		free(arr[i]);
+	free(arr);
+	arr = NULL;
 }

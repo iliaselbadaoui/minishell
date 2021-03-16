@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 17:57:10 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:28:45 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-static t_bool	is_valid(t_string key)
+t_bool	is_valid_key(t_string key)
 {
 	int i;
 
@@ -23,20 +23,6 @@ static t_bool	is_valid(t_string key)
 		if (!ft_isalpha(key[i]) && !ft_isdigit(key[i]) && key[i] != '_')
 			return (false);
 	return (true);
-}
-
-static t_bool	is_exist(t_string key)
-{
-	t_map		*tmp;
-
-	tmp = g_map;
-	while (tmp)
-	{
-		if (equals(key, tmp->key))
-			return (true);
-		tmp = tmp->next;
-	}
-	return (false);
 }
 
 static int		put_env(void)
@@ -64,11 +50,13 @@ static void		update_key(t_string key, t_string value)
 	{
 		if (equals(tmp->key, key))
 		{
-			tmp->value = value;
-			break ;
+			if (value != NULL)
+				tmp->value = value;
+			return ;
 		}
 		tmp = tmp->next;
 	}
+	add_to_map(&g_map, init_map(key, value));
 }
 
 static int		set_data(t_string args, t_string *key, t_string *value)
@@ -90,7 +78,7 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	}
 	else
 		*value = NULL;
-	if (!is_valid(*key))
+	if (!is_valid_key(*key))
 	{
 		printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
 		free(key);
@@ -114,13 +102,7 @@ int				export(t_string *args)
 	{
 		if ((ret = set_data(args[i], &key, &value)) == 1)
 			return (1);
-		if (is_exist(key))
-		{
-			if (value != NULL)
-				update_key(key, value);
-		}
-		else
-			add_to_map(&g_map, init_map(key, value));
+		update_key(key, value);
 		// free(key);
 		// free(value);
 	}
