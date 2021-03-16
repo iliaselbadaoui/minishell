@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 13:00:05 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/16 13:01:29 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int				echo(t_string *args, int fd)
 		if (*str != '\0' && n_option < i - 2)
 			write(fd, " ", 1);
 		write(fd, str, ft_strlen(str));
-		// add space in the begining it the argument is not the first, and is not an empty string
 	}
 	if (!n_option)
 		write(fd, "\n", 1);
