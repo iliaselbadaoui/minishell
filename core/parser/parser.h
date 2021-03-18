@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/18 12:33:47 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/18 21:02:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int				g_counter_extra;
 int				g_spliter_counter;
 int				g_spliter_char;
 int				g_envp_count;
-int				g_envp_size;
-int				g_envp_times;
 char			g_char;
 
 typedef enum	e_bool
@@ -114,14 +112,12 @@ void			add_to_map(t_map **head, t_map	*node);
 t_string		get_value_by_key(t_map *head, t_string key);
 void			free_by_key(t_map **head, t_string key);
 void			free_map(t_map	**head);
+void			free_map_node(t_map *tmp);
 t_map			*fill_env(t_string *envp);
 void			envp_handler(t_string	*envp);
-void			envp_double_size(void);
-void			envp_reduce_size(void);
 t_bool			is_option(t_string arg);
 void			add_to_envp(t_string key, t_string value);
 void			remove_from_envp(int index);
-void			remove_and_resize(int index);
 t_string		delete_quotes(t_string str);
 t_string		variable_name_extracter(t_string str);
 t_bool			greate_question_quote(t_string line);
