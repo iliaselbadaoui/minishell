@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 11:14:06 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/18 19:03:09 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void			free_2d_arr(char **arr)
+void		free_2d_arr(char **arr)
 {
 	int i;
 
@@ -54,8 +54,7 @@ void			free_2d_arr(char **arr)
 	arr = NULL;
 }
 
-
-void			sort_env(void)
+void		sort_env(void)
 {
 	t_map	*tmp;
 	t_map	*before;

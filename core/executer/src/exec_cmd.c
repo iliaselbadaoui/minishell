@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 18:41:08 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 19:00:39 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				run_cmd(t_string path, t_string *args)
 	return (1);
 }
 
-static int		is_executable(t_string cmd_path, t_string *args)
+static int			is_executable(t_string cmd_path, t_string *args)
 {
 	int	ret;
 

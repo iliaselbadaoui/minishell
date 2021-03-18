@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 15:08:22 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 19:04:12 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-t_bool	is_valid_key(t_string key)
+t_bool			is_valid_key(t_string key)
 {
 	int i;
 
@@ -64,8 +64,9 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 {
 	int		j;
 
-	j = -1;
-	while (args[++j] && args[j] != '=');
+	j = 0;
+	while (args[j] && args[j] != '=')
+		j++;
 	*key = substring(args, 0, j - 1);
 	*key = !*key ? "" : filter(*key);
 	if (args[j] == '=')
@@ -78,9 +79,6 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	if (!is_valid_key(*key))
 	{
 		printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
-		// free(key);
-		// if (!value)
-		// 	free(value);
 		return (1);
 	}
 	return (0);
@@ -88,10 +86,10 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 
 int				export(t_string *args)
 {
-	int i;
-	int ret;
-	t_string key;
-	t_string value;
+	int			i;
+	int			ret;
+	t_string	key;
+	t_string	value;
 
 	i = 0;
 	if (!args[1])
@@ -101,8 +99,6 @@ int				export(t_string *args)
 		if ((ret = set_data(args[i], &key, &value)) == 1)
 			continue ;
 		update_key(key, value);
-		// free(key);
-		// free(value);
 	}
 	return (1);
 }
