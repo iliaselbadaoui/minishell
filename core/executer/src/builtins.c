@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/02/25 18:00:51 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:46:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,24 @@ int		pwd(void)
 	return (1);
 }
 
-int		export(void)
+int		unset(t_string *args)
 {
-	out("export still need work \n");
+	int			i;
+	t_string	key;
 
-	return (1);
-}
-
-int		unset()
-{
-	out("unset still need work \n");
+	i = 0;
+	while (args[++i])
+	{
+		key = filter(args[i]);
+		if (is_valid_key(key))
+		{
+			if (get_value_by_key(g_map, key))
+				free_by_key(&g_map, key);
+			// printf("Variable is unseted\n");
+		}
+		else
+			printf("minishell: unset: `%s': not a valid identifier\n", key);
+	}
 	return (1);
 }
 
@@ -79,10 +87,8 @@ int		env(void)
 	tmp = g_map;
 	while (tmp)
 	{
-		out(tmp->key);
-		out("=");
-		out(tmp->value);
-		out("\n");
+		if (tmp->value != NULL)
+			printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (1);
