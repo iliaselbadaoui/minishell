@@ -3,7 +3,7 @@ compile = gcc -Wall -Werror -Wextra
 NAME = minishell
 src = main.c
 headers = -Icore/parser/parser.h -Icore/executer/executer.h
-libs = core/parser/parser.a core/parser/stdout/out.a core/parser/stdin/in.a core/parser/split/ft_split.a core/executer/executer.a
+libs = core/parser/parser.a core/parser/stdout/out.a core/parser/stdin/in.a core/parser/split/ft_split.a core/executer/executer.a -ltermcap
 all: $(NAME)
 
 $(NAME):

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:48:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 16:25:51 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:21:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 	if (argc && argv)
 		while (1)
 		{
+			history();
 			out("minishell$ ");
 			in(0, &line);
 			// signal(SIGINT, signal_handler);

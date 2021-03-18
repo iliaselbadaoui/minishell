@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 09:37:05 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:33:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 # include "./split/ft_split.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include <termcap.h>
+# include <termios.h>
 
 t_string		*g_envp;
+char			g_term_buffer[2048];
 int				g_error;
 int				g_flag;
 int				g_map_fill_first_time;
@@ -122,4 +125,5 @@ void			remove_and_resize(int index);
 t_string		delete_quotes(t_string str);
 t_string		variable_name_extracter(t_string str);
 t_bool			greate_question_quote(t_string line);
+int				history();
 #endif
