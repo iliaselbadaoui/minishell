@@ -92,4 +92,7 @@ export TEST=LOL
 
 
 env: print Variables with value, even ""
-eport print all variables
+export: print all variables
+
+export test="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER' test2 test3= test4="" test5='' $USER=$USER $NONE=$NONE
+unset test test2 test3 test4 test5 $USER 5´`1 $NONE !ª"·%$&/()=?¿_: test6=

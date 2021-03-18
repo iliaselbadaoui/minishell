@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 18:32:03 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:14:06 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,34 @@ void			free_2d_arr(char **arr)
 		free(arr[i]);
 	free(arr);
 	arr = NULL;
+}
+
+
+void			sort_env(void)
+{
+	t_map	*tmp;
+	t_map	*before;
+	t_map	*next;
+
+	if (g_map)
+	{
+		tmp = g_map;
+		before = 0;
+		while (tmp->next)
+		{
+			next = tmp->next;
+			if (tmp->key < next->key)
+			{
+				tmp->next = next->next;
+				next->next = tmp;
+				if (before)
+					before->next = next;
+				else
+					g_map = next;
+				tmp = g_map;
+			}
+			before = tmp;
+			tmp = tmp->next;
+		}
+	}
 }

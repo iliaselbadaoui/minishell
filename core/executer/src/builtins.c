@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 19:20:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:50:20 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,35 +59,6 @@ int		pwd(void)
 	return (1);
 }
 
-// void	delete_var(t_string key)
-// {
-// 	t_map	*tmp;
-// 	t_map	*prev;
-
-// 	tmp = g_map;
-// 	if (tmp && equals(tmp->key, key))
-// 	{
-// 		g_map = tmp->next;
-// 		free(tmp);
-// 		return;
-// 	}
-// 	while (tmp)
-// 	{
-// 		if (equals(tmp->key, key))
-// 		{
-// 			g_map = tmp->next;
-// 			free(tmp);
-// 			return;
-// 		}
-// 		prev = tmp;
-// 		tmp = tmp->next;
-// 	}
-// 	if (tmp == NULL)
-// 		return;
-// 	prev->next = tmp->next;
-// 	free(tmp);
-// }
-
 int		unset(t_string *args)
 {
 	int			i;
@@ -98,8 +69,8 @@ int		unset(t_string *args)
 	{
 		key = filter(args[i]);
 		if (is_valid_key(key))
-			// delete_var(key);
-			printf("Variable is unseted\n");
+			free_by_key(&g_map, key);
+			// printf("Variable is unseted\n");
 		else
 			printf("minishell: unset: `%s': not a valid identifier\n", key);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 18:28:45 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:48:24 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int		put_env(void)
 {
 	t_map	*tmp;
 
+	// sort_env();
 	tmp = g_map;
 	while (tmp)
 	{
@@ -62,16 +63,12 @@ static void		update_key(t_string key, t_string value)
 static int		set_data(t_string args, t_string *key, t_string *value)
 {
 	int		j;
-	t_bool	null;
 
 	j = -1;
-	null = false;
 	while (args[++j] && args[j] != '=');
-	if (args[j] != '=')
-		null = true;
 	*key = substring(args, 0, j - 1);
 	*key = !*key ? "" : filter(*key);
-	if (!null)
+	if (args[j] == '=')
 	{
 		*value = substring(args, j + 1, ft_strlen(args) - 1);
 		*value = !*value ? "" : filter(*value);
@@ -82,7 +79,8 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	{
 		printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
 		free(key);
-		free(value);
+		if (!value)
+			free(value);
 		return (1);
 	}
 	return (0);
@@ -101,7 +99,7 @@ int				export(t_string *args)
 	while (args[++i])
 	{
 		if ((ret = set_data(args[i], &key, &value)) == 1)
-			return (1);
+			continue ;
 		update_key(key, value);
 		// free(key);
 		// free(value);
