@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 12:46:45 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:30:01 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int		unset(t_string *args)
 		{
 			if (get_value_by_key(g_map, key))
 				free_by_key(&g_map, key);
-			// printf("Variable is unseted\n");
 		}
 		else
 			printf("minishell: unset: `%s': not a valid identifier\n", key);

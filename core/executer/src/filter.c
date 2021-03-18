@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/16 18:42:45 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:08:55 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_string	filter(t_string str)
 	t_string	line;
 
 	i = -1;
-	str = ft_strdup(str);
 	fd = open("tmp.txt", O_RDWR|O_APPEND);
 	while (str[++i])
 		if (str[i] == '\\')
@@ -80,7 +79,6 @@ t_string	filter(t_string str)
 			i = print_variable(str, i, fd);
 		else
 			write(fd, &str[i], 1);
-	free(str);
 	close(fd);
 	fd = open("tmp.txt", O_RDONLY);
 	get_next_line(fd, &line);

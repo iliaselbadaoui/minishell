@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 11:48:24 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/18 15:08:22 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	if (!is_valid_key(*key))
 	{
 		printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
-		free(key);
-		if (!value)
-			free(value);
+		// free(key);
+		// if (!value)
+		// 	free(value);
 		return (1);
 	}
 	return (0);
