@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 11:50:20 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/18 12:46:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ int		unset(t_string *args)
 	{
 		key = filter(args[i]);
 		if (is_valid_key(key))
-			free_by_key(&g_map, key);
+		{
+			if (get_value_by_key(g_map, key))
+				free_by_key(&g_map, key);
 			// printf("Variable is unseted\n");
+		}
 		else
 			printf("minishell: unset: `%s': not a valid identifier\n", key);
 	}
