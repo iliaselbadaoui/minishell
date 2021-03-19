@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 10:32:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:34:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ void			remove_from_envp(int index)
 	}
 	new_envp[i] = NULL;
 	libre_2d(g_envp);
-	printf("HEY %d\n", index);
 	g_envp = new_envp;
 }
