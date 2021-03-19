@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 18:51:48 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 20:50:03 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int		exec_cmd(t_command *cmd)
 	ret = 0;
 	i = -1;
 	// Filter Commands
-	while (cmd->args[++i])
-		cmd->args[i] = filter(cmd->args[i]);
-	
-
+	cmd->args[0] = filter(cmd->args[0]);
 	// Check builtins functions then check bins
 	if ((ret = check_builtins(cmd)) == 1)
 		return (0);
