@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 11:50:48 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:51:48 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		exec_cmd(t_command *cmd)
 	// Filter Commands
 	while (cmd->args[++i])
 		cmd->args[i] = filter(cmd->args[i]);
+	
+
 	// Check builtins functions then check bins
 	if ((ret = check_builtins(cmd)) == 1)
 		return (0);

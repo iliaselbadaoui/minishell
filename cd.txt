@@ -1,0 +1,20 @@
+cd/cd ~					=> will always put the user in their home directory
+cd ~username			=> will put the user in the username's home directory.
+cd dir (without a /)	=> will put the user in a subdirectory
+cd ..					=> will move the user up one directory.
+cd -					=> will switch the user to the previous directory.
+
+
+
+
+
+echo '$PATH'
+"" & '' Command not found
+export e="echo hello world"
+
+export a=cho
+e""$a hello
+
+"Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
+Hello \'(mait-si-)\'' mait-si-'mait-si-''''123456789$USER
+Hello  '(mait-si-) '  mait-si- mait-si-    123456789mait-si-
