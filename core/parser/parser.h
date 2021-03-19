@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 10:45:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 16:07:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,4 @@ void			remove_from_envp(int index);
 t_string		delete_quotes(t_string str);
 t_string		variable_name_extracter(t_string str);
 t_bool			greate_question_quote(t_string line);
-int				history(void);
 #endif
