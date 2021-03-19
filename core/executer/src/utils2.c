@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 11:18:46 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:25:43 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void			clone_env(void)
 	tmp = g_map;
 	while (tmp)
 	{
-		node = init_map(tmp->key, tmp->value);
+		node = init_map(ft_strdup(tmp->key), ft_strdup(tmp->value));
 		add_to_map(&g_sorted_env, node);
 		tmp = tmp->next;
 	}

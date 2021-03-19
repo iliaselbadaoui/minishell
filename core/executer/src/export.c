@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 11:27:54 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:50:51 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,39 @@ static int		put_env(void)
 
 static void		update_key(t_string key, t_string value)
 {
-	t_map	*tmp;
-	t_map	*new;
+	t_map	*tmp1;
+	t_map	*tmp2;
+	t_bool	did_update;
 
-	tmp = g_map;
-	while (tmp)
+	tmp1 = g_map;
+	tmp2 = g_sorted_env;
+	did_update = false;
+	while (tmp1)
 	{
-		if (equals(tmp->key, key))
+		if (equals(tmp1->key, key))
 		{
-			if (value != NULL)
-				tmp->value = value;
-			return ;
+			if (value)
+				tmp1->value = value;
+			did_update = true;
+			break ;
 		}
-		tmp = tmp->next;
+		tmp1 = tmp1->next;
 	}
-	new = init_map(key, value);
-	if (value)
-		add_to_map(&g_map, new);
-	add_to_map(&g_sorted_env, new);
+	while (tmp2)
+	{
+		if (equals(tmp2->key, key))
+		{
+			if (value)
+				tmp2->value = value;
+			did_update = true;
+			break ;
+		}
+		tmp2 = tmp2->next;
+	}
+	if (did_update)
+		return ;
+	add_to_map(&g_map, init_map(key, value));
+	add_to_map(&g_sorted_env, init_map(key, value));
 }
 
 static int		set_data(t_string args, t_string *key, t_string *value)

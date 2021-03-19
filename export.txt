@@ -106,15 +106,3 @@ TE\\\ST=100 0$TEST=0123 +++++++=123
 
 
 export change=old_value "ls"="ls" "test"="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER' "$TERM_PROGRAM"=123 ___TEST=123 empty1 empty2= empty3="" empty4='' $USER=$USER ; change="new_value" $USER='$USER'
-
-export change=old_value
-export "ls"="ls"
-export "test"="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
-export "$TERM_PROGRAM"=123
-export ___TEST=123
-export empty1
-export empty2=
-export empty3=""
-export empty4=''
-export $USER=$USER
-export change="new_value"

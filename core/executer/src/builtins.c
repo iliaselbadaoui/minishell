@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 10:43:11 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:14:50 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ int		unset(t_string *args)
 		if (is_valid_key(key))
 		{
 			if (get_value_by_key(g_map, key))
+			{
+				free_by_key(&g_sorted_env, key);
 				free_by_key(&g_map, key);
+			}
 		}
 		else
 			printf("minishell: unset: `%s': not a valid identifier\n", key);
@@ -86,7 +89,8 @@ int		env(void)
 	tmp = g_map;
 	while (tmp)
 	{
-		printf("%s=%s\n", tmp->key, tmp->value);
+		if (tmp->value != NULL)
+			printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (1);
