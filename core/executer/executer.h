@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/18 11:14:37 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/19 11:18:23 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # endif
 
 t_map			*g_map;
+t_map			*g_sorted_env;
 
 int			exec_cmds(t_command *list);
 void		signal_handler(int signo);
@@ -35,6 +36,7 @@ int			get_next_line(int fd, char **line);
 t_bool		is_valid_key(t_string key);
 void		free_2d_arr(char **arr);
 void		sort_env(void);
+void		clone_env(void);
 
 // Builtin Functions
 int			env(void);

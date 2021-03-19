@@ -32,3 +32,5 @@ exit -9223372036854775810
 
 echo -nnnnnnnn test
 echo -----n test
+
+export MallocStackLogging=1

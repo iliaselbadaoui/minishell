@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 19:03:09 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:18:46 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,45 @@ void		free_2d_arr(char **arr)
 	arr = NULL;
 }
 
-void		sort_env(void)
+void			sort_env(void)
 {
-	t_map	*tmp;
-	t_map	*before;
-	t_map	*next;
+	t_string	swap;
+	t_map		*next;
+	t_map		*tmp;
 
-	if (g_map)
+	tmp = g_sorted_env;
+	while (g_sorted_env)
 	{
-		tmp = g_map;
-		before = 0;
-		while (tmp->next)
+		next = g_sorted_env;
+		while (next)
 		{
-			next = tmp->next;
-			if (tmp->key < next->key)
+			if (ft_strcmp(g_sorted_env->key, next->key) > 0)
 			{
-				tmp->next = next->next;
-				next->next = tmp;
-				if (before)
-					before->next = next;
-				else
-					g_map = next;
-				tmp = g_map;
+				swap = g_sorted_env->key;
+				g_sorted_env->key = next->key;
+				next->key = swap;
+				swap = g_sorted_env->value;
+				g_sorted_env->value = next->value;
+				next->value = swap;
 			}
-			before = tmp;
-			tmp = tmp->next;
+			next = next->next;
 		}
+		g_sorted_env = g_sorted_env->next;
 	}
+	g_sorted_env = tmp;
+}
+
+void			clone_env(void)
+{
+	t_map	*node;
+	t_map	*tmp;
+
+	tmp = g_map;
+	while (tmp)
+	{
+		node = init_map(tmp->key, tmp->value);
+		add_to_map(&g_sorted_env, node);
+		tmp = tmp->next;
+	}
+	sort_env();
 }

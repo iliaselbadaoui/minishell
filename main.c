@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:48:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/15 10:35:21 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:19:08 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 	int			ret;
 
 	g_map = fill_env(envp);
+	clone_env();
 	if (argc && argv)
 		while (1)
 		{
@@ -38,5 +39,6 @@ int		main(int argc, t_string *argv, t_string *envp)
 				break ;
 		}
 	free_map(&g_map);
+	free_map(&g_sorted_env);
 	return (0);
 }

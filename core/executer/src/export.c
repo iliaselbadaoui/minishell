@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 19:04:12 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:27:54 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static int		put_env(void)
 {
 	t_map	*tmp;
 
-	// sort_env();
-	tmp = g_map;
+	tmp = g_sorted_env;
 	while (tmp)
 	{
 		if (tmp->value == NULL)
@@ -45,6 +44,7 @@ static int		put_env(void)
 static void		update_key(t_string key, t_string value)
 {
 	t_map	*tmp;
+	t_map	*new;
 
 	tmp = g_map;
 	while (tmp)
@@ -57,7 +57,10 @@ static void		update_key(t_string key, t_string value)
 		}
 		tmp = tmp->next;
 	}
-	add_to_map(&g_map, init_map(key, value));
+	new = init_map(key, value);
+	if (value)
+		add_to_map(&g_map, new);
+	add_to_map(&g_sorted_env, new);
 }
 
 static int		set_data(t_string args, t_string *key, t_string *value)
@@ -78,7 +81,10 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 		*value = NULL;
 	if (!is_valid_key(*key))
 	{
-		printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
+		if (!*value)
+			printf("minishell: export: `%s': not a valid identifier\n", *key);
+		else
+			printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
 		return (1);
 	}
 	return (0);
@@ -100,5 +106,6 @@ int				export(t_string *args)
 			continue ;
 		update_key(key, value);
 	}
+	sort_env();
 	return (1);
 }
