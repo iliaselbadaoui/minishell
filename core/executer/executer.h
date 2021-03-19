@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 16:12:55 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 21:32:44 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_bool		is_valid_key(t_string key);
 void		free_2d_arr(char **arr);
 void		sort_env(void);
 void		clone_env(void);
+void		update_env(t_map **head, t_string key, t_string value);
 
 // Builtin Functions
 int			env(int fd);

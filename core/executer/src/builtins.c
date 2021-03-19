@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 18:46:23 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/20 00:01:57 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,32 @@ int		exit_shell(t_command *cmd)
 
 int		cd(t_string *args)
 {
+	t_string str;
 
 	if (args[1])
 	{
-		if (chdir(args[1]) == -1)
+		str = filter(args[1]);
+		if (chdir(str) == -1)
 		{
 			write(2, "minishell: cd: ", 15);
-			write(2, args[1], length(args[1]));
+			write(2, &str, length(str));
 			write(2, ": No such file or directory\n", 28);
-			return (1);
+			return (0);
 		}
-		// set PWD & OLD PWD
-		
+		// update_env(&g_map, "OLDPWD", get_env_value("PWD"));
+		// update_env(&g_map, "PWD", str);
 	}
 	else
 	{
 		if (chdir(get_value_by_key(g_map, "HOME")) == -1)
 		{
-			// set PWD & OLD PWD
+			write(2, "minishell: cd: HOME not set\n", 28);
+			return (0);
 		}
+		// update_env(&g_map, "OLDPWD", get_env_value("PWD"));
+		// update_env(&g_map, "PWD", get_env_value("HOME"));
 	}
-	return (0);
+	return (1);
 }
 
 int		pwd(int fd)

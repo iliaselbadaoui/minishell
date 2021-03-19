@@ -8,13 +8,6 @@ cd -					=> will switch the user to the previous directory.
 
 
 
-echo '$PATH'
 "" & '' Command not found
 export e="echo hello world"
 
-export a=cho
-e""$a hello
-
-"Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
-Hello \'(mait-si-)\'' mait-si-'mait-si-''''123456789$USER
-Hello  '(mait-si-) '  mait-si- mait-si-    123456789mait-si-
