@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 08:12:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:32:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void			remove_from_envp(int index)
 	{
 		if (j == index)
 			j++;
-		if (g_envp[i])
-			new_envp[i] = g_envp[j];
+		if (g_envp[j])
+			new_envp[i] = ft_strdup(g_envp[j]);
 		else
 			break ;
 		i++;
@@ -56,11 +56,6 @@ void			remove_from_envp(int index)
 	}
 	new_envp[i] = NULL;
 	libre_2d(g_envp);
-	i = 0;
-	while (new_envp[i])
-	{
-		g_envp[i] = new_envp[i];
-		i++;
-	}
-	g_envp[i] = NULL;
+	printf("HEY %d\n", index);
+	g_envp = new_envp;
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 08:49:39 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:34:42 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,8 @@ void			free_by_key(t_map **head, t_string key)
 	int		index;
 
 	navigator = *head;
-	if (equals(navigator->key, key))
-	{
-			tmp = navigator;
-			*head = tmp->next;
-			free_map_node(tmp);
-			remove_from_envp(0);
-			return ;
-	}
+	if (free_head(head, key))
+		return ;
 	index = 0;
 	while (navigator->next)
 	{

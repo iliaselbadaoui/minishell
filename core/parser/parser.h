@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/18 21:02:58 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:23:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ t_string		get_value_by_key(t_map *head, t_string key);
 void			free_by_key(t_map **head, t_string key);
 void			free_map(t_map	**head);
 void			free_map_node(t_map *tmp);
+int				free_head(t_map **head, t_string key);
 t_map			*fill_env(t_string *envp);
 void			envp_handler(t_string	*envp);
 t_bool			is_option(t_string arg);
