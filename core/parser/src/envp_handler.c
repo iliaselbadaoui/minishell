@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/18 21:40:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 08:12:55 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,32 @@ void			add_to_envp(t_string key, t_string value)
 
 void			remove_from_envp(int index)
 {
-	t_string	tmp;
+	t_string	*new_envp;
+	int			i;
+	int			j;
 
-	tmp = g_envp[index];
-	while (g_envp[index])
-	{
-		g_envp[index] = g_envp[index + 1];
-		index++;
-	}
+	i = j = 0;
+	new_envp = (t_string *)malloc(sizeof(t_string) * 4096);
 	if (g_envp_count > 0)
 		--g_envp_count;
-	free(tmp);
+	while (g_envp[j])
+	{
+		if (j == index)
+			j++;
+		if (g_envp[i])
+			new_envp[i] = g_envp[j];
+		else
+			break ;
+		i++;
+		j++;
+	}
+	new_envp[i] = NULL;
+	libre_2d(g_envp);
+	i = 0;
+	while (new_envp[i])
+	{
+		g_envp[i] = new_envp[i];
+		i++;
+	}
+	g_envp[i] = NULL;
 }

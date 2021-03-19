@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/18 20:53:17 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 08:49:39 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,28 @@ void			free_by_key(t_map **head, t_string key)
 	int		index;
 
 	navigator = *head;
-	index = 0;
-	// printf("HERE\n");
-	// if (equals(navigator->key, key))
-	// {
-	// 		tmp = navigator;
-	// 		navigator = tmp->next;
-	// 		free_map_node(tmp);
-	// 		remove_and_resize(0);
-	// 		return ;
-	// }
-	while (navigator)
+	if (equals(navigator->key, key))
 	{
-		if (equals(navigator->key, key))
-		{
 			tmp = navigator;
-			navigator = tmp->next;
+			*head = tmp->next;
+			free_map_node(tmp);
+			remove_from_envp(0);
+			return ;
+	}
+	index = 0;
+	while (navigator->next)
+	{
+		if (equals(navigator->next->key, key))
+		{
+			tmp = navigator->next;
+			navigator->next = tmp->next;
 			free_map_node(tmp);
 			break ;
 		}
 		index++;
 		navigator = navigator->next;
 	}
-	remove_from_envp(index);;
+	remove_from_envp(index);
 }
 
 void			free_map(t_map **head)
