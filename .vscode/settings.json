@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"executer.h": "c",
-		"parser.h": "c"
+		"parser.h": "c",
+		"string.h": "c"
 	}
 }
