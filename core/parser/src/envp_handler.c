@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 10:34:58 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:44:38 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void			remove_from_envp(int index)
 	int			i;
 	int			j;
 
-	i = j = 0;
+	i = 0;
+	j = 0;
 	new_envp = (t_string *)malloc(sizeof(t_string) * 4096);
 	if (g_envp_count > 0)
 		--g_envp_count;

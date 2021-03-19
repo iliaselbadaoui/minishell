@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 12:34:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 10:20:17 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:55:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_command		*parser(t_string line)
 		g_counter_extra = 0;
 		pipes = spliter(trim(commands[counter]), '|');
 		while (pipes[g_counter_extra])
-			help(&list, pipes, id);	
+			help(&list, pipes, id);
 		id++;
 		counter++;
 		libre_2d(pipes);
