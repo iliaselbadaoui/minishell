@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 15:14:50 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 16:12:39 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-int				exit_shell(t_command *cmd)
+int		exit_shell(t_command *cmd)
 {
 	int	i;
 	int	is_number;
@@ -26,36 +26,36 @@ int				exit_shell(t_command *cmd)
 			i++;
 		if (!(is_number = ft_isdigit(cmd->args[1][i])))
 		{
-			out("minishell: exit: ");
-			out(cmd->args[1]);
-			out(": numeric argument required\n");
+			write(2, "minishell: exit: ", 17);
+			write(2, cmd->args[1], length(cmd->args[1]));
+			write(2, ": numeric argument required\n", 28);
 			return (-1);
 		}
 		i++;
 	}
 	if (cmd->args[2] && cmd->args[1])
 	{
-		out("minishell: exit: too many arguments\n");
-		out(cmd->args[0]);
+		write(2, "minishell: exit: too many arguments\n", 36);
+		write(2, cmd->args[0], length(cmd->args[0]));
 		return (1);
 	}
 	return (-1);
 }
 
-int		cd()
+int		cd(t_string *args)
 {
-	out("cd still need work \n");
+	(void)args;
 	return (0);
 }
 
-int		pwd(void)
+int		pwd(int fd)
 {
 	char	buff[1024];
 
 	if (getcwd(buff, sizeof(buff)) == NULL)
 		return (-1);
-	out(buff);
-	out("\n");
+	write(fd, &buff, length(buff));
+	write(fd, "\n", 1);
 	return (1);
 }
 
@@ -82,7 +82,7 @@ int		unset(t_string *args)
 	return (1);
 }
 
-int		env(void)
+int		env(int fd)
 {
 	t_map	*tmp;
 
@@ -90,7 +90,12 @@ int		env(void)
 	while (tmp)
 	{
 		if (tmp->value != NULL)
-			printf("%s=%s\n", tmp->key, tmp->value);
+		{
+			write(fd, tmp->key, length(tmp->key));
+			write(fd, "=", 1);
+			write(fd, tmp->value, length(tmp->value));
+			write(fd, "\n", 1);
+		}
 		tmp = tmp->next;
 	}
 	return (1);

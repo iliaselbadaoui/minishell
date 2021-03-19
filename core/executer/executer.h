@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 11:18:23 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 16:12:55 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void		sort_env(void);
 void		clone_env(void);
 
 // Builtin Functions
-int			env(void);
-int			pwd(void);
+int			env(int fd);
+int			pwd(int fd);
 int			exit_shell(t_command *cmd);
 int			echo(t_string *args, int fd);
-int			export(t_string *args);
+int			export(t_string *args, int fd);
 int			unset(t_string *args);
-int			cd(void);
+int			cd(t_string *args);
 
 // Libft funcions
 int			ft_strcmp(const char *s1, const char *s2);

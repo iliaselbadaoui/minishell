@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 19:00:39 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 16:12:25 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ int					check_builtins(t_command *cmd)
 	else if (equals(cmd->args[0], "echo"))
 		return (echo(cmd->args, 1));
 	else if (equals(cmd->args[0], "cd"))
-		return (cd());
+		return (cd(cmd->args));
 	else if (equals(cmd->args[0], "pwd"))
-		return (pwd());
+		return (pwd(1));
 	else if (equals(cmd->args[0], "export"))
-		return (export(cmd->args));
+		return (export(cmd->args, 1));
 	else if (equals(cmd->args[0], "unset"))
 		return (unset(cmd->args));
 	else if (equals(cmd->args[0], "env"))
-		return (env());
+		return (env(1));
 	return (0);
 }
 

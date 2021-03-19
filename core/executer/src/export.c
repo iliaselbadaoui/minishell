@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 12:50:51 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:47:57 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool			is_valid_key(t_string key)
 	return (true);
 }
 
-static int		put_env(void)
+static int		put_env(int fd)
 {
 	t_map	*tmp;
 
@@ -33,9 +33,19 @@ static int		put_env(void)
 	while (tmp)
 	{
 		if (tmp->value == NULL)
-			printf("declare -x %s\n", tmp->key);
+		{
+			write(fd, "declare -x ", 11);
+			write(fd, tmp->key, length(tmp->key));
+			write(fd, "\n", 1);
+		}
 		else
-			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+		{
+			write(fd, "declare -x ", 11);
+			write(fd, tmp->key, length(tmp->key));
+			write(fd, "=\"", 2);
+			write(fd, tmp->value, length(tmp->value));
+			write(fd, "\"\n", 2);
+		}
 		tmp = tmp->next;
 	}
 	return (1);
@@ -105,7 +115,7 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	return (0);
 }
 
-int				export(t_string *args)
+int				export(t_string *args, int fd)
 {
 	int			i;
 	int			ret;
@@ -114,7 +124,7 @@ int				export(t_string *args)
 
 	i = 0;
 	if (!args[1])
-		return (put_env());
+		return (put_env(fd));
 	while (args[++i])
 	{
 		if ((ret = set_data(args[i], &key, &value)) == 1)
