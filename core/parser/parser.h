@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 17:35:22 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:53:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdio.h>
 # include <termcap.h>
 # include <termios.h>
+# include <sys/ioctl.h>
 
 t_string		*g_envp;
 char			g_term_buffer[2048];
