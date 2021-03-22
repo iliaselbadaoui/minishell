@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:50:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 11:42:05 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:48:17 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 			}
 			free(line);
 			free_commands(&list);
-			if (ret == -1)
+			if (ret == -1) // Exit program with exit commant
 				break ;
 		}
 	free_map(&g_map);

@@ -3,28 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 15:47:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:25:17 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-t_bool			is_valid_key(t_string key)
+// Update a given environment variable
+static t_bool	update_key(t_map **env, t_string key, t_string value)
 {
-	int i;
+	t_map	*tmp;
 
-	i = 0;
-	if (*key == '\0' || (!ft_isalpha(*key) && *key != '_'))
-		return (false);
-	while (key[++i])
-		if (!ft_isalpha(key[i]) && !ft_isdigit(key[i]) && key[i] != '_')
-			return (false);
-	return (true);
+	tmp = *env;
+	while (tmp)
+	{
+		if (equals(tmp->key, key))
+		{
+			if (value)
+				tmp->value = value;
+			return (true);
+		}
+		tmp = tmp->next;
+	}
+	return (false);
 }
 
+// Print out all envirement variables by order (g_sorted_env)
 static int		put_env(int fd)
 {
 	t_map	*tmp;
@@ -48,46 +55,20 @@ static int		put_env(int fd)
 		}
 		tmp = tmp->next;
 	}
-	return (1);
+	return (0); // SUCCESS
 }
 
-static void		update_key(t_string key, t_string value)
+// Update key if exist, if not add it to g_map && g_sorted_env
+static void		update_env(t_string key, t_string value)
 {
-	t_map	*tmp1;
-	t_map	*tmp2;
-	t_bool	did_update;
-
-	tmp1 = g_map;
-	tmp2 = g_sorted_env;
-	did_update = false;
-	while (tmp1)
-	{
-		if (equals(tmp1->key, key))
-		{
-			if (value)
-				tmp1->value = value;
-			did_update = true;
-			break ;
-		}
-		tmp1 = tmp1->next;
-	}
-	while (tmp2)
-	{
-		if (equals(tmp2->key, key))
-		{
-			if (value)
-				tmp2->value = value;
-			did_update = true;
-			break ;
-		}
-		tmp2 = tmp2->next;
-	}
-	if (did_update)
+	if (update_key(&g_map, key, value) &&
+	update_key(&g_sorted_env, key, value))
 		return ;
 	add_to_map(&g_map, init_map(key, value));
 	add_to_map(&g_sorted_env, init_map(key, value));
 }
 
+// Extract key and value from passed argument
 static int		set_data(t_string args, t_string *key, t_string *value)
 {
 	int		j;
@@ -96,11 +77,11 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	while (args[j] && args[j] != '=')
 		j++;
 	*key = substring(args, 0, j - 1);
-	*key = !*key ? "" : filter(*key);
+	*key = !*key ? ft_strdup("") : filter(*key);
 	if (args[j] == '=')
 	{
 		*value = substring(args, j + 1, ft_strlen(args) - 1);
-		*value = !*value ? "" : filter(*value);
+		*value = !*value ? ft_strdup("") : filter(*value);
 	}
 	else
 		*value = NULL;
@@ -110,11 +91,12 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 			printf("minishell: export: `%s': not a valid identifier\n", *key);
 		else
 			printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
-		return (1);
+		return (1); // FAILED
 	}
-	return (0);
+	return (0); // SUCCESS
 }
 
+// Export Command entry
 int				export(t_string *args, int fd)
 {
 	int			i;
@@ -123,14 +105,20 @@ int				export(t_string *args, int fd)
 	t_string	value;
 
 	i = 0;
+	ret = 0;
 	if (!args[1])
 		return (put_env(fd));
 	while (args[++i])
 	{
-		if ((ret = set_data(args[i], &key, &value)) == 1)
+		// Set Key & Value
+		if (set_data(args[i], &key, &value) == 1)
+		{
+			ret++;
 			continue ;
-		update_key(key, value);
+		}
+		// ADD/Update Key & Value
+		update_env(key, value);
 	}
 	sort_env();
-	return (1);
+	return (ret ? 1 : 0); // 0: SUCCESS, 1: FAILED to add/update key/keys
 }
