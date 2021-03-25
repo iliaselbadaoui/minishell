@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/22 14:57:57 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/25 13:26:56 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,22 @@ int		exec_cmd(t_command *cmd)
 
 	ret = 0;
 	i = -1;
+	if (!cmd->args[0])
+		return (0);
 	cmd->args[0] = filter(cmd->args[0]); // Filter The Command, ex: "echo" => echo
 	if (cmd->args[0][0] != '\0')
 	{
 		if ((ret = check_builtins(cmd)) != 2) // Check builtins functions
 			return (ret);
-		else if ((ret = check_bins(cmd)))
+		else if ((ret = check_bins(cmd)) != 2 && ret != 127)
 			return (ret);
+		if (ret == 2)
+		{
+			write(2, "minishell: ", 11);
+			write(2, cmd->args[0], length(cmd->args[0]));
+			write(2, ": No such file or directory\n", 28);
+			return (CMMAND_NOT_FOUND);
+		}
 	}
 	printf("minishell$: %s: command not found\n", cmd->args[0]);
 	return (CMMAND_NOT_FOUND);
