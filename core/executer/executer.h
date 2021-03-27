@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/22 14:11:21 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/27 02:49:50 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_bool		is_valid_key(t_string key);
 void		free_2d_arr(char **arr);
 void		sort_env(void);
 void		clone_env(void);
+void		update_env(t_string key, t_string value);
 
 // Builtin Functions
 int			env(int fd);

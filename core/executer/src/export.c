@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/22 14:25:17 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/27 02:49:27 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int		put_env(int fd)
 }
 
 // Update key if exist, if not add it to g_map && g_sorted_env
-static void		update_env(t_string key, t_string value)
+void		update_env(t_string key, t_string value)
 {
 	if (update_key(&g_map, key, value) &&
 	update_key(&g_sorted_env, key, value))

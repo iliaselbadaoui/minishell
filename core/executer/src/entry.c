@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/25 13:26:56 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/27 02:13:48 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		exec_cmds(t_command *list)
 			ret = -1;
 			g_error = 255;
 		}
-		printf("\ng_error: [%d]\n", g_error);
+		// printf("\ng_error: [%d]\n", g_error);
 		list = list->next;
 	}
 	// return 0, -1 : SUCCESS
