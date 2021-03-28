@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 10:45:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/27 12:26:14 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # define SYNTAX_ERROR 258
 # define NO_FILE_DIR 1
 # define CMMAND_NOT_FOUND 127
+# define KEYCODE_U 0x41
+# define KEYCODE_D 0x42
 # include "./stdout/out.h"
 # include "./stdin/in.h"
 # include "./split/ft_split.h"
@@ -22,6 +24,7 @@
 # include <stdio.h>
 # include <termcap.h>
 # include <termios.h>
+# include <sys/ioctl.h>
 
 t_string		*g_envp;
 char			g_term_buffer[2048];
@@ -122,5 +125,4 @@ void			remove_from_envp(int index);
 t_string		delete_quotes(t_string str);
 t_string		variable_name_extracter(t_string str);
 t_bool			greate_question_quote(t_string line);
-int				history(void);
 #endif
