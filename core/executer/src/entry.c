@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 18:03:45 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 19:24:10 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int		exec_cmd(t_command *cmd)
 	{
 		if ((ret = check_builtins(cmd)) != 2) // Check builtins functions
 			return (ret);
-		if ((ret = check_bins(cmd)) != 2 && ret != 127)
+		if (get_env_value("PATH")[0] == '\0') // Check if PATH variable is not empty && is exist
+			ret = 2;
+		else if ((ret = check_bins(cmd)) != 2 && ret != 127) // Check Command file if PATH variable exist
 			return (ret);
 		if (ret == 2)
 		{

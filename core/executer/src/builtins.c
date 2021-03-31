@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 12:21:12 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 19:41:27 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		exit_shell(t_command *cmd)
 int		cd(t_string *args)
 {
 	t_string str;
+	char	buff[1024];
 
 	if (args[1])
 	{
@@ -60,7 +61,7 @@ int		cd(t_string *args)
 			return (1); // FAILED
 		}
 		update_env("OLDPWD", get_env_value("PWD"));
-		update_env("PWD", str);
+		update_env("PWD", getcwd(buff, sizeof(buff)));
 		free(str);
 	}
 	else
