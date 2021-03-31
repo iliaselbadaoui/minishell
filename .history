@@ -16,3 +16,10 @@ env
 leaks minishell
 echo hello world
 leaks minishell
+leaks minishell
+echo hello world
+leaks minishell
+exit
+leaks minishell
+echo hello world out there
+exit
