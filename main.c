@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:50:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 12:26:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/31 11:50:37 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int		main(int argc, t_string *argv, t_string *envp)
 	int			ret;
 
 	g_map = fill_env(envp);
+	init_caps();
+	g_history_file = -1;
 	if (argc && argv)
 		while (1)
 		{
 			out("minishell$ ");
 			// exit(1);
-			in(0, &line);
+			line = readline();
 			// signal(SIGINT, signal_handler);
 			if (syntax_checker(trim(line)) && *line != '\0')
 			{
@@ -34,6 +36,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 				ret = exec_cmds(list);
 			}
 			free(line);
+			line = NULL;
 			free_commands(&list);
 			if (ret == -1)
 				break ;
