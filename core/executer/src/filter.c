@@ -6,12 +6,13 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/27 19:19:45 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 13:26:15 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
+// Check next character after $ symbole
 static int		check_characters(t_string str, int i, int fd)
 {
 	if (str[i] == '?')
@@ -29,6 +30,7 @@ static int		check_characters(t_string str, int i, int fd)
 	return (0);
 }
 
+// replace Variables with their values
 static int		print_variable(t_string str, int i, int fd)
 {
 	int				start;
@@ -39,7 +41,6 @@ static int		print_variable(t_string str, int i, int fd)
 
 	start = ++i;
 	end = start - 1;
-	name = ft_strdup("");
 	// Check characters
 	if ((ret = check_characters(str, i--, fd)))
 		return (ret);
@@ -50,12 +51,14 @@ static int		print_variable(t_string str, int i, int fd)
 	name = substring(str, start, end);
 	// Print variable value
 	value = get_env_value(name);
-	write(fd, value, ft_strlen(value));
 	free(name);
+	if (value)
+		write(fd, value, ft_strlen(value));
 	// Return index (to keep printing the rest of strings)
 	return (i - 1);
 }
 
+// Write everything inside "" exactly as it is, and replace Variables with their values
 static int		double_quote(t_string str, int j, int fd)
 {
 	while (str[++j] && str[j] != '"')
@@ -66,6 +69,7 @@ static int		double_quote(t_string str, int j, int fd)
 	return (j);
 }
 
+// Get data from the file and clean it
 static t_string	get_data(void)
 {
 	int			fd;
@@ -79,6 +83,7 @@ static t_string	get_data(void)
 	return (line);
 }
 
+// Return a clean string.
 t_string		filter(t_string str)
 {
 	int			i;

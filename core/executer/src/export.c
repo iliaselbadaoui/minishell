@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/27 02:49:27 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 17:48:51 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ static int		put_env(int fd)
 // Update key if exist, if not add it to g_map && g_sorted_env
 void		update_env(t_string key, t_string value)
 {
-	if (update_key(&g_map, key, value) &&
-	update_key(&g_sorted_env, key, value))
+	if (update_key(&g_map, key, value) && update_key(&g_sorted_env, key, value))
 		return ;
 	add_to_map(&g_map, init_map(key, value));
 	add_to_map(&g_sorted_env, init_map(key, value));
@@ -110,14 +109,20 @@ int				export(t_string *args, int fd)
 		return (put_env(fd));
 	while (args[++i])
 	{
-		// Set Key & Value
+		// Set Key & Value from args[i]
 		if (set_data(args[i], &key, &value) == 1)
 		{
 			ret++;
+			free(key);
+			if (value)
+				free(value);
 			continue ;
 		}
 		// ADD/Update Key & Value
 		update_env(key, value);
+		// free(key);
+		// if (value)
+		// 	free(value);
 	}
 	sort_env();
 	return (ret ? 1 : 0); // 0: SUCCESS, 1: FAILED to add/update key/keys

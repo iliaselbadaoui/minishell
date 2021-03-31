@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/25 13:19:44 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:49:46 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static int			execute(t_string path, t_string *args)
 		free(path);
 		return (ret); // Failed
 	}
+	free(path);
 	return (ret); // Successed
 }
 
@@ -86,7 +87,7 @@ int					check_bins(t_command *cmd)
 	i = -1;
 	ret = 0;
 	// Run the command with a given absolute path, ex: /bin/ls
-	if (cmd->args[0] && ft_strchr(cmd->args[0], '/'))
+	if (cmd->args[0][0] == '/')
 	{
 		ret = execute(ft_strdup(cmd->args[0]), cmd->args);
 		return (ret == 127 ? 2 : ret);
@@ -97,7 +98,6 @@ int					check_bins(t_command *cmd)
 	while (path[++i])
 		if (!(ret = execute(path_maker(path[i], cmd->args[0]), cmd->args))) // if execution succed
 			break ;
-	free(path);
-	path = NULL;
+	free_2d_arr(path);
 	return (ret);
 }

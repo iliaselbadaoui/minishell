@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/27 02:51:19 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 12:21:12 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,18 @@ int		cd(t_string *args)
 
 	if (args[1])
 	{
-		str = filter(args[1]);
+		str = filter(ft_strdup(args[1]));
 		if (chdir(str) == -1)
 		{
 			write(2, "minishell: cd: ", 15);
 			write(2, str, length(str));
 			write(2, ": No such file or directory\n", 28);
+			free(str);
 			return (1); // FAILED
 		}
 		update_env("OLDPWD", get_env_value("PWD"));
 		update_env("PWD", str);
+		free(str);
 	}
 	else
 	{
@@ -97,10 +99,10 @@ int		unset(t_string *args)
 	ret = 0;
 	while (args[++i])
 	{
-		key = filter(args[i]);
+		key = filter(ft_strdup(args[i]));
 		if (is_valid_key(key))
 		{
-			if (get_value_by_key(g_map, key))
+			if (key_exist(g_sorted_env, key))
 			{
 				free_by_key(&g_sorted_env, key);
 				free_by_key(&g_map, key);
@@ -111,6 +113,7 @@ int		unset(t_string *args)
 			printf("minishell: unset: `%s': not a valid identifier\n", key);
 			ret++;
 		}
+		free(key);
 	}
 	return (ret ? 1 : 0); // 0: SUCCESS, 1: FAILED invalid key/keys
 }

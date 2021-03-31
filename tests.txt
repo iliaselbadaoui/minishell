@@ -15,6 +15,7 @@ t_bool			includes(t_string string, t_string pattern);
 
 
 
+
 Echo Command Examples:
 echo -n -n -n test tout
 
@@ -26,11 +27,19 @@ echo $TEST $TEST
 echo "$1TEST"
 echo "Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
 
-
 exit 9223372036854775808
 exit -9223372036854775810
 
 echo -nnnnnnnn test
 echo -----n test
 
+
+
+
+
+
+
+
 export MallocStackLogging=1
+
+test memory leak ==>	export pid=$(pgrep minishell) ; leaks $pid

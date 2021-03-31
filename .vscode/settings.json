@@ -2,6 +2,8 @@
 	"files.associations": {
 		"executer.h": "c",
 		"parser.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"sstream": "c",
+		"__node_handle": "c"
 	}
 }

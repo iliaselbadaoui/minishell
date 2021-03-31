@@ -13,3 +13,14 @@ t_bool			is_valid_key(t_string key)
 			return (false);
 	return (true);
 }
+
+t_bool		key_exist(t_map *head, t_string key)
+{
+	while (head)
+	{
+		if (equals(head->key, key))
+			return (true);
+		head = head->next;
+	}
+	return (false);
+}

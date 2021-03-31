@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/27 02:13:48 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 18:03:45 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int		exec_cmd(t_command *cmd)
 	i = -1;
 	if (!cmd->args[0])
 		return (0);
-	cmd->args[0] = filter(cmd->args[0]); // Filter The Command, ex: "echo" => echo
+	cmd->args[0] = filter(ft_strdup(cmd->args[0])); // Filter The Command, ex: "echo" => echo
 	if (cmd->args[0][0] != '\0')
 	{
 		if ((ret = check_builtins(cmd)) != 2) // Check builtins functions
 			return (ret);
-		else if ((ret = check_bins(cmd)) != 2 && ret != 127)
+		if ((ret = check_bins(cmd)) != 2 && ret != 127)
 			return (ret);
 		if (ret == 2)
 		{

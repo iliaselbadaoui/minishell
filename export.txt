@@ -87,7 +87,7 @@ export TEST="$USER" TEST1=$TEST
 export TEST=LOL
 export TEST=LOL
 
-
+export tm= f f d dsf fsd ds f sd=99 f f d e r t t t r f f g t r  fdsd=qwerty == 5 5= 5 5=qwerty r fs  43 3 gg r4 6 er fd g 34  tg _ -- test="Hello" var=$HOME$USER
 
 
 

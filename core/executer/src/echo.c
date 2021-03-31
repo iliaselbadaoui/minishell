@@ -6,27 +6,44 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/22 13:35:18 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/03/31 13:35:36 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-static t_bool	is_option_n(t_string str)
+// Check valid option n
+static t_bool	is_valid_option_n(t_string str)
 {
 	int i;
 
 	i = 0;
 	if (str[i] == '-' && str[++i] == 'n')
 	{
-		while (str[++i] == 'n' || str[i] == 'e');
+		while (str[++i] == 'n');
 		if (str[i] == '\0')
+		{
+			free(str);
 			return (true);
+		}
+		free(str);
 		return (false);
 	}
+	free(str);
 	return (false);
 }
 
+// Check if there is -n option
+static void		check_option(t_string *args, int *i, int *n_option)
+{
+	while (args[++*i])
+		if (is_valid_option_n(filter(ft_strdup(args[*i]))))
+			(*n_option)++;
+		else
+			return ;
+}
+
+// Print a string
 int				echo(t_string *args, int fd)
 {
 	int			i;
@@ -39,19 +56,19 @@ int				echo(t_string *args, int fd)
 	i = 0;
 	j = -1;
 	tmp = false;
-	while (args[++i])
-		if (is_option_n(filter(args[i])))
-			n_option++;
-		else
-			break ;
+	check_option(args, &i, &n_option);
 	while (args[i])
 	{
-		str = filter(args[i++]);
+		str = filter(ft_strdup(args[i++]));
 		if (*str == '\0')
+		{
+			free(str);
 			continue ;
+		}
 		if (tmp)
 			write(fd, " ", 1);
 		write(fd, str, ft_strlen(str));
+		free(str);
 		tmp = true;
 	}
 	if (!n_option)
