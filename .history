@@ -1,0 +1,25 @@
+ilias
+echo hello
+echo
+echo ilias
+echo hello
+leaks minishell
+export MallocStackLogging=1
+leaks minishell
+leaks minishell
+exit
+leaks minishell
+export MallocStackLogging=1
+env
+unset MallocStackLogging
+env
+leaks minishell
+echo hello world
+leaks minishell
+leaks minishell
+echo hello world
+leaks minishell
+exit
+leaks minishell
+echo hello world out there
+exit
