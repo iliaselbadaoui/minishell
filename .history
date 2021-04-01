@@ -1,25 +1,28 @@
-ilias
-echo hello
-echo
 echo ilias
-echo hello
+echo ilias elbadaoui
+ilias
+echo ilias heyy
+i
+j
+h
+x
+x
+x
+bn
+b
+x
+i
+x
 leaks minishell
-export MallocStackLogging=1
-leaks minishell
-leaks minishell
+x
+exit
+echo ilias
+echo "ilias" i
+i
+x
+a
+exit
+x
 exit
 leaks minishell
-export MallocStackLogging=1
-env
-unset MallocStackLogging
-env
-leaks minishell
-echo hello world
-leaks minishell
-leaks minishell
-echo hello world
-leaks minishell
-exit
-leaks minishell
-echo hello world out there
 exit

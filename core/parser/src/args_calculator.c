@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 10:44:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 11:01:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int				args_calculator(t_string command)
 	int		count;
 	t_coord	coord;
 
+	if (ft_strlen(command) == 1)
+		return (1);
 	count = 0;
 	g_counter = 0;
 	while (command[g_counter])

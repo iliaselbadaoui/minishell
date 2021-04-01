@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:30:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 09:39:13 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	add_node(char *cmd, int already)
 		g_history->cmd = ft_strdup(cmd);
 		g_history->already = already;
 		g_history->editing = 0;
+		g_history->is_visited = 0;
 		g_history->cmd_tmp = NULL;
 		g_history->next = NULL;
 		g_history->prev = NULL;
@@ -36,6 +37,7 @@ void	add_node(char *cmd, int already)
 	g_history->next = (t_linked *)malloc(sizeof(t_linked));
 	g_history = g_history->next;
 	g_history->next = NULL;
+	g_history->is_visited = 0;
 	g_history->prev = tmp_prev;
 	g_history->cmd = ft_strdup(cmd);
 	g_history->already = already;
@@ -64,7 +66,11 @@ t_linked	*get_previous(void)
 	if (!g_history)
 		return (NULL);
 	if (g_history->prev)
+	{
+		g_history->is_visited = 0;
 		g_history = g_history->prev;
+		g_history->is_visited = 1;
+	}
 	return (g_history);
 }
 
@@ -75,7 +81,11 @@ t_linked	*get_next(void)
 	if (!g_history)
 		return (NULL);
 	if (g_history->next)
+	{
+		g_history->is_visited = 0;
 		g_history = g_history->next;
+		g_history->is_visited = 1;
+	}
 	return (g_history);
 }
 

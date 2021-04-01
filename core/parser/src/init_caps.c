@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:52:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 11:05:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ int			init_caps()
 	type = getenv("TERM");
 	if (!type)
 	{
-		printf("TERM must be set (see 'env').\n");
+		out("TERM must be set (see 'env').\n");
 		return (-1);
 	}
 	res = tgetent(NULL, type);
 	if (res == -1)
 	{
-		printf("Could not access to the termcap database..\n");
+		out("Could not access to the termcap database..\n");
 		return (-1);
 	}
 	else if (res == 0)
 	{
-		printf("Terminal type '");
-		printf("%s", type);
-		printf("' is not defined in termcap database.\n");
+		out("Terminal type '");
+		out(type);
+		out("' is not defined in termcap database.\n");
 		return (-1);
 	}
 	return (0);

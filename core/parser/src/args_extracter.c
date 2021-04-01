@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:09:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 14:21:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 11:01:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ static void		extracter_helper(t_string *args, t_string command, int i)
 	t_coord		coord;
 	t_string	tmp;
 
+	if (ft_strlen(command) == 1)
+	{
+		args[i] = ft_strdup(command);
+		return ;
+	}
 	coord = get_next_arg(command);
 	tmp = NULL;
 	if (coord.end >= coord.start)
