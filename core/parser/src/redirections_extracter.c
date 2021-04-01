@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:20:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 13:01:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 22:24:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_redirect			*redirections_extracter(t_string command)
 
 	g_counter = 0;
 	count = redirections_calculator(command) + 1;
+	printf("DEBUG %d\n", count);
 	g_counter = 0;
 	redirections = (t_redirect *)malloc(sizeof(t_redirect) * count);
 	i = 0;

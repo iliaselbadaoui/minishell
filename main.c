@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:50:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/01 09:50:33 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 22:52:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (syntax_checker(trim(line)) && *line != '\0')
 			{
 				list = parser(trim(line));
+				printf("file name [%s]\n", (list)->redirections[0].file_name);
 				ret = exec_cmds(list);
 			}
 			free(line);
