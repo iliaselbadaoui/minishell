@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 10:08:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 09:38:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		up_history(char **line, int line_length)
 	char		*pos;
 	t_linked	*prev;
 
-	if (g_history && g_history->prev)
+	if (g_history && (!g_history->is_visited || g_history->prev))
 	{
 		while (line_length)
 		{
