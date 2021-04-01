@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:33:40 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/30 12:42:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:22:52 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void			add_command_to_end(t_command **head, t_command *node)
 	t_command	*tmp;
 
 	if (*head == NULL)
+	{	
 		*head = node;
+	}
 	else
 	{
 		tmp = *head;
