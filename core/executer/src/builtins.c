@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/06 19:49:45 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/08 16:35:33 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,46 +41,6 @@ int		exit_shell(t_command *cmd)
 		return (1); // didn't exit
 	}
 	return (-1); // SUCCESS exit
-}
-
-// Change directory
-int		cd(t_string *args)
-{
-	t_string	path;
-
-	// if a path is setted, ex: cd /Users/$USER
-	if (args[1])
-	{
-		path = filter(ft_strdup(args[1]));
-		// Check string (~, ~username, -)
-		if (chdir(path) == -1)
-			return (no_file(path)); // FAILED
-		free(path);
-		path = getcwd(NULL, 1024);
-		printf("[%s]\t[%s]\n", path, get_env_value("PWD"));
-		update_env("OLDPWD", get_env_value("PWD"));
-		update_env("PWD", path);
-		printf("[%s]\t[%s]\n", get_env_value("PWD"), get_env_value("OLDPWD"));
-		// free(path);
-		return (0); //SUCCESS
-	}
-	// path = get_value_by_key(g_map, "HOME");
-	// if (!path)
-	// {
-	// 	write(2, "minishell: cd: HOME not set\n", 28);
-	// 	return (1); // FAILED
-	// }
-	// if (equals(path, ""))
-	// 	path = getcwd(NULL, 1024);
-	// else
-	// 	path = ft_strdup(path);
-	// printf("[%s]\n", path);
-	// if (chdir(path) == -1)
-	// 	return (no_file(path)); // FAILED
-	// update_env("OLDPWD", get_env_value("PWD"));
-	// update_env("PWD", path);
-	// free(path);
-	return (0); //SUCCESS
 }
 
 // Print out current path to a file descriptor

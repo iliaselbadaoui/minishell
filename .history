@@ -98,3 +98,186 @@ exit
 echo test>file.txt
 echo test>file.txt
 exit
+cd /
+cd
+cd /
+cd /
+cd /
+cd /
+cd /
+cd /
+cd /
+cd $OLDPWD
+cd ..
+export t tt ttt= tttt=123
+export
+env
+export
+export t t t 
+export t t t t 3 3 3 
+export
+export r r r r r r
+export t
+export t
+export t
+export t
+export t
+export t t t t t t yy y y y y y
+export
+cd /
+cd /
+cd $OLDPWD
+cd ..
+cd /
+cd $OLDPWD
+cd ..
+export t
+cd //
+clear
+cd /
+cd /
+cd /
+cd /
+cd /
+cd /
+cd /
+cd $OLDPWD
+cd ..
+cd ..
+cd ..
+cd /
+cd /
+cd /
+cd /
+clear
+clear
+pwd
+cd /
+clear
+ls
+pwd
+clear
+cd /
+export t
+env
+export
+clear
+export t
+export
+clear
+export t=
+export
+export t=9
+export
+export 
+export t
+export 
+export t=
+export
+clear
+export t
+export
+export t=
+export
+cd /
+cd /
+cd /
+pwd
+cd ..
+export t
+export t
+export t
+export t
+export t
+export
+export =
+export t=
+export
+export t=tt
+export
+clear
+cd /
+export
+export t
+export
+export t
+export
+export t=
+export
+export t=value
+export
+export t
+export
+cd /
+cd $OLDPWD
+cd ..
+cd
+unset HOME
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+unset HOME
+cd
+export HOME
+export
+cd
+cd
+export HOME=
+cd
+pwd
+cd /
+cd
+pwd
+clear
+cd
+ls
+clear
+unset HOME
+cd
+export HOME
+cd
+export HOME=
+cd
+export HOME=/
+cd
+export HOME=/tmp
+cd
+cd
+cd
+cd
+clear
+cd
+export HOME=
+cd
+export HOME=
+cd
+export HOME=
+cd
+export HOME=
+cd
+pwd
+cd /
+cd
+cd
+cd ~
+cd -
+echo $OLDPWD
+cd /
+cd /
+cd ~
+cd /
+cd /
+cd /
+cd /
+cd
+eccho $OLDPWD
+echo $OLDPWD
+pwd
+cd /
+cd -
+pwd
+cd ~
