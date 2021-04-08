@@ -24,3 +24,12 @@ t_bool		key_exist(t_map *head, t_string key)
 	}
 	return (false);
 }
+
+int			no_file(t_string path)
+{
+	write(2, "minishell: cd: ", 15);
+	write(2, path, length(path));
+	write(2, ": No such file or directory\n", 28);
+	free(path);
+	return (1);
+}

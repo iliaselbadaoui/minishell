@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 19:24:10 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/03 14:48:11 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	signal_handler(int signo)
 }
 
 // Check is the command builtin
-int		check_builtins(t_command *cmd)
+static int		check_builtins(t_command *cmd)
 {
 	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));		// returns: -1 with SUCCESS, 1 with Failure & without exitting, 255: exit with Failure
@@ -42,45 +42,48 @@ int		check_builtins(t_command *cmd)
 }
 
 // Execute a command.
-int		exec_cmd(t_command *cmd)
+static int		exec_cmd(t_command *list, t_string *cmd)
 {
 	int	ret;
 	int	i;
 
 	ret = 0;
 	i = -1;
-	if (!cmd->args[0])
+	if (!*cmd)
 		return (0);
-	cmd->args[0] = filter(ft_strdup(cmd->args[0])); // Filter The Command, ex: "echo" => echo
-	if (cmd->args[0][0] != '\0')
+	*cmd = filter(ft_strdup(*cmd)); // Filter The Command, ex: "echo" => echo
+	if (*cmd[0] != '\0')
 	{
-		if ((ret = check_builtins(cmd)) != 2) // Check builtins functions
+		if ((ret = check_builtins(list)) != 2) // Check builtins functions
 			return (ret);
 		if (get_env_value("PATH")[0] == '\0') // Check if PATH variable is not empty && is exist
 			ret = 2;
-		else if ((ret = check_bins(cmd)) != 2 && ret != 127) // Check Command file if PATH variable exist
+		else if ((ret = check_bins(list)) != 2 && ret != 127) // Check Command file if PATH variable exist
 			return (ret);
 		if (ret == 2)
 		{
 			write(2, "minishell: ", 11);
-			write(2, cmd->args[0], length(cmd->args[0]));
+			write(2, *cmd, length(*cmd));
 			write(2, ": No such file or directory\n", 28);
 			return (CMMAND_NOT_FOUND);
 		}
 	}
-	printf("minishell$: %s: command not found\n", cmd->args[0]);
+	printf("minishell$: %s: command not found\n", *cmd);
 	return (CMMAND_NOT_FOUND);
 }
 
 // Execute all commands, separated by ";"
 int		exec_cmds(t_command *list)
 {
-	int	ret;
+	int			ret;
+	t_string	cmd;
 
 	ret = 0;
 	while (list)
 	{
-		ret = exec_cmd(list);
+		cmd = list->args[0];
+		ret = exec_cmd(list, &cmd);
+		free(cmd);
 		g_error = ret;
 		if (ret == -1)
 			g_error = 0;

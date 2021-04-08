@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/30 20:58:37 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/03 14:45:21 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_map			*g_sorted_env;
 
 int			exec_cmds(t_command *list);
 void		signal_handler(int signo);
-int			check_builtins(t_command *cmd);
 int			check_bins(t_command *cmd);
 t_string	get_env_value(t_string key);
 t_string	filter(t_string str);
@@ -39,6 +38,7 @@ void		sort_env(void);
 void		clone_env(void);
 void		update_env(t_string key, t_string value);
 t_bool		key_exist(t_map *head, t_string key);
+int			no_file(t_string path);
 
 // Builtin Functions
 int			env(int fd);

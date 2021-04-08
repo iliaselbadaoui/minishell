@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:50:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/01 17:02:07 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/01 21:49:09 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		main(int argc, t_string *argv, t_string *envp)
 			{
 				list = parser(trim(line));
 				ret = exec_cmds(list);
+				// ret = 0;
+				// print_struct(list);
 			}
 			free(line);
 			line = NULL;

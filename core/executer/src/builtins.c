@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 19:41:27 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/06 19:49:45 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,34 +46,40 @@ int		exit_shell(t_command *cmd)
 // Change directory
 int		cd(t_string *args)
 {
-	t_string str;
-	char	buff[1024];
+	t_string	path;
 
+	// if a path is setted, ex: cd /Users/$USER
 	if (args[1])
 	{
-		str = filter(ft_strdup(args[1]));
-		if (chdir(str) == -1)
-		{
-			write(2, "minishell: cd: ", 15);
-			write(2, str, length(str));
-			write(2, ": No such file or directory\n", 28);
-			free(str);
-			return (1); // FAILED
-		}
+		path = filter(ft_strdup(args[1]));
+		// Check string (~, ~username, -)
+		if (chdir(path) == -1)
+			return (no_file(path)); // FAILED
+		free(path);
+		path = getcwd(NULL, 1024);
+		printf("[%s]\t[%s]\n", path, get_env_value("PWD"));
 		update_env("OLDPWD", get_env_value("PWD"));
-		update_env("PWD", getcwd(buff, sizeof(buff)));
-		free(str);
+		update_env("PWD", path);
+		printf("[%s]\t[%s]\n", get_env_value("PWD"), get_env_value("OLDPWD"));
+		// free(path);
+		return (0); //SUCCESS
 	}
-	else
-	{
-		if (chdir(get_value_by_key(g_map, "HOME")) == -1)
-		{
-			write(2, "minishell: cd: HOME not set\n", 28);
-			return (1); // FAILED
-		}
-		update_env("OLDPWD", get_env_value("PWD"));
-		update_env("PWD", get_env_value("HOME"));
-	}
+	// path = get_value_by_key(g_map, "HOME");
+	// if (!path)
+	// {
+	// 	write(2, "minishell: cd: HOME not set\n", 28);
+	// 	return (1); // FAILED
+	// }
+	// if (equals(path, ""))
+	// 	path = getcwd(NULL, 1024);
+	// else
+	// 	path = ft_strdup(path);
+	// printf("[%s]\n", path);
+	// if (chdir(path) == -1)
+	// 	return (no_file(path)); // FAILED
+	// update_env("OLDPWD", get_env_value("PWD"));
+	// update_env("PWD", path);
+	// free(path);
 	return (0); //SUCCESS
 }
 

@@ -6,7 +6,7 @@
 /*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 17:48:51 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/06 17:24:42 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_bool	update_key(t_map **env, t_string key, t_string value)
 	{
 		if (equals(tmp->key, key))
 		{
-			if (value)
+			if (value) // if there is a value insert it
 				tmp->value = value;
 			return (true);
 		}
@@ -61,8 +61,9 @@ static int		put_env(int fd)
 // Update key if exist, if not add it to g_map && g_sorted_env
 void		update_env(t_string key, t_string value)
 {
-	if (update_key(&g_map, key, value) && update_key(&g_sorted_env, key, value))
-		return ;
+	if (update_key(&g_map, key, value))
+		if (update_key(&g_sorted_env, key, value))
+			return ;
 	add_to_map(&g_map, init_map(key, value));
 	add_to_map(&g_sorted_env, init_map(key, value));
 }
