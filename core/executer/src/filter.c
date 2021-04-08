@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 13:26:15 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/08 10:11:38 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ static t_string	get_data(void)
 	int			fd;
 	t_string	line;
 
-	fd = open("/tmp/tmp.txt", O_RDONLY);
+	fd = open("/tmp/.tmp", O_RDONLY, 0666);
 	get_next_line(fd, &line);
 	close(fd);
-	fd = open("/tmp/tmp.txt", O_RDONLY | O_WRONLY | O_TRUNC);
+	fd = open("/tmp/.tmp", O_RDONLY | O_WRONLY | O_TRUNC, 0666);
 	close(fd);
 	return (line);
 }
@@ -90,7 +90,7 @@ t_string		filter(t_string str)
 	int			fd;
 
 	i = -1;
-	fd = open("/tmp/tmp.txt", O_RDWR | O_APPEND | O_CREAT);
+	fd = open("/tmp/.tmp", O_RDWR | O_APPEND | O_CREAT, 0666);
 	while (str[++i])
 		if (str[i] == '\\')
 			write(fd, &str[++i], 1);
