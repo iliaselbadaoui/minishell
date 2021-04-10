@@ -6,16 +6,16 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:35:17 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/09 14:18:32 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:30:21 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
 // get path by ~, ~username or -
-static t_string		get_path(t_string arg)
+static t_string	get_path(t_string arg)
 {
-	t_string path;
+	t_string	path;
 
 	path = filter(ft_strdup(arg));
 	if (equals(path, "-"))
@@ -37,9 +37,9 @@ static t_string		get_path(t_string arg)
 }
 
 // Go to Home Directory if the argument not set
-static int to_home(void)
+static int	to_home(void)
 {
-	t_string path;
+	t_string	path;
 
 	path = get_value_by_key(g_map, "HOME");
 	if (!path)
@@ -60,7 +60,7 @@ static int to_home(void)
 }
 
 // Main CD function
-int					cd(t_string *args)
+int	cd(t_string *args)
 {
 	t_string	path;
 

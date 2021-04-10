@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 13:00:01 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 15:51:05 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_bool	update_key(t_map *env, t_string key, t_string value)
 }
 
 // Print out all envirement variables by order (g_sorted_env)
-static int		put_env(int fd)
+static int	put_env(int fd)
 {
 	t_map	*tmp;
 
@@ -63,7 +63,7 @@ static int		put_env(int fd)
 }
 
 // Update key if exist, if not add it to g_map && g_sorted_env
-void			update_env(t_string key, t_string value)
+void	update_env(t_string key, t_string value)
 {
 	if (update_key(g_map, key, value) && update_key(g_sorted_env, key, value))
 		return ;
@@ -74,9 +74,9 @@ void			update_env(t_string key, t_string value)
 }
 
 // Extract key and value from passed argument
-static int		set_data(t_string args, t_string *key, t_string *value)
+static int	set_data(t_string args, t_string *key, t_string *value)
 {
-	int		j;
+	int	j;
 
 	j = 0;
 	while (args[j] && args[j] != '=')
@@ -97,18 +97,12 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	else
 		*value = NULL;
 	if (!is_valid_key(*key))
-	{
-		if (!*value)
-			printf("minishell: export: `%s': not a valid identifier\n", *key);
-		else
-			printf("minishell: export: `%s=%s': not a valid identifier\n", *key, *value);
-		return (1); // FAILED
-	}
+		return (not_valid(*key, *value));
 	return (0); // SUCCESS
 }
 
 // Main Export function
-int				export(t_string *args, int fd)
+int	export(t_string *args, int fd)
 {
 	int			i;
 	int			ret;
@@ -125,9 +119,6 @@ int				export(t_string *args, int fd)
 		if (set_data(args[i], &key, &value)) // if it Failed
 		{
 			ret++;
-			free(key);
-			if (value)
-				free(value);
 			continue ;
 		}
 		// ADD/Update Key & Value

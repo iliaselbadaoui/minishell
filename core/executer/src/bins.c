@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:23:54 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/09 14:23:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:34:09 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_string	path_maker(t_string path, t_string cmd)
 }
 
 // Run the command if exist
-static int		run_cmd(t_string path, t_string *args)
+static int	run_cmd(t_string path, t_string *args)
 {
 	pid_t	pid;
 	int		ret;
@@ -45,10 +45,15 @@ static int		run_cmd(t_string path, t_string *args)
 	ret = 0;
 	// signal(SIGINT, signal_handler);
 	if (pid == 0) // Child Process
-		ret = execve(path, args, g_envp) == -1 ? 1 : 0;
+	{
+		if (execve(path, args, g_envp) == -1)
+			ret = 1;
+		else
+			ret = 0;
+	}
 	else if (pid < 0)
 	{
-		write(2, "Fork failed to create a new process." , 36);
+		write(2, "Fork failed to create a new process.", 36);
 		return (1);
 	}
 	wait(&pid); // Wait for the child to finish
@@ -56,7 +61,7 @@ static int		run_cmd(t_string path, t_string *args)
 }
 
 // Ecexute file if exist, ex: /bin/ls
-static int		execute(t_string path, t_string *args)
+static int	execute(t_string path, t_string *args)
 {
 	int	ret;
 
@@ -68,17 +73,21 @@ static int		execute(t_string path, t_string *args)
 		return (CMMAND_NOT_FOUND); // the path to the file not exist
 	}
 	// Run the Command
-	else if ((ret = run_cmd(path, args)))
+	else
 	{
-		free(path);
-		return (ret); // Failed
+		ret = run_cmd(path, args);
+		if (ret)
+		{
+			free(path);
+			return (ret); // Failed
+		}
 	}
 	free(path);
 	return (ret); // Successed
 }
 
 // Check if the command in bins
-int				check_bins(t_command *cmd)
+int	check_bins(t_command *cmd)
 {
 	t_string	*path;
 	int			i;
@@ -90,14 +99,20 @@ int				check_bins(t_command *cmd)
 	if (cmd->args[0][0] == '/')
 	{
 		ret = execute(ft_strdup(cmd->args[0]), cmd->args);
-		return (ret == 127 ? 2 : ret);
+		if (ret == 127)
+			ret = 2;
+		return (ret);
 	}
 	// Run the command with its name, using PATH variable, ex: ls will executed as /bin/ls
-	if (!(path = get_paths()))
+	path = get_paths();
+	if (!path)
 		return (2);
 	while (path[++i])
-		if (!(ret = execute(path_maker(path[i], cmd->args[0]), cmd->args))) // if execution succed
+	{
+		ret = execute(path_maker(path[i], cmd->args[0]), cmd->args);
+		if (!ret) // if execution SUCCED
 			break ;
+	}
 	free_2d_arr(path);
 	return (ret);
 }

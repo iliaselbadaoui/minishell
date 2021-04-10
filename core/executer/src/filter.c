@@ -6,32 +6,32 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/09 14:26:49 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 15:53:30 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
 // Check next character after $ symbole
-static int		check_characters(t_string str, int i, int fd)
+static int	check_characters(t_string str, int i, int fd)
 {
 	if (str[i] == '?')
 	{
 		ft_putnbr_fd(g_error, fd);
 		return (i);
 	}
-	if (str[i] == ' ' || str[i] == '\0' || str[i] == '"')
+	else if (str[i] == ' ' || str[i] == '\0' || str[i] == '"')
 	{
 		write(fd, "$", 1);
 		return (i);
 	}
-	if (str[i] && (ft_isdigit(str[i]) || (!ft_isalpha(str[i]) && str[i] != '_')))
+	else if (str[i] && (ft_isdigit(str[i]) || (!ft_isalpha(str[i]) && str[i] != '_')))
 		return (i);
 	return (0);
 }
 
 // replace Variables with their values
-static int		print_variable(t_string str, int i, int fd)
+static int	print_variable(t_string str, int i, int fd)
 {
 	int				start;
 	int				end;
@@ -42,7 +42,8 @@ static int		print_variable(t_string str, int i, int fd)
 	start = ++i;
 	end = start - 1;
 	// Check characters
-	if ((ret = check_characters(str, i--, fd)))
+	ret = check_characters(str, i--, fd);
+	if (ret)
 		return (ret);
 	// Count variable length
 	while (str[++i] && (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_'))
@@ -54,18 +55,19 @@ static int		print_variable(t_string str, int i, int fd)
 	free(name);
 	if (value)
 		write(fd, value, ft_strlen(value));
-	// Return index (to keep printing the rest of strings)
-	return (i - 1);
+	return (i - 1); // Return index (to keep printing the rest of strings)
 }
 
 // Write everything inside "" exactly as it is, and replace Variables with their values
-static int		double_quote(t_string str, int j, int fd)
+static int	double_quote(t_string str, int j, int fd)
 {
 	while (str[++j] && str[j] != '"')
+	{
 		if (str[j] == '$')
 			j = print_variable(str, j, fd);
 		else
 			write(fd, &str[j], 1);
+	}
 	return (j);
 }
 
@@ -75,23 +77,24 @@ static t_string	get_data(void)
 	int			fd;
 	t_string	line;
 
-	fd = open("/tmp/.tmp", O_RDONLY, 0666);
+	fd = open(".tmp", O_RDONLY, 0666);
 	get_next_line(fd, &line);
 	close(fd);
-	fd = open("/tmp/.tmp", O_RDONLY | O_WRONLY | O_TRUNC, 0666);
+	fd = open(".tmp", O_RDONLY | O_WRONLY | O_TRUNC, 0666);
 	close(fd);
 	return (line);
 }
 
 // Return a clean string. eg: "Hello "$USER to == '$HOME'  ===>  Hello mait-si- to == $HOME
-t_string		filter(t_string str)
+t_string	filter(t_string str)
 {
 	int			i;
 	int			fd;
 
 	i = -1;
-	fd = open("/tmp/.tmp", O_RDWR | O_APPEND | O_CREAT, 0666);
+	fd = open(".tmp", O_RDWR | O_APPEND | O_CREAT, 0666);
 	while (str[++i])
+	{
 		if (str[i] == '\\')
 			write(fd, &str[++i], 1);
 		else if (str[i] == '\'')
@@ -103,6 +106,7 @@ t_string		filter(t_string str)
 			i = print_variable(str, i, fd);
 		else
 			write(fd, &str[i], 1);
+	}
 	close(fd);
 	free(str);
 	return (get_data());

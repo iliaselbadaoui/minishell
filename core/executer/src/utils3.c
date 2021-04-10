@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:18:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/09 14:30:21 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:08:26 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // is the key valid or not, ex: _KEY_test2 is valid, 2KEY_-_test is not valid
 t_bool	is_valid_key(t_string key)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (*key == '\0' || (!ft_isalpha(*key) && *key != '_'))
@@ -39,7 +39,7 @@ t_bool	key_exist(t_map *head, t_string key)
 }
 
 // No such file or directory on that path
-int		no_file(t_string path)
+int	no_file(t_string path)
 {
 	write(2, "minishell: cd: ", 15);
 	write(2, path, length(path));
@@ -56,4 +56,17 @@ void	signal_handler(int signo)
 		out("\nminishell$ ");
 		signal(SIGINT, signal_handler);
 	}
+}
+
+// Export, not a valid identifier
+int	not_valid(t_string key, t_string value)
+{
+	if (!value)
+		printf("minishell: export: `%s': not a valid identifier\n", key);
+	else
+		printf("minishell: export: `%s=%s': not a valid identifier\n", key, value);
+	free(key);
+	if (value)
+		free(value);
+	return (1); // FAILED
 }

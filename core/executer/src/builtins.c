@@ -6,41 +6,19 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/08 17:30:15 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:28:45 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-// Exit minishell
-int	exit_shell(t_command *cmd)
+static void	free_env(t_string key)
 {
-	int	i;
-	int	is_number;
-
-	i = 0;
-	is_number = 0;
-	write(1, "exit\n", 5);
-	while (cmd->args[1] && cmd->args[1][i])
+	if (key_exist(g_sorted_env, key))
 	{
-		if (cmd->args[1][0] == '-' || cmd->args[1][0] == '+')
-			i++;
-		if (!(is_number = ft_isdigit(cmd->args[1][i])))
-		{
-			write(2, "minishell: exit: ", 17);
-			write(2, cmd->args[1], length(cmd->args[1]));
-			write(2, ": numeric argument required\n", 28);
-			return (255); // FAILED (exit)
-		}
-		i++;
+		free_by_key(&g_sorted_env, key);
+		free_by_key(&g_map, key);
 	}
-	if (cmd->args[2] && cmd->args[1])
-	{
-		write(2, "minishell: exit: too many arguments\n", 36);
-		write(2, cmd->args[0], length(cmd->args[0]));
-		return (1); // didn't exit
-	}
-	return (-1); // SUCCESS exit
 }
 
 // Print out current path to a file descriptor
@@ -68,13 +46,7 @@ int	unset(t_string *args)
 	{
 		key = filter(ft_strdup(args[i]));
 		if (is_valid_key(key))
-		{
-			if (key_exist(g_sorted_env, key))
-			{
-				free_by_key(&g_sorted_env, key);
-				free_by_key(&g_map, key);
-			}
-		}
+			free_env(key);
 		else
 		{
 			printf("minishell: unset: `%s': not a valid identifier\n", key);
@@ -82,13 +54,16 @@ int	unset(t_string *args)
 		}
 		free(key);
 	}
-	return (ret ? 1 : 0); // 0: SUCCESS, 1: FAILED invalid key/keys
+	if (ret)
+		return (1); // FAILED invalid key/keys
+	return (0); // SUCCESS
 }
 
 // Print out all environment variables to a file descriptor
 int	env(int fd)
 {
 	t_map	*tmp;
+
 	tmp = g_map;
 	if (tmp == NULL)
 		return (1); // FAILED

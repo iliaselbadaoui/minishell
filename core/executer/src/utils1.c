@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:00:36 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 19:02:43 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:06:04 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-int			ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if (c >= 65 && c <= 90)
 		return (1);
@@ -21,24 +21,24 @@ int			ft_isalpha(int c)
 	return (0);
 }
 
-int			ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
 }
 
-int			ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 || *s2)
 		if (*s1++ != *s2++)
-			return (*(unsigned char*)(s1 - 1) - *(unsigned char*)(s2 - 1));
+			return (*(unsigned char *)(s1 - 1) - *(unsigned char *)(s2 - 1));
 	return (0);
 }
 
 t_string	get_env_value(t_string key)
 {
-	t_map *tmp;
+	t_map	*tmp;
 
 	tmp = g_map;
 	while (tmp)
@@ -50,7 +50,7 @@ t_string	get_env_value(t_string key)
 	return ("");
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	nbr;
 	char			c;

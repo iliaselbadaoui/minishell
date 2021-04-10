@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/09 14:27:43 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:08:12 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dst, const char *src)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(src);
 	while (*src)
@@ -25,13 +25,14 @@ char	*ft_strcpy(char *dst, const char *src)
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char			*ptr;
-	int						len;
-	int						i;
+	unsigned char	*ptr;
+	int				len;
+	int				i;
 
 	len = count * size;
 	i = 0;
-	if (!(ptr = (unsigned char*)malloc(size * count)))
+	ptr = (unsigned char *)malloc(size * count);
+	if (!ptr)
 		return (NULL);
 	while (i < len)
 	{
@@ -43,7 +44,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 void	free_2d_arr(char **arr)
 {
-	int i;
+	int	i;
 
 	if (!arr)
 		return ;

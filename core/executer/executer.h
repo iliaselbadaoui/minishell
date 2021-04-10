@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/09 14:29:36 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 15:49:16 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 #  define BUFFER_SIZEE 32
 # endif
 
-t_map			*g_map;
-t_map			*g_sorted_env;
+t_map		*g_map;
+t_map		*g_sorted_env;
 
 int			exec_cmds(t_command *list);
 void		signal_handler(int signo);
@@ -39,6 +39,7 @@ void		clone_env(void);
 void		update_env(t_string key, t_string value);
 t_bool		key_exist(t_map *head, t_string key);
 int			no_file(t_string path);
+int			not_valid(t_string key, t_string value);
 
 // Builtin Functions
 int			env(int fd);
