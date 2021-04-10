@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/19 15:25:43 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:27:43 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-char		*ft_strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *dst, const char *src)
 {
 	int len;
 
@@ -23,7 +23,7 @@ char		*ft_strcpy(char *dst, const char *src)
 	return (dst - len);
 }
 
-void		*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char			*ptr;
 	int						len;
@@ -41,7 +41,7 @@ void		*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void		free_2d_arr(char **arr)
+void	free_2d_arr(char **arr)
 {
 	int i;
 
@@ -54,7 +54,7 @@ void		free_2d_arr(char **arr)
 	arr = NULL;
 }
 
-void			sort_env(void)
+void	sort_env(void)
 {
 	t_string	swap;
 	t_map		*next;
@@ -82,7 +82,7 @@ void			sort_env(void)
 	g_sorted_env = tmp;
 }
 
-void			clone_env(void)
+void	clone_env(void)
 {
 	t_map	*node;
 	t_map	*tmp;

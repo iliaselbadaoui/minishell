@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:02:39 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/11 15:20:53 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:27:07 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-static char			*check_stock(char **line, char *stock)
+static char	*check_stock(char **line, char *stock)
 {
 	char *ptr;
 
@@ -34,7 +34,7 @@ static char			*check_stock(char **line, char *stock)
 	return (ptr);
 }
 
-static int			end_of_file(char *buff, char **stock)
+static int	end_of_file(char *buff, char **stock)
 {
 	free(buff);
 	free(*stock);
@@ -42,7 +42,7 @@ static int			end_of_file(char *buff, char **stock)
 	return (0);
 }
 
-static int			read_line(char **stock, int fd, char **line, char *buff)
+static int	read_line(char **stock, int fd, char **line, char *buff)
 {
 	char		*ptr;
 	int			ret;
@@ -68,7 +68,7 @@ static int			read_line(char **stock, int fd, char **line, char *buff)
 	return (1);
 }
 
-int					get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	char		*buff;
 	static char *stock[1024];

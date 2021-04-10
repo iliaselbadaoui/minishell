@@ -6,18 +6,18 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/08 14:32:47 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 13:00:01 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
 // Update a given environment variable
-static t_bool	update_key(t_map **env, t_string key, t_string value)
+static t_bool	update_key(t_map *env, t_string key, t_string value)
 {
 	t_map	*tmp;
 
-	tmp = *env;
+	tmp = env;
 	while (tmp)
 	{
 		if (equals(tmp->key, key))
@@ -63,12 +63,14 @@ static int		put_env(int fd)
 }
 
 // Update key if exist, if not add it to g_map && g_sorted_env
-void		update_env(t_string key, t_string value)
+void			update_env(t_string key, t_string value)
 {
-	if (update_key(&g_map, key, value) && update_key(&g_sorted_env, key, value))
+	if (update_key(g_map, key, value) && update_key(g_sorted_env, key, value))
 		return ;
-	add_to_map(&g_map, init_map(key, value));
-	add_to_map(&g_sorted_env, init_map(key, value));
+	if (value)
+		value = ft_strdup(value);
+	add_to_map(&g_map, init_map(ft_strdup(key), value));
+	add_to_map(&g_sorted_env, init_map(ft_strdup(key), value));
 }
 
 // Extract key and value from passed argument
@@ -80,11 +82,17 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	while (args[j] && args[j] != '=')
 		j++;
 	*key = substring(args, 0, j - 1);
-	*key = !*key ? ft_strdup("") : filter(*key);
+	if (*key)
+		*key = filter(*key);
+	else
+		*key = ft_strdup("");
 	if (args[j] == '=')
 	{
 		*value = substring(args, j + 1, ft_strlen(args) - 1);
-		*value = !*value ? ft_strdup("") : filter(*value);
+		if (*value)
+			*value = filter(*value);
+		else
+			*value = ft_strdup("");
 	}
 	else
 		*value = NULL;
@@ -99,7 +107,7 @@ static int		set_data(t_string args, t_string *key, t_string *value)
 	return (0); // SUCCESS
 }
 
-// Export Command entry
+// Main Export function
 int				export(t_string *args, int fd)
 {
 	int			i;
@@ -124,11 +132,12 @@ int				export(t_string *args, int fd)
 		}
 		// ADD/Update Key & Value
 		update_env(key, value);
-		// if (key)
-		// 	free(key);
-		// if (value)
-		// 	free(value);
+		free(key);
+		if (value)
+			free(value);
 	}
 	sort_env();
-	return (ret ? 1 : 0); // 0: SUCCESS, 1: FAILED to add/update key/keys
+	if (ret)
+		return (1); // FAILED to add/update key/keys
+	return (0); // SUCCESS
 }

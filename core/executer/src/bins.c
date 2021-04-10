@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   bins.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 15:31:34 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/30 16:49:46 by 0x10000          ###   ########.fr       */
+/*   Created: 2021/04/09 14:23:54 by mait-si-          #+#    #+#             */
+/*   Updated: 2021/04/09 14:23:57 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
 // Returns all paths from PATH environment variable
-static t_string		*get_paths(void)
+static t_string	*get_paths(void)
 {
 	t_map		*tmp;
 	t_string	*path;
@@ -24,7 +24,7 @@ static t_string		*get_paths(void)
 }
 
 // Make an absolute Path, ex: /bin + ls = /bin/ls
-static t_string		path_maker(t_string path, t_string cmd)
+static t_string	path_maker(t_string path, t_string cmd)
 {
 	char		*half_path;
 	char		*full_path;
@@ -36,7 +36,7 @@ static t_string		path_maker(t_string path, t_string cmd)
 }
 
 // Run the command if exist
-static int			run_cmd(t_string path, t_string *args)
+static int		run_cmd(t_string path, t_string *args)
 {
 	pid_t	pid;
 	int		ret;
@@ -56,7 +56,7 @@ static int			run_cmd(t_string path, t_string *args)
 }
 
 // Ecexute file if exist, ex: /bin/ls
-static int			execute(t_string path, t_string *args)
+static int		execute(t_string path, t_string *args)
 {
 	int	ret;
 
@@ -78,7 +78,7 @@ static int			execute(t_string path, t_string *args)
 }
 
 // Check if the command in bins
-int					check_bins(t_command *cmd)
+int				check_bins(t_command *cmd)
 {
 	t_string	*path;
 	int			i;

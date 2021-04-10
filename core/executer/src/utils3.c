@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/09 14:18:57 by mait-si-          #+#    #+#             */
+/*   Updated: 2021/04/09 14:30:21 by mait-si-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../executer.h"
 
 // is the key valid or not, ex: _KEY_test2 is valid, 2KEY_-_test is not valid
-t_bool			is_valid_key(t_string key)
+t_bool	is_valid_key(t_string key)
 {
 	int i;
 
@@ -14,7 +26,8 @@ t_bool			is_valid_key(t_string key)
 	return (true);
 }
 
-t_bool		key_exist(t_map *head, t_string key)
+// Is a given key is exit on environment variables
+t_bool	key_exist(t_map *head, t_string key)
 {
 	while (head)
 	{
@@ -25,11 +38,22 @@ t_bool		key_exist(t_map *head, t_string key)
 	return (false);
 }
 
-int			no_file(t_string path)
+// No such file or directory on that path
+int		no_file(t_string path)
 {
 	write(2, "minishell: cd: ", 15);
 	write(2, path, length(path));
 	write(2, ": No such file or directory\n", 28);
 	free(path);
 	return (1);
+}
+
+// Signals handler
+void	signal_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		out("\nminishell$ ");
+		signal(SIGINT, signal_handler);
+	}
 }

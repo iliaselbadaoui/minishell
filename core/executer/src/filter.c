@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/08 10:11:38 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:26:49 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static t_string	get_data(void)
 	return (line);
 }
 
-// Return a clean string.
+// Return a clean string. eg: "Hello "$USER to == '$HOME'  ===>  Hello mait-si- to == $HOME
 t_string		filter(t_string str)
 {
 	int			i;

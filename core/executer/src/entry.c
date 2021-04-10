@@ -3,26 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/03 14:48:11 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/09 14:22:31 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-void	signal_handler(int signo)
-{
-	if (signo == SIGINT)
-	{
-		out("\nminishell$ ");
-		signal(SIGINT, signal_handler);
-	}
-}
-
 // Check is the command builtin
-static int		check_builtins(t_command *cmd)
+static int	check_builtins(t_command *cmd)
 {
 	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));		// returns: -1 with SUCCESS, 1 with Failure & without exitting, 255: exit with Failure
@@ -42,7 +33,7 @@ static int		check_builtins(t_command *cmd)
 }
 
 // Execute a command.
-static int		exec_cmd(t_command *list, t_string *cmd)
+static int	exec_cmd(t_command *list, t_string *cmd)
 {
 	int	ret;
 	int	i;
@@ -73,7 +64,7 @@ static int		exec_cmd(t_command *list, t_string *cmd)
 }
 
 // Execute all commands, separated by ";"
-int		exec_cmds(t_command *list)
+int			exec_cmds(t_command *list)
 {
 	int			ret;
 	t_string	cmd;

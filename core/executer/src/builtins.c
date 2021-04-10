@@ -6,14 +6,14 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/08 16:35:33 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/08 17:30:15 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
 // Exit minishell
-int		exit_shell(t_command *cmd)
+int	exit_shell(t_command *cmd)
 {
 	int	i;
 	int	is_number;
@@ -44,7 +44,7 @@ int		exit_shell(t_command *cmd)
 }
 
 // Print out current path to a file descriptor
-int		pwd(int fd)
+int	pwd(int fd)
 {
 	char	buff[1024];
 
@@ -56,7 +56,7 @@ int		pwd(int fd)
 }
 
 // Remove a key/keys from environment variables
-int		unset(t_string *args)
+int	unset(t_string *args)
 {
 	int			i;
 	int			ret;
@@ -86,10 +86,9 @@ int		unset(t_string *args)
 }
 
 // Print out all environment variables to a file descriptor
-int		env(int fd)
+int	env(int fd)
 {
 	t_map	*tmp;
-
 	tmp = g_map;
 	if (tmp == NULL)
 		return (1); // FAILED

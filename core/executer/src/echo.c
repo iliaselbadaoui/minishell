@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/31 13:35:36 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/09 14:20:34 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		check_option(t_string *args, int *i, int *n_option)
 			return ;
 }
 
-// Print a string
+// Main echo Function
 int				echo(t_string *args, int fd)
 {
 	int			i;

@@ -6,18 +6,18 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:35:17 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/08 17:15:26 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:18:32 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
+// get path by ~, ~username or -
 static t_string		get_path(t_string arg)
 {
 	t_string path;
 
 	path = filter(ft_strdup(arg));
-	// Check string (~, ~username, -)
 	if (equals(path, "-"))
 	{
 		free(path);
@@ -36,6 +36,7 @@ static t_string		get_path(t_string arg)
 	return (path);
 }
 
+// Go to Home Directory if the argument not set
 static int to_home(void)
 {
 	t_string path;
@@ -58,7 +59,7 @@ static int to_home(void)
 	return (0); // SUCCESS
 }
 
-// Change directory
+// Main CD function
 int					cd(t_string *args)
 {
 	t_string	path;
