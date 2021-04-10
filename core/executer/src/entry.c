@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 16:32:01 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 17:33:39 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static int	exec_cmd(t_command *list, t_string *cmd)
 }
 
 // Execute all commands, separated by ";"
+// return 0, -1 : SUCCESS
+// return 1, 127, 255, ... : FAILED
 int	exec_cmds(t_command *list)
 {
 	int			ret;
@@ -96,10 +98,8 @@ int	exec_cmds(t_command *list)
 			ret = -1;
 			g_error = 255;
 		}
-		// printf("\ng_error: [%d]\n", g_error);
+		// printf("ng_error: [%d]\n", g_error);
 		list = list->next;
 	}
-	// return 0, -1 : SUCCESS
-	// return 1, 127, 255, ... : FAILED
 	return (ret);
 }

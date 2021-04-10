@@ -58,3 +58,22 @@ clear
 /hgfd
 jhgfd
 echo $?
+ls
+clear
+ls
+clear
+pwd
+/bin/sh
+clear
+ls
+ls
+ls
+ls ;ls
+ls>test
+ls>test
+ls> test
+ls > test
+ls >test
+ls >test
+ls >test | echo
+ls >test | echo ; ls
