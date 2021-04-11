@@ -5,14 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/01 23:11:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/11 16:23:21 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/04/11 16:26:09 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/04/11 16:26:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/executer/executer.h"
 #include <string.h>
 #include <stdio.h>
+
+static void	exit_minishell(void)
+{
+	free_map(&g_map);
+	free_map(&g_sorted_env);
+	exit(g_error);
+}
 
 int		main(int argc, t_string *argv, t_string *envp)
 {
@@ -21,6 +28,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 	int			ret;
 
 	g_map = fill_env(envp);
+	clone_env();
 	init_caps();
 	g_history_file = -1;
 	if (argc && argv)
@@ -34,13 +42,16 @@ int		main(int argc, t_string *argv, t_string *envp)
 			{
 				list = parser(trim(line));
 				ret = exec_cmds(list);
+				// ret = 0;
+				// print_struct(list);
 			}
 			free(line);
 			line = NULL;
 			free_commands(&list);
 			if (ret == -1)
-				break ;
+				exit_minishell();
 		}
 	free_map(&g_map);
+	free_map(&g_sorted_env);
 	return (0);
 }

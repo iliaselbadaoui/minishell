@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 11:14:06 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/10 16:08:12 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-char		*ft_strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(src);
 	while (*src)
@@ -23,15 +23,16 @@ char		*ft_strcpy(char *dst, const char *src)
 	return (dst - len);
 }
 
-void		*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char			*ptr;
-	int						len;
-	int						i;
+	unsigned char	*ptr;
+	int				len;
+	int				i;
 
 	len = count * size;
 	i = 0;
-	if (!(ptr = (unsigned char*)malloc(size * count)))
+	ptr = (unsigned char *)malloc(size * count);
+	if (!ptr)
 		return (NULL);
 	while (i < len)
 	{
@@ -41,9 +42,9 @@ void		*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void			free_2d_arr(char **arr)
+void	free_2d_arr(char **arr)
 {
-	int i;
+	int	i;
 
 	if (!arr)
 		return ;
@@ -54,32 +55,45 @@ void			free_2d_arr(char **arr)
 	arr = NULL;
 }
 
-
-void			sort_env(void)
+void	sort_env(void)
 {
-	t_map	*tmp;
-	t_map	*before;
-	t_map	*next;
+	t_string	swap;
+	t_map		*next;
+	t_map		*tmp;
 
-	if (g_map)
+	tmp = g_sorted_env;
+	while (g_sorted_env)
 	{
-		tmp = g_map;
-		before = 0;
-		while (tmp->next)
+		next = g_sorted_env;
+		while (next)
 		{
-			next = tmp->next;
-			if (tmp->key < next->key)
+			if (ft_strcmp(g_sorted_env->key, next->key) > 0)
 			{
-				tmp->next = next->next;
-				next->next = tmp;
-				if (before)
-					before->next = next;
-				else
-					g_map = next;
-				tmp = g_map;
+				swap = g_sorted_env->key;
+				g_sorted_env->key = next->key;
+				next->key = swap;
+				swap = g_sorted_env->value;
+				g_sorted_env->value = next->value;
+				next->value = swap;
 			}
-			before = tmp;
-			tmp = tmp->next;
+			next = next->next;
 		}
+		g_sorted_env = g_sorted_env->next;
 	}
+	g_sorted_env = tmp;
+}
+
+void	clone_env(void)
+{
+	t_map	*node;
+	t_map	*tmp;
+
+	tmp = g_map;
+	while (tmp)
+	{
+		node = init_map(ft_strdup(tmp->key), ft_strdup(tmp->value));
+		add_to_map(&g_sorted_env, node);
+		tmp = tmp->next;
+	}
+	sort_env();
 }

@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:22:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/10 14:22:17 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:09:10 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,20 @@
 
 void	print_struct(t_command *list)
 {
-	int i;
+	int	i;
+
 	while (list)
 	{
 		printf("\n__________________________\n");
-		printf("\nID: [%d]\n", list->id);
-		out("cmd:\t");
-		out(list->args[0]);
-		out("\nargs:\t");
+		printf("ID:\t\t[%d]\n", list->id);
+		printf("cmd:\t\t[%s]\n", list->args[0]);
+		printf("args:\t\t");
 		i = 1;
 		while (list->args[i])
-		{
-			out("[");
-			out(list->args[i++]);
-			out("]   ");
-		}
-		out("\n");
-		printf("\ntype: [%c]", list->redirections->type);
-		printf("\nfd: [%d]", list->redirections->fd);
-		printf("\nfile_name: [%s]", list->redirections->file_name);
-		printf("\n__________________________\n");
+			printf("[%s]\t", list->args[i++]);
+		printf("\n\ntype:\t\t[%c]", list->redirections->type);
+		printf("\nfd:\t\t[%d]", list->redirections->fd);
+		printf("\nfile_name:\t[%s]\n", list->redirections->file_name);
 		list = list->next;
 	}
 }

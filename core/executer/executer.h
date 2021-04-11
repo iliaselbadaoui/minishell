@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/18 11:14:37 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/10 15:49:16 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 #  define BUFFER_SIZEE 32
 # endif
 
-t_map			*g_map;
+t_map		*g_map;
+t_map		*g_sorted_env;
 
 int			exec_cmds(t_command *list);
 void		signal_handler(int signo);
-int			check_builtins(t_command *cmd);
 int			check_bins(t_command *cmd);
 t_string	get_env_value(t_string key);
 t_string	filter(t_string str);
@@ -35,15 +35,20 @@ int			get_next_line(int fd, char **line);
 t_bool		is_valid_key(t_string key);
 void		free_2d_arr(char **arr);
 void		sort_env(void);
+void		clone_env(void);
+void		update_env(t_string key, t_string value);
+t_bool		key_exist(t_map *head, t_string key);
+int			no_file(t_string path);
+int			not_valid(t_string key, t_string value);
 
 // Builtin Functions
-int			env(void);
-int			pwd(void);
+int			env(int fd);
+int			pwd(int fd);
 int			exit_shell(t_command *cmd);
 int			echo(t_string *args, int fd);
-int			export(t_string *args);
+int			export(t_string *args, int fd);
 int			unset(t_string *args);
-int			cd(void);
+int			cd(t_string *args);
 
 // Libft funcions
 int			ft_strcmp(const char *s1, const char *s2);
@@ -55,6 +60,5 @@ void		*ft_calloc(size_t count, size_t size);
 
 // Tmp functionss
 void		print_struct(t_command *list);
-
 
 #endif

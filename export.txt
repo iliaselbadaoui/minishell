@@ -87,7 +87,7 @@ export TEST="$USER" TEST1=$TEST
 export TEST=LOL
 export TEST=LOL
 
-
+export tm= f f d dsf fsd ds f sd=99 f f d e r t t t r f f g t r  fdsd=qwerty == 5 5= 5 5=qwerty r fs  43 3 gg r4 6 er fd g 34  tg _ -- test="Hello" var=$HOME$USER
 
 
 
@@ -96,3 +96,13 @@ export: print all variables
 
 export test="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER' test2 test3= test4="" test5='' $USER=$USER $NONE=$NONE
 unset test test2 test3 test4 test5 $USER 5´`1 $NONE !ª"·%$&/()=?¿_: test6=
+
+
+export test="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER' "$TERM_PROGRAM"="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER' TEST=123  ___TEST=123  TEST=123   ; export ttt1 ttt2= ttt3="" ttt4='' ttt5=$test
+
+
+TE\\\ST=100 0$TEST=0123 +++++++=123
+
+
+
+export change=old_value "ls"="ls" "test"="Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER' "$TERM_PROGRAM"=123 ___TEST=123 empty1 empty2= empty3="" empty4='' $USER=$USER ; change="new_value" $USER='$USER'

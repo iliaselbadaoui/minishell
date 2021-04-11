@@ -3,93 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/03/18 12:46:45 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:28:45 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-int				exit_shell(t_command *cmd)
+static void	free_env(t_string key)
 {
-	int	i;
-	int	is_number;
-
-	i = 0;
-	is_number = 0;
-	out("exit\n");
-	while (cmd->args[1] && cmd->args[1][i])
+	if (key_exist(g_sorted_env, key))
 	{
-		if (cmd->args[1][0] == '-' || cmd->args[1][0] == '+')
-			i++;
-		if (!(is_number = ft_isdigit(cmd->args[1][i])))
-		{
-			out("minishell: exit: ");
-			out(cmd->args[1]);
-			out(": numeric argument required\n");
-			return (-1);
-		}
-		i++;
+		free_by_key(&g_sorted_env, key);
+		free_by_key(&g_map, key);
 	}
-	if (cmd->args[2] && cmd->args[1])
-	{
-		out("minishell: exit: too many arguments\n");
-		out(cmd->args[0]);
-		return (1);
-	}
-	return (-1);
 }
 
-int		cd()
-{
-	out("cd still need work \n");
-	return (0);
-}
-
-int		pwd(void)
+// Print out current path to a file descriptor
+int	pwd(int fd)
 {
 	char	buff[1024];
 
 	if (getcwd(buff, sizeof(buff)) == NULL)
-		return (-1);
-	out(buff);
-	out("\n");
-	return (1);
+		return (1); // Failed
+	write(fd, &buff, length(buff));
+	write(fd, "\n", 1);
+	return (0); // SUCCESS
 }
 
-int		unset(t_string *args)
+// Remove a key/keys from environment variables
+int	unset(t_string *args)
 {
 	int			i;
+	int			ret;
 	t_string	key;
 
 	i = 0;
+	ret = 0;
 	while (args[++i])
 	{
-		key = filter(args[i]);
+		key = filter(ft_strdup(args[i]));
 		if (is_valid_key(key))
-		{
-			if (get_value_by_key(g_map, key))
-				free_by_key(&g_map, key);
-			// printf("Variable is unseted\n");
-		}
+			free_env(key);
 		else
+		{
 			printf("minishell: unset: `%s': not a valid identifier\n", key);
+			ret++;
+		}
+		free(key);
 	}
-	return (1);
+	if (ret)
+		return (1); // FAILED invalid key/keys
+	return (0); // SUCCESS
 }
 
-int		env(void)
+// Print out all environment variables to a file descriptor
+int	env(int fd)
 {
 	t_map	*tmp;
 
 	tmp = g_map;
+	if (tmp == NULL)
+		return (1); // FAILED
 	while (tmp)
 	{
 		if (tmp->value != NULL)
-			printf("%s=%s\n", tmp->key, tmp->value);
+		{
+			write(fd, tmp->key, length(tmp->key));
+			write(fd, "=", 1);
+			write(fd, tmp->value, length(tmp->value));
+			write(fd, "\n", 1);
+		}
 		tmp = tmp->next;
 	}
-	return (1);
+	return (0); // SUCCESS
 }

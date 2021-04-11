@@ -1,33 +1,47 @@
-echo ilias
-echo ilias elbadaoui
-ilias
-echo ilias heyy
-i
-j
-h
-x
-x
-x
-bn
-b
-x
-i
-x
-leaks minishell
-x
-exit
-echo ilias
-echo "ilias" i
-i
-x
-a
-exit
-x
-exit
-leaks minishell
-exit
+echo    $TEST lol $TEST
+echo "$=TEST"
+echo "$"
+echo "$?TEST"
+echo $TEST $TEST
+echo "$1TEST"
+echo "Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
+echo -n -n -n test tout
+echo -nnnnnnnn test
+echo -----n test
+echo -----n test
+echo -nnnnnnnn test
+echo -n -n -n test tout
+echo "Hello \'($USER)\'' $USER'"$USER\'\'\'\'123456789'$USER'
+echo "$1TEST"
+echo $TEST $TEST
+echo "$?TEST"
+echo $TEST $TEST
+echo $TEST $TEST
+echo "$"
+echo "$=TEST"
+echo    $TEST lol $TEST
+ls
+/bin/ls
+clear
 pwd
+clear
+gfds
+/hgfds
+.
+.
+d
+d
+3
+..
+...
+export t t t t t y y y y y=eewf df df52 5 63 dffg =dffg df85=564313
+export
+enc
+env
+s
+  
 cd
+<<<<<<< HEAD
 pwd
 >ilias
 >ilias
@@ -112,3 +126,21 @@ exit
 echo test>file.txt
 exit
 exit
+=======
+cd
+ 
+sd
+    
+          
+  
+sdasd
+fdgsdfg
+   
+fff
+520
+gfd
+ls
+clear
+/hgfd
+jhgfd
+echo $?
