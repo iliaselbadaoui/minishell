@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 23:11:41 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/10 17:37:06 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/12 18:28:00 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	loop(void)
 		if (syntax_checker(trim(line)) && *line != '\0')
 		{
 			list = parser(trim(line));
-			// ret = exec_cmds(list);
-			ret = 0;
-			print_struct(list);
+			ret = exec_cmds(list);
+			// ret = 0;
+			// print_struct(list);
 		}
 		free(line);
 		line = NULL;

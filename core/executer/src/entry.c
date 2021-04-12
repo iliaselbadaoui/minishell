@@ -6,29 +6,29 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 17:33:39 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/12 18:32:32 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
 // Check is the command builtin
-static int	check_builtins(t_command *cmd)
+static int	check_builtins(t_command *cmd, int fd)
 {
 	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));		// returns: -1 with SUCCESS, 1 with Failure & without exitting, 255: exit with Failure
 	else if (equals(cmd->args[0], "echo"))
-		return (echo(cmd->args, 1));	// returns: 0 with SUCCESS
+		return (echo(cmd->args, fd));	// returns: 0 with SUCCESS
 	else if (equals(cmd->args[0], "cd"))
 		return (cd(cmd->args));			// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "pwd"))
-		return (pwd(1));				// returns: 0 with SUCCESS, 1 with Failure
+		return (pwd(fd));				// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "export"))
-		return (export(cmd->args, 1));	// returns: 0 with SUCCESS, 1 with Failure
+		return (export(cmd->args, fd));	// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "unset"))
 		return (unset(cmd->args));		// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "env"))
-		return (env(1));				// returns: 0 with SUCCESS, 1 with Failure
+		return (env(fd));				// returns: 0 with SUCCESS, 1 with Failure
 	return (2);							// Not a builtin command
 }
 
@@ -56,17 +56,17 @@ static int	exec_cmd(t_command *list, t_string *cmd)
 	i = -1;
 	if (!*cmd)
 		return (0);
-	*cmd = filter(ft_strdup(*cmd)); // Filter The Command, ex: "echo" => echo
+	*cmd = filter(ft_strdup(*cmd));				// Filter The Command, ex: "echo" => echo
 	if (*cmd[0] != '\0')
 	{
-		ret = check_builtins(list); // Check builtins functions, if return is 2, the command not in builtins
+		ret = check_builtins(list, 1);			// Check builtins functions, if return is 2, the command not in builtins
 		if (ret != 2)
 			return (ret);
-		if (get_env_value("PATH")[0] == '\0') // Check if PATH variable is not empty && is exist
+		if (get_env_value("PATH")[0] == '\0')	// Check if PATH variable is not empty && is exist
 			ret = 2;
 		else
 		{
-			ret = check_bins(list); // Check Command file if PATH variable exist
+			ret = check_bins(list);				// Check Command file if PATH variable exist
 			if (ret != 2 && ret != 127)
 				return (ret);
 		}
@@ -90,15 +90,7 @@ int	exec_cmds(t_command *list)
 		cmd = list->args[0];
 		ret = exec_cmd(list, &cmd);
 		free(cmd);
-		g_error = ret;
-		if (ret == -1)
-			g_error = 0;
-		if (ret == 255)
-		{
-			ret = -1;
-			g_error = 255;
-		}
-		// printf("ng_error: [%d]\n", g_error);
+		ret = get_error(ret);
 		list = list->next;
 	}
 	return (ret);
