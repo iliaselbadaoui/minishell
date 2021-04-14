@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/12 18:32:32 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:41:21 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,15 @@ int	exec_cmds(t_command *list)
 {
 	int			ret;
 	t_string	cmd;
+	t_redirect	*tmp;
 
 	ret = 0;
 	while (list)
 	{
+		// Check redirections
+		tmp = list->redirections;
+		if (tmp->file_name) // and it's > or >> redirection type
+			init_files(tmp);
 		cmd = list->args[0];
 		ret = exec_cmd(list, &cmd);
 		free(cmd);
