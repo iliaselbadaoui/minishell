@@ -1,40 +1,29 @@
 
 #include "../executer.h"
 
-// Create all files
-static int	init_files(t_redirect *tmp, t_bool is_append)
-{
-	int	fd;
-
-	while (tmp->file_name)
-	{
-		// Check redirection type
-		if (is_append)
-			fd = open(tmp->file_name, O_RDWR|O_CREAT|O_APPEND, 0666);
-		else
-			fd = open(tmp->file_name, O_RDWR|O_CREAT, 0666);
-		close(fd);
-		tmp++;
-	}
-	return (fd);
-}
-
-void	check_redirection(t_command *list)
+int	check_redirection(t_command *list)
 {
 	t_redirect	*tmp;
-	int			fd;
+	int			fd1;
+	// int			fd2;
 
 	tmp = list->redirections;
-	if	(tmp->type == 'r')
+	while (tmp->file_name)
 	{
-		fd = open(tmp->file_name, O_RDONLY, 0666);
-		if (fd == -1){
-			out("file not exist");
-			return ;
-		}
+		if (tmp->type == 'c')		// >
+			fd1 = open(tmp->file_name, O_RDWR|O_CREAT|O_TRUNC, 0666);
+		else if (tmp->type == 'a')	// >>
+			fd1 = open(tmp->file_name, O_RDWR|O_CREAT|O_APPEND, 0666);
+		// else if (tmp->type == 'r')	// <
+		// {
+		// 	fd2 = open(tmp->file_name, O_RDONLY, 0666);
+		// 	if (fd2 == -1)
+		// 		break ;
+		// }
+		tmp++;
+		if (tmp->file_name)
+			close(fd1);
 	}
-	if (tmp->type == 'c')
-		fd = init_files(tmp, false);
-	else if (tmp->type == 'a')
-		fd = init_files(tmp, true);
+	dup2(fd1, 1);
+	return (fd1);
 }

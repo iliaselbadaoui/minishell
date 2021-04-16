@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/15 13:29:57 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:19:54 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	command_not_found(t_string cmd)
 }
 
 // Execute a command.
-static int	exec_cmd(t_command *list, t_string *cmd)
+static int	exec_cmd(t_command *list, t_string *cmd, int fd)
 {
 	int	ret;
 	int	i;
@@ -59,7 +59,7 @@ static int	exec_cmd(t_command *list, t_string *cmd)
 	*cmd = filter(ft_strdup(*cmd));				// Filter The Command, ex: "echo" => echo
 	if (*cmd[0] != '\0')
 	{
-		ret = check_builtins(list, 1);			// Check builtins functions, if return is 2, the command not in builtins
+		ret = check_builtins(list, fd);			// Check builtins functions, if return is 2, the command not in builtins
 		if (ret != 2)
 			return (ret);
 		if (get_env_value("PATH")[0] == '\0')	// Check if PATH variable is not empty && is exist
@@ -83,15 +83,18 @@ int	exec_cmds(t_command *list)
 {
 	int			ret;
 	t_string	cmd;
+	int			fd;
 
 	ret = 0;
 	while (list)
 	{
-		check_redirection(list);
+		fd = check_redirection(list);
 		cmd = list->args[0];
-		ret = exec_cmd(list, &cmd);
+		ret = exec_cmd(list, &cmd, fd);
 		free(cmd);
 		ret = get_error(ret);
+		dup2(1, fd);
+		close(fd);
 		list = list->next;
 	}
 	return (ret);
