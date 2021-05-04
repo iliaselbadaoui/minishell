@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_redirection.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/04 13:53:09 by mait-si-          #+#    #+#             */
+/*   Updated: 2021/05/04 13:59:27 by mait-si-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../executer.h"
 
@@ -51,13 +62,9 @@ int	check_redirection(t_command *list)
 
 	// Get last file on >, >> and <.
 	// Meanwhile create the output files and check the input files if exist
-	ret = 0;
 	files = get_files(list, &ret);
-	if (files[0])
-		printf("[%s]\n", files[0]->file_name);
-	if (files[1])
-		printf("[%s]\n", files[1]->file_name);
-	fd_stdin = 0;
+	if (ret == 1)
+		return (1); // an input file dosen't exist
 	fd_stdout = 1;
 	if (files[0])
 	{
@@ -65,14 +72,17 @@ int	check_redirection(t_command *list)
 			fd_stdout = open(files[0]->file_name, O_WRONLY|O_CREAT|O_TRUNC, 0644);
 		else if (files[0]->type == 'a')	// >>
 			fd_stdout = open(files[0]->file_name, O_WRONLY|O_CREAT|O_APPEND, 0644);
+		// Duplicating file descriptors
 		dup2(fd_stdout, STDOUT_FILENO);
 		close(fd_stdout);
 	}
 	if (files[1])
 	{
+		fd_stdin = open(files[1]->file_name, O_RDONLY, 0666);
+		// Duplicating file descriptors
 		dup2(fd_stdin, STDIN_FILENO);
 		close(fd_stdin);
 	}
 	free(files);
-	return (ret); // 0 on SUCCESS, 1 on a file dosen't exist
+	return (0); //SUCCESS
 }

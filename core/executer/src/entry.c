@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/03 23:42:23 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/04 13:33:32 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,13 @@ int	exec_cmds(t_command *list)
 	while (list)
 	{
 		// Redirection Checker
-		if (list->redirections)
-			ret = check_redirection(list);
+		if (list->redirections->file_name)
+			if (check_redirection(list) == 1)
+			{
+				ret = 1;
+				list = list->next;
+				continue ;
+			}
 
 		// Execution
 		cmd = list->args[0];
@@ -101,8 +106,12 @@ int	exec_cmds(t_command *list)
 		free(cmd);
 		ret = get_error(ret);
 
-		dup2(fd_in, 0);
-		dup2(fd_out, 1);
+		// Duplicating file descriptors
+		if (list->redirections->file_name)
+		{
+			dup2(fd_in, 0);
+			dup2(fd_out, 1);
+		}
 		list = list->next;
 	}
 	return (ret);
