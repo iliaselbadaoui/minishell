@@ -1,29 +1,78 @@
 
 #include "../executer.h"
 
+static int	no_file_directory(t_string cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, length(cmd));
+	write(2, ": No such file or directory\n", 28);
+	return (1);
+}
+
+static t_redirect	**get_files(t_command *list, int *ret)
+{
+	int			tmp;
+	t_redirect	**files;
+	t_redirect	*red;
+
+	files = (t_redirect**)ft_calloc(2, sizeof(t_redirect*));
+	red = list->redirections;
+	// Loop through redirections
+	while (red->file_name)
+	{
+		if (red->type == 'c')		// >
+			close(open(red->file_name, O_RDWR|O_CREAT|O_TRUNC, 0666));
+		else if (red->type == 'a')	// >>
+			close(open(red->file_name, O_RDWR|O_CREAT|O_APPEND, 0666));
+		if (red->type == 'c' || red->type == 'a')
+			files[0] = red;
+		else if (red->type == 'r')	// <
+		{
+			tmp = open(red->file_name, O_RDONLY, 0666);
+			close(tmp);
+			if (tmp == -1)
+			{
+				*ret = no_file_directory(red->file_name);
+				break ;
+			}
+			files[1] = red;
+		}
+		red++;
+	}
+	return (files);
+}
+
 int	check_redirection(t_command *list)
 {
-	t_redirect	*tmp;
-	int			fd1;
-	// int			fd2;
+	int			fd_stdin;
+	int			fd_stdout;
+	t_redirect	**files;
+	int			ret;
 
-	tmp = list->redirections;
-	while (tmp->file_name)
+	// Get last file on >, >> and <.
+	// Meanwhile create the output files and check the input files if exist
+	ret = 0;
+	files = get_files(list, &ret);
+	if (files[0])
+		printf("[%s]\n", files[0]->file_name);
+	if (files[1])
+		printf("[%s]\n", files[1]->file_name);
+	fd_stdin = 0;
+	fd_stdout = 1;
+	if (files[0])
 	{
-		if (tmp->type == 'c')		// >
-			fd1 = open(tmp->file_name, O_RDWR|O_CREAT|O_TRUNC, 0666);
-		else if (tmp->type == 'a')	// >>
-			fd1 = open(tmp->file_name, O_RDWR|O_CREAT|O_APPEND, 0666);
-		// else if (tmp->type == 'r')	// <
-		// {
-		// 	fd2 = open(tmp->file_name, O_RDONLY, 0666);
-		// 	if (fd2 == -1)
-		// 		break ;
-		// }
-		tmp++;
-		if (tmp->file_name)
-			close(fd1);
+		if (files[0]->type == 'c')			// >
+			fd_stdout = open(files[0]->file_name, O_WRONLY|O_CREAT|O_TRUNC, 0644);
+		else if (files[0]->type == 'a')	// >>
+			fd_stdout = open(files[0]->file_name, O_WRONLY|O_CREAT|O_APPEND, 0644);
+		dup2(fd_stdout, STDOUT_FILENO);
+		close(fd_stdout);
 	}
-	dup2(fd1, 1);
-	return (fd1);
+	if (files[1])
+	{
+		dup2(fd_stdin, STDIN_FILENO);
+		close(fd_stdin);
+	}
+	free(files);
+	return (ret); // 0 on SUCCESS, 1 on a file dosen't exist
 }

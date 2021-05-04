@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:08:46 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 13:10:40 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:04:59 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exit_shell(t_command *cmd)
 	if (cmd->args[2] && cmd->args[1])
 	{
 		write(2, "minishell: exit: too many arguments\n", 36);
-		write(2, cmd->args[0], length(cmd->args[0]));
+		// write(2, cmd->args[0], length(cmd->args[0]));
 		return (1); // didn't exit
 	}
 	return (-1); // SUCCESS exit

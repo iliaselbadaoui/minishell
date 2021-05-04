@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/16 15:19:54 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/03 23:42:23 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,26 @@ int	exec_cmds(t_command *list)
 {
 	int			ret;
 	t_string	cmd;
-	int			fd;
+	int			fd_out;
+	int			fd_in;
 
 	ret = 0;
+	fd_in = dup(0);
+	fd_out = dup(1);
 	while (list)
 	{
-		fd = check_redirection(list);
+		// Redirection Checker
+		if (list->redirections)
+			ret = check_redirection(list);
+
+		// Execution
 		cmd = list->args[0];
-		ret = exec_cmd(list, &cmd, fd);
+		ret = exec_cmd(list, &cmd, 1);
 		free(cmd);
 		ret = get_error(ret);
-		dup2(1, fd);
-		close(fd);
+
+		dup2(fd_in, 0);
+		dup2(fd_out, 1);
 		list = list->next;
 	}
 	return (ret);
