@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils4.c                                           :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:21:33 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/05 17:33:20 by mait-si-         ###   ########.fr       */
+/*   Created: 2021/05/05 15:48:58 by mait-si-          #+#    #+#             */
+/*   Updated: 2021/05/05 15:58:33 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-int	get_error(int ret)
+void	handle_pipes(t_command **list)
 {
-	g_error = ret;
-	if (ret == -1)
-		g_error = 0;
-	if (ret == 255)
+	int			id;
+	pid_t		pid;
+	t_command	*cmd;
+
+	cmd = *list;
+	id = cmd->id;
+	while (cmd->next->id == id)
 	{
-		ret = -1;
-		g_error = 255;
+		//FORK HERE
+		pid = fork();
+		if (!pid)
+		{
+			// redriections in pipes here
+			printf("Child\n");
+		}
+		else if (pid > 0)
+		{
+			wait(NULL);
+			printf("Parent\n");
+		}
+		if (!(cmd->next))
+			break ;
+		cmd = cmd->next;
 	}
-	return (ret);
 }

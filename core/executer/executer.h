@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/16 15:06:40 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:49:21 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ t_string	filter(t_string str);
 int			get_next_line(int fd, char **line);
 void		update_env(t_string key, t_string value);
 int			check_redirection(t_command *list);
+void		handle_pipes(t_command **list);
+int			exec_command(t_command *list, int fd_std[2]);
 
 #endif
