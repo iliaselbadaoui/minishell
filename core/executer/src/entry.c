@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/04 13:33:32 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/05 15:38:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,32 @@ int	exec_cmds(t_command *list)
 	t_string	cmd;
 	int			fd_out;
 	int			fd_in;
+	int			id;
 
 	ret = 0;
 	fd_in = dup(0);
 	fd_out = dup(1);
 	while (list)
 	{
+		// Check pipe
+		if (list->id == list->next->id)
+		{
+			id = list->id;
+			while (list->next->id == id)
+			{
+				//FORK HERE
+				pid_t id = fork();
+				if (!id)
+				{
+					// redriections in pipes here
+				}
+				else if (id > 0)
+					wait(NULL);
+				if (!(list->next))
+					break ;
+				list = list->next;
+			}
+		}
 		// Redirection Checker
 		if (list->redirections->file_name)
 			if (check_redirection(list) == 1)
@@ -112,6 +132,8 @@ int	exec_cmds(t_command *list)
 			dup2(fd_in, 0);
 			dup2(fd_out, 1);
 		}
+		if (!(list->next))
+			break ;
 		list = list->next;
 	}
 	return (ret);
