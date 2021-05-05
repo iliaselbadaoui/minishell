@@ -61,6 +61,12 @@ char		*readline()
 			down_history(&res, ft_strlen(res));
 		if (total == KEY_REMOVE)
 			backspace(&res, ft_strlen(res));
+		if (total == CTRL_D)
+			if (ft_strlen(res) == 0)
+			{
+				out("exit\n");
+				exit(g_error);
+			}
 		if (total == ENTER)
 			newline(res, &done);
 	}

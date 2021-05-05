@@ -19,6 +19,7 @@ fclean: clean
 	@$(MakeDir) fclean -C core/executer/
 	@$(MakeDir) fclean -C core/parser/
 	@rm -rf $(NAME)
+	@rm -rf .history
 
 re: fclean all
 
