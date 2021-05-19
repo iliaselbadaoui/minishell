@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 15:51:05 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	put_env(int fd)
 		}
 		tmp = tmp->next;
 	}
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Update key if exist, if not add it to g_map && g_sorted_env
@@ -98,7 +98,7 @@ static int	set_data(t_string args, t_string *key, t_string *value)
 		*value = NULL;
 	if (!is_valid_key(*key))
 		return (not_valid(*key, *value));
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Main Export function
@@ -129,6 +129,6 @@ int	export(t_string *args, int fd)
 	}
 	sort_env();
 	if (ret)
-		return (1); // FAILED to add/update key/keys
-	return (0); // SUCCESS
+		return (EXIT_FAILURE); // FAILED to add/update key/keys
+	return (EXIT_SUCCESS); // SUCCESS
 }

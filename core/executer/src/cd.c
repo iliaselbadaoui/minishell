@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:35:17 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:30:21 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	to_home(void)
 	if (!path)
 	{
 		write(2, "minishell: cd: HOME not set\n", 28);
-		return (1); // FAILED
+		return (EXIT_FAILURE); // FAILED
 	}
 	if (*path == '\0')
 		path = getcwd(NULL, 1024);
@@ -56,7 +56,7 @@ static int	to_home(void)
 	update_env("OLDPWD", get_env_value("PWD"));
 	update_env("PWD", path);
 	free(path);
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Main CD function
@@ -76,5 +76,5 @@ int	cd(t_string *args)
 	update_env("OLDPWD", get_env_value("PWD"));
 	update_env("PWD", path);
 	free(path);
-	return (0); //SUCCESS
+	return (EXIT_SUCCESS); //SUCCESS
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:26:09 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 15:37:35 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/12 17:06:49 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int argc, t_string *argv, t_string *envp)
 	{
 		while (1)
 		{
-			out("minishell$ ");
+			out("\033[32mminishell$ \033[37m");
 			line = readline();
 			if (syntax_checker(trim(line)) && *line != '\0')
 			{

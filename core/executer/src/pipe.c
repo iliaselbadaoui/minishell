@@ -3,39 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:48:58 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/05 15:58:33 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/18 23:49:25 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-void	handle_pipes(t_command **list)
+typedef struct	s_data
+{
+	int				id;
+	struct s_data	*next;
+}				t_data;
+
+static void	test(t_command *list, t_data **data)
+{
+	(*data)->id = 1;
+	while (list->next && list->next->id == id)
+	{
+
+	}
+	// first cmd
+	if (list->next)
+	{
+
+	}
+	// middle cmd
+	else if ()
+	{
+
+	}
+	// last cmd
+	else
+	{
+
+	}
+
+	return (data);
+}
+
+int	handle_pipes(t_command **list)
 {
 	int			id;
 	pid_t		pid;
-	t_command	*cmd;
+	int			fd[2];
+	int			input;
+	t_data		*data;
 
-	cmd = *list;
-	id = cmd->id;
-	while (cmd->next->id == id)
+	id = (*list)->id;
+	test(*list, &data);
+	// Loop through pipe line (separated by | )
+	while ((*list)->next && (*list)->next->id == id)
 	{
-		//FORK HERE
+		pipe(fd);
 		pid = fork();
-		if (!pid)
+		if (pid == 0)
 		{
-			// redriections in pipes here
-			printf("Child\n");
+			// CHILD PROCESS.
+
 		}
-		else if (pid > 0)
-		{
-			wait(NULL);
-			printf("Parent\n");
-		}
-		if (!(cmd->next))
-			break ;
-		cmd = cmd->next;
+		// PARENT PROCESS
+
+		(*list) = (*list)->next;
 	}
+	return (0);
 }

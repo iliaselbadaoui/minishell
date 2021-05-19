@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_redirection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:53:09 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/04 13:59:27 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_redirection(t_command *list)
 	// Meanwhile create the output files and check the input files if exist
 	files = get_files(list, &ret);
 	if (ret == 1)
-		return (1); // an input file dosen't exist
+		return (EXIT_FAILURE); // an input file dosen't exist
 	fd_stdout = 1;
 	if (files[0])
 	{
@@ -84,5 +84,5 @@ int	check_redirection(t_command *list)
 		close(fd_stdin);
 	}
 	free(files);
-	return (0); //SUCCESS
+	return (EXIT_SUCCESS); //SUCCESS
 }

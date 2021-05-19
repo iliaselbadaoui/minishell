@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/05 17:48:24 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/18 23:13:58 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@
 // return 1, 127, 255, ... : FAILED
 int	exec_cmds(t_command *list)
 {
-	int			ret;
-	int			fd_std[2];
+	int	ret;
+	int	fd_std[2];
 
 	ret = 0;
 	fd_std[0] = dup(0);
 	fd_std[1] = dup(1);
+	// Loop through commands line (separated by ; )
 	while (list)
 	{
 		// Check pipes
-		// if (list->id == list->next->id)
-		// 	handle_pipes(&list);
-		ret = exec_command(list, fd_std);
-		if (!list->next)
-			break ;
+		if (list->next && list->id == list->next->id)
+			ret = handle_pipes(&list);
+		else
+			ret = exec_command(list, fd_std);
 		list = list->next;
 	}
 	return (ret);

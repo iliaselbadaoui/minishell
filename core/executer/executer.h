@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 17:49:21 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/06 03:34:34 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_string	filter(t_string str);
 int			get_next_line(int fd, char **line);
 void		update_env(t_string key, t_string value);
 int			check_redirection(t_command *list);
-void		handle_pipes(t_command **list);
+int			handle_pipes(t_command **list);
 int			exec_command(t_command *list, int fd_std[2]);
 
 #endif

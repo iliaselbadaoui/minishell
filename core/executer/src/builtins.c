@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:28:45 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	pwd(int fd)
 	char	buff[1024];
 
 	if (getcwd(buff, sizeof(buff)) == NULL)
-		return (1); // Failed
+		return (EXIT_FAILURE); // Failed
 	write(fd, &buff, length(buff));
 	write(fd, "\n", 1);
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Remove a key/keys from environment variables
@@ -55,8 +55,8 @@ int	unset(t_string *args)
 		free(key);
 	}
 	if (ret)
-		return (1); // FAILED invalid key/keys
-	return (0); // SUCCESS
+		return (EXIT_FAILURE); // FAILED invalid key/keys
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Print out all environment variables to a file descriptor
@@ -66,7 +66,7 @@ int	env(int fd)
 
 	tmp = g_map;
 	if (tmp == NULL)
-		return (1); // FAILED
+		return (EXIT_FAILURE); // FAILED
 	while (tmp)
 	{
 		if (tmp->value != NULL)
@@ -78,5 +78,5 @@ int	env(int fd)
 		}
 		tmp = tmp->next;
 	}
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }

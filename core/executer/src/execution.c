@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:33:07 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/05 17:50:21 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/18 19:17:03 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	check_builtins(t_command *cmd, int fd)
 }
 
 // Execute a command.
-static int	execution(t_command *list, t_string *cmd, int fd)
+int	execution(t_command *list, t_string *cmd, int fd)
 {
 	int	ret;
 	int	i;
@@ -78,13 +78,14 @@ static int	execution(t_command *list, t_string *cmd, int fd)
 
 int	exec_command(t_command *list, int fd_std[2])
 {
-	int ret;
+	int			ret;
 	t_string	cmd;
 
 	ret = 0;
 	// Redirection Checker
 	if (list->redirections->file_name)
-		return (check_redirection(list));
+		if (check_redirection(list))
+			return (EXIT_FAILURE);
 
 	// Execution
 	cmd = list->args[0];
