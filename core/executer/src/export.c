@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/19 09:43:34 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_bool	update_key(t_map *env, t_string key, t_string value)
 }
 
 // Print out all envirement variables by order (g_sorted_env)
-static int	put_env(int fd)
+static int	put_env(void)
 {
 	t_map	*tmp;
 
@@ -45,17 +45,17 @@ static int	put_env(int fd)
 	{
 		if (tmp->value == NULL)
 		{
-			write(fd, "declare -x ", 11);
-			write(fd, tmp->key, length(tmp->key));
-			write(fd, "\n", 1);
+			write(1, "declare -x ", 11);
+			write(1, tmp->key, length(tmp->key));
+			write(1, "\n", 1);
 		}
 		else
 		{
-			write(fd, "declare -x ", 11);
-			write(fd, tmp->key, length(tmp->key));
-			write(fd, "=\"", 2);
-			write(fd, tmp->value, length(tmp->value));
-			write(fd, "\"\n", 2);
+			write(1, "declare -x ", 11);
+			write(1, tmp->key, length(tmp->key));
+			write(1, "=\"", 2);
+			write(1, tmp->value, length(tmp->value));
+			write(1, "\"\n", 2);
 		}
 		tmp = tmp->next;
 	}
@@ -102,7 +102,7 @@ static int	set_data(t_string args, t_string *key, t_string *value)
 }
 
 // Main Export function
-int	export(t_string *args, int fd)
+int	export(t_string *args)
 {
 	int			i;
 	int			ret;
@@ -112,7 +112,7 @@ int	export(t_string *args, int fd)
 	i = 0;
 	ret = 0;
 	if (!args[1])
-		return (put_env(fd));
+		return (put_env());
 	while (args[++i])
 	{
 		// Set Key & Value from args[i]

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:33:07 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/18 19:17:03 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/21 21:49:10 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,27 @@ static int	command_not_found(t_string cmd)
 }
 
 // Check is the command builtin
-static int	check_builtins(t_command *cmd, int fd)
+static int	check_builtins(t_command *cmd)
 {
 	if (equals(cmd->args[0], "exit"))
 		return (exit_shell(cmd));		// returns: -1 with SUCCESS, 1 with Failure & without exitting, 255: exit with Failure
 	else if (equals(cmd->args[0], "echo"))
-		return (echo(cmd->args, fd));	// returns: 0 with SUCCESS
+		return (echo(cmd->args));	// returns: 0 with SUCCESS
 	else if (equals(cmd->args[0], "cd"))
 		return (cd(cmd->args));			// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "pwd"))
-		return (pwd(fd));				// returns: 0 with SUCCESS, 1 with Failure
+		return (pwd());				// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "export"))
-		return (export(cmd->args, fd));	// returns: 0 with SUCCESS, 1 with Failure
+		return (export(cmd->args));	// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "unset"))
 		return (unset(cmd->args));		// returns: 0 with SUCCESS, 1 with Failure
 	else if (equals(cmd->args[0], "env"))
-		return (env(fd));				// returns: 0 with SUCCESS, 1 with Failure
+		return (env());				// returns: 0 with SUCCESS, 1 with Failure
 	return (2);							// Not a builtin command
 }
 
 // Execute a command.
-int	execution(t_command *list, t_string *cmd, int fd)
+int	execution(t_command *list, t_string *cmd)
 {
 	int	ret;
 	int	i;
@@ -59,7 +59,7 @@ int	execution(t_command *list, t_string *cmd, int fd)
 	*cmd = filter(ft_strdup(*cmd));				// Filter The Command, ex: "echo" => echo
 	if (*cmd[0] != '\0')
 	{
-		ret = check_builtins(list, fd);			// Check builtins functions, if return is 2, the command not in builtins
+		ret = check_builtins(list);			// Check builtins functions, if return is 2, the command not in builtins
 		if (ret != 2)
 			return (ret);
 		if (get_env_value("PATH")[0] == '\0')	// Check if PATH variable is not empty && is exist
@@ -76,28 +76,31 @@ int	execution(t_command *list, t_string *cmd, int fd)
 	return (command_not_found(*cmd));
 }
 
-int	exec_command(t_command *list, int fd_std[2])
+int	exec_command(t_command *list)
 {
 	int			ret;
 	t_string	cmd;
+	// int			fd_in;
+	// int			fd_out;
 
 	ret = 0;
+	// fd_in = dup(0);
+	// fd_out = dup(1);
+
 	// Redirection Checker
-	if (list->redirections->file_name)
-		if (check_redirection(list))
-			return (EXIT_FAILURE);
+	// if (list->redirections->file_name)
+	// 	if (check_redirection(list))
+	// 		return (EXIT_FAILURE);
 
 	// Execution
 	cmd = list->args[0];
-	ret = execution(list, &cmd, 1);
+	ret = execution(list, &cmd);
 	free(cmd);
 	ret = get_error(ret);
 
-	// Duplicating file descriptors
-	if (list->redirections->file_name)
-	{
-		dup2(fd_std[0], 0);
-		dup2(fd_std[1], 1);
-	}
+	// dup2(fd_in, 0);
+	// dup2(fd_out, 1);
+	// close(fd_in);
+	// close(fd_out);
 	return (ret);
 }

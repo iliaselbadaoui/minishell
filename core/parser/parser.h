@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/01 09:38:26 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/21 11:47:28 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ typedef struct s_coord
 typedef struct s_command
 {
 	int					id;
+	int					fd[2];
+	int					pos;
+	int					pid;
 	t_string			*args;
 	t_redirect			*redirections;
 	struct s_command	*next;

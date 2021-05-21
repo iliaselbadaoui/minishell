@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/06 03:34:34 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/21 18:37:01 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ t_map		*g_sorted_env;
 void		print_struct(t_command *list);
 
 // Builtin Functions
-int			env(int fd);
-int			pwd(int fd);
+int			env(void);
+int			pwd(void);
 int			exit_shell(t_command *cmd);
-int			echo(t_string *args, int fd);
-int			export(t_string *args, int fd);
+int			echo(t_string *args);
+int			export(t_string *args);
 int			unset(t_string *args);
 int			cd(t_string *args);
 
@@ -64,7 +64,7 @@ t_string	filter(t_string str);
 int			get_next_line(int fd, char **line);
 void		update_env(t_string key, t_string value);
 int			check_redirection(t_command *list);
-int			handle_pipes(t_command **list);
-int			exec_command(t_command *list, int fd_std[2]);
+t_command	*handle_pipes(t_command *cmd);
+int			exec_command(t_command *list);
 
 #endif

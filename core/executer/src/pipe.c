@@ -3,70 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:48:58 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/18 23:49:25 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/21 21:47:28 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-typedef struct	s_data
+int	waits(t_command *line)
 {
-	int				id;
-	struct s_data	*next;
-}				t_data;
-
-static void	test(t_command *list, t_data **data)
-{
-	(*data)->id = 1;
-	while (list->next && list->next->id == id)
-	{
-
-	}
-	// first cmd
-	if (list->next)
-	{
-
-	}
-	// middle cmd
-	else if ()
-	{
-
-	}
-	// last cmd
-	else
-	{
-
-	}
-
-	return (data);
+	if (line->next && line->next->pid != -1)
+		waits(line->next);
+	return waitpid(line->pid ,NULL , 0);
 }
 
-int	handle_pipes(t_command **list)
+t_command *get_cmd_positions(t_command *list)
+{
+	t_command	*tmp;
+	int			id;
+
+	id = list->id;
+	tmp = list;
+	// first node
+	tmp->pos = 1;
+	tmp = tmp->next;
+	while(tmp)
+	{
+		// last node
+		if (!tmp->next || tmp->next->id != id)
+		{
+			tmp->pos = 2;
+			break ;
+		}
+		tmp->pos = 0;
+		tmp = tmp->next;
+	}
+	return (list);
+}
+
+void	dups(t_command *list, int input, int fds[2])
+{
+	if (list->pos == 1)			// first cmd
+		dup2(fds[1], 1);
+	else if (list->pos == 0)	// middle cmds
+	{
+		dup2(input, 0);
+		dup2(fds[1], 1);
+	}
+	else						// last cmd
+		dup2(input, 0);
+}
+
+t_command	*handle_pipes(t_command *cmd)
 {
 	int			id;
-	pid_t		pid;
-	int			fd[2];
+	t_command	*head;
+	int			fds[2];
 	int			input;
-	t_data		*data;
 
-	id = (*list)->id;
-	test(*list, &data);
+	head = cmd;
+	id = cmd->id;
+	cmd = get_cmd_positions(cmd);
 	// Loop through pipe line (separated by | )
-	while ((*list)->next && (*list)->next->id == id)
+	while (cmd)
 	{
-		pipe(fd);
-		pid = fork();
-		if (pid == 0)
+		// printf("%s: %d\n", cmd->args[0], cmd->pos);
+		pipe(fds);
+		cmd->pid = fork();
+		if (cmd->pid == 0)				// Child
 		{
-			// CHILD PROCESS.
-
+			dups(cmd, input, fds);
+			exit(exec_command(cmd));	// Execute command
+			// exit(printf("test\n"));
 		}
-		// PARENT PROCESS
-
-		(*list) = (*list)->next;
+		if (input != 0)
+			close(input);
+		close(fds[1]);
+		if (cmd->pos == 2)
+			close(fds[0]);
+		input = fds[0];
+		if (!cmd->next || cmd->next->id != id)
+			break;
+		cmd = cmd->next;
 	}
-	return (0);
+	waits(head);
+	return (cmd);
 }

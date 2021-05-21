@@ -1,9 +1,29 @@
-echo $USER  $USER7777"text"$USER $USER9999 > tmp/file $USER $USER9999 ; cat tmp/file
-echo $USER  $USER7777"text"$USER $USER9999 > tmp/file $USER $USER9999 ; cat tmp/file
-echo 1 > file 2 3 4
-< cat 2
-> ls 1
-echo test > 1
-echo test > test/1
-echo test > tmp/1
-echo $USER  $USER7777"text"$USER $USER9999
+ls|ls
+ls|ls
+ls|ls
+ls|ls
+ls|grep .c
+ls|grep .c
+ls|grep .c
+ls|grep .c
+ls|grep .c
+ls|grep .c
+ls|grep .c
+ls|grep .c
+ls -la
+ls|grep .*
+ls|grep .*
+ls|grep .*
+ls|grep .*
+ls|grep .*
+ls|grep .*
+ls|grep .*
+ls|grep .*
+ls|grep .*|grep .md
+ls|grep .*|grep .md
+ls|grep .*|grep .md
+ls|grep .*|grep .md
+ls|grep .*|grep .md
+ls|grep .*|grep .md
+ls|grep .*|grep .md
+ls|grep .*|grep .md

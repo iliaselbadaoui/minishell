@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/19 09:42:52 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	free_env(t_string key)
 }
 
 // Print out current path to a file descriptor
-int	pwd(int fd)
+int	pwd(void)
 {
 	char	buff[1024];
 
 	if (getcwd(buff, sizeof(buff)) == NULL)
 		return (EXIT_FAILURE); // Failed
-	write(fd, &buff, length(buff));
-	write(fd, "\n", 1);
+	write(1, &buff, length(buff));
+	write(1, "\n", 1);
 	return (EXIT_SUCCESS); // SUCCESS
 }
 
@@ -60,7 +60,7 @@ int	unset(t_string *args)
 }
 
 // Print out all environment variables to a file descriptor
-int	env(int fd)
+int	env(void)
 {
 	t_map	*tmp;
 
@@ -71,10 +71,10 @@ int	env(int fd)
 	{
 		if (tmp->value != NULL)
 		{
-			write(fd, tmp->key, length(tmp->key));
-			write(fd, "=", 1);
-			write(fd, tmp->value, length(tmp->value));
-			write(fd, "\n", 1);
+			write(1, tmp->key, length(tmp->key));
+			write(1, "=", 1);
+			write(1, tmp->value, length(tmp->value));
+			write(1, "\n", 1);
 		}
 		tmp = tmp->next;
 	}
