@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:33:07 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/21 21:49:10 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/22 00:46:05 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ int	exec_command(t_command *list)
 {
 	int			ret;
 	t_string	cmd;
-	// int			fd_in;
-	// int			fd_out;
+	int			fd_in;
+	int			fd_out;
 
 	ret = 0;
-	// fd_in = dup(0);
-	// fd_out = dup(1);
+	fd_in = dup(0);
+	fd_out = dup(1);
 
 	// Redirection Checker
-	// if (list->redirections->file_name)
-	// 	if (check_redirection(list))
-	// 		return (EXIT_FAILURE);
+	if (list->redirections->file_name)
+		if (check_redirection(list))
+			return (EXIT_FAILURE);
 
 	// Execution
 	cmd = list->args[0];
@@ -98,9 +98,9 @@ int	exec_command(t_command *list)
 	free(cmd);
 	ret = get_error(ret);
 
-	// dup2(fd_in, 0);
-	// dup2(fd_out, 1);
-	// close(fd_in);
-	// close(fd_out);
+	dup2(fd_in, 0);
+	dup2(fd_out, 1);
+	close(fd_in);
+	close(fd_out);
 	return (ret);
 }

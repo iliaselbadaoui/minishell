@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:48:58 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/21 21:47:28 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/21 23:58:46 by 0x10000          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-int	waits(t_command *line)
-{
-	if (line->next && line->next->pid != -1)
-		waits(line->next);
-	return waitpid(line->pid ,NULL , 0);
-}
-
-t_command *get_cmd_positions(t_command *list)
+static t_command *get_cmd_positions(t_command *list)
 {
 	t_command	*tmp;
 	int			id;
@@ -43,7 +36,7 @@ t_command *get_cmd_positions(t_command *list)
 	return (list);
 }
 
-void	dups(t_command *list, int input, int fds[2])
+static void	dups(t_command *list, int input, int fds[2])
 {
 	if (list->pos == 1)			// first cmd
 		dup2(fds[1], 1);
@@ -59,6 +52,7 @@ void	dups(t_command *list, int input, int fds[2])
 t_command	*handle_pipes(t_command *cmd)
 {
 	int			id;
+	int			pid;
 	t_command	*head;
 	int			fds[2];
 	int			input;
@@ -69,15 +63,18 @@ t_command	*handle_pipes(t_command *cmd)
 	// Loop through pipe line (separated by | )
 	while (cmd)
 	{
-		// printf("%s: %d\n", cmd->args[0], cmd->pos);
 		pipe(fds);
-		cmd->pid = fork();
-		if (cmd->pid == 0)				// Child
+		pid = fork();
+		if (!pid)
 		{
+			/* Child */
+			// Duplicate pipes file descriptors with STDs
 			dups(cmd, input, fds);
-			exit(exec_command(cmd));	// Execute command
-			// exit(printf("test\n"));
+			// Execute the command to pip fd with exit return on child process
+			exit(exec_command(cmd));
 		}
+		// Wait the child till finish
+		wait(&pid);
 		if (input != 0)
 			close(input);
 		close(fds[1]);
@@ -88,6 +85,5 @@ t_command	*handle_pipes(t_command *cmd)
 			break;
 		cmd = cmd->next;
 	}
-	waits(head);
 	return (cmd);
 }
