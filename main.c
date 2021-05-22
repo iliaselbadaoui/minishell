@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:26:09 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/11 16:26:11 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/22 23:08:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,13 @@ static void	exit_minishell(void)
 	exit(g_error);
 }
 
-int		main(int argc, t_string *argv, t_string *envp)
+static void	loop(void)
 {
 	t_string	line;
 	t_command	*list;
 	int			ret;
 
-	g_map = fill_env(envp);
-	clone_env();
-	init_caps();
-	g_history_file = -1;
-	if (argc && argv)
-		while (1)
+	while (1)
 		{
 			out("minishell$ ");
 			// exit(1);
@@ -51,6 +46,17 @@ int		main(int argc, t_string *argv, t_string *envp)
 			if (ret == -1)
 				exit_minishell();
 		}
+}
+
+int		main(int argc, t_string *argv, t_string *envp)
+{
+
+	g_map = fill_env(envp);
+	clone_env();
+	init_caps();
+	g_history_file = -1;
+	if (argc && argv)
+		loop();
 	free_map(&g_map);
 	free_map(&g_sorted_env);
 	return (0);
