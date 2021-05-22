@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/21 18:37:01 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:16:21 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		*ft_calloc(size_t count, size_t size);
 
 // Utils
 void		signal_handler(int signo);
+void		proc_signal_handler(int signo);
 t_bool		key_exist(t_map *head, t_string key);
 t_bool		is_valid_key(t_string key);
 int			no_file(t_string path);

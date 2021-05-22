@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:23:54 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:34:09 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:15:54 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	run_cmd(t_string path, t_string *args)
 
 	pid = fork();
 	ret = 0;
-	// signal(SIGINT, signal_handler);
+	signal(SIGINT, proc_signal_handler);
 	if (pid == 0) // Child Process
 	{
 		if (execve(path, args, g_envp) == -1)

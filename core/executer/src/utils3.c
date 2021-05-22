@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:18:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/07 20:53:12 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/22 15:17:31 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ int	no_file(t_string path)
 	write(2, ": No such file or directory\n", 28);
 	free(path);
 	return (1);
-}
-
-// Signals handler
-void	signal_handler(int signo)
-{
-	if (signo == SIGINT)
-	{
-		out("\nminishell$ ");
-		signal(SIGINT, signal_handler);
-	}
 }
 
 // Export, not a valid identifier
