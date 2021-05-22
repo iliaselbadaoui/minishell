@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 11:23:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/10 16:03:01 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_bool			syntax_checker(t_string line)
 {
-	g_flag = 0;
-	g_counter = 0;
+	g_container->flag = 0;
+	g_container->counter = 0;
 	if (!line)
 		return (true);
-	while (line[g_counter])
+	while (line[g_container->counter])
 	{
 		if (!check_args(line) || !check_file(line) ||
 		!semi_colone_pipe_checker(line))
 		{
 			out("minishell : syntax error\n");
-			if (g_error != NO_FILE_DIR)
-				g_error = SYNTAX_ERROR;
+			if (g_container->error != NO_FILE_DIR)
+				g_container->error = SYNTAX_ERROR;
 			return (false);
 		}
 	}

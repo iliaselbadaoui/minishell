@@ -16,15 +16,15 @@ static void	load_history()
 {
 	char	*line;
 	
-	g_history_file = open(".history", O_RDONLY|O_CREAT, 0666);
-	while (in(g_history_file, &line))
+	g_container->history_file = open(".history", O_RDONLY|O_CREAT, 0666);
+	while (in(g_container->history_file, &line))
 	{
 		if (*line != 0)
 			add_node(line, 1);
 		free(line);
 	}
 	free(line);
-	close(g_history_file);
+	close(g_container->history_file);
 }
 
 static void	concat_line(char **line, char *c)
@@ -44,7 +44,7 @@ char		*readline()
 	char			*res;
 
 	done = 1;
-	if (!g_history)
+	if (!g_container->history)
 		load_history();
 	res = ft_strdup("");
 	while (done)
@@ -65,7 +65,7 @@ char		*readline()
 			if (ft_strlen(res) == 0)
 			{
 				out("exit\n");
-				exit(g_error);
+				exit(g_container->error);
 			}
 		if (total == ENTER)
 			newline(res, &done);

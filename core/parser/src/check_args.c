@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 21:01:13 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 18:57:32 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:40:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ t_bool			check_args(t_string line)
 {
 	t_bool		bol;
 
-	while (line[g_counter])
+	while (line[g_container->counter])
 	{
 		bol = char_escape(line);
 		if (bol == true)
 			continue ;
 		else if (bol == false)
 			return (false);
-		if (line[g_counter] == '\"' || line[g_counter] == '\'')
+		if (line[g_container->counter] == '\"' || line[g_container->counter] == '\'')
 		{
-			g_char = line[g_counter++];
+			g_container->gchar = line[g_container->counter++];
 			if (!is_quote(false, line))
 				return (false);
 			continue ;
 		}
-		else if (line[g_counter] == ';' || line[g_counter] == '|' ||
-		is_redirection(line[g_counter]))
+		else if (line[g_container->counter] == ';' || line[g_container->counter] == '|' ||
+		is_redirection(line[g_container->counter]))
 			return (true);
-		g_counter++;
+		g_container->counter++;
 	}
 	return (true);
 }

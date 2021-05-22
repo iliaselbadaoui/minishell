@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 15:51:05 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,42 +35,42 @@ static t_bool	update_key(t_map *env, t_string key, t_string value)
 	return (false);
 }
 
-// Print out all envirement variables by order (g_sorted_env)
-static int	put_env(int fd)
+// Print out all envirement variables by order (g_container->sorted_env)
+static int	put_env(void)
 {
 	t_map	*tmp;
 
-	tmp = g_sorted_env;
+	tmp = g_container->sorted_env;
 	while (tmp)
 	{
 		if (tmp->value == NULL)
 		{
-			write(fd, "declare -x ", 11);
-			write(fd, tmp->key, length(tmp->key));
-			write(fd, "\n", 1);
+			write(1, "declare -x ", 11);
+			write(1, tmp->key, length(tmp->key));
+			write(1, "\n", 1);
 		}
 		else
 		{
-			write(fd, "declare -x ", 11);
-			write(fd, tmp->key, length(tmp->key));
-			write(fd, "=\"", 2);
-			write(fd, tmp->value, length(tmp->value));
-			write(fd, "\"\n", 2);
+			write(1, "declare -x ", 11);
+			write(1, tmp->key, length(tmp->key));
+			write(1, "=\"", 2);
+			write(1, tmp->value, length(tmp->value));
+			write(1, "\"\n", 2);
 		}
 		tmp = tmp->next;
 	}
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
-// Update key if exist, if not add it to g_map && g_sorted_env
+// Update key if exist, if not add it to g_container->map && g_container->sorted_env
 void	update_env(t_string key, t_string value)
 {
-	if (update_key(g_map, key, value) && update_key(g_sorted_env, key, value))
+	if (update_key(g_container->map, key, value) && update_key(g_container->sorted_env, key, value))
 		return ;
 	if (value)
 		value = ft_strdup(value);
-	add_to_map(&g_map, init_map(ft_strdup(key), value));
-	add_to_map(&g_sorted_env, init_map(ft_strdup(key), value));
+	add_to_map(&g_container->map, init_map(ft_strdup(key), value));
+	add_to_map(&g_container->sorted_env, init_map(ft_strdup(key), value));
 }
 
 // Extract key and value from passed argument
@@ -98,11 +98,11 @@ static int	set_data(t_string args, t_string *key, t_string *value)
 		*value = NULL;
 	if (!is_valid_key(*key))
 		return (not_valid(*key, *value));
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Main Export function
-int	export(t_string *args, int fd)
+int	export(t_string *args)
 {
 	int			i;
 	int			ret;
@@ -112,7 +112,7 @@ int	export(t_string *args, int fd)
 	i = 0;
 	ret = 0;
 	if (!args[1])
-		return (put_env(fd));
+		return (put_env());
 	while (args[++i])
 	{
 		// Set Key & Value from args[i]
@@ -129,6 +129,6 @@ int	export(t_string *args, int fd)
 	}
 	sort_env();
 	if (ret)
-		return (1); // FAILED to add/update key/keys
-	return (0); // SUCCESS
+		return (EXIT_FAILURE); // FAILED to add/update key/keys
+	return (EXIT_SUCCESS); // SUCCESS
 }

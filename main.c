@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/11 16:26:09 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/22 23:08:50 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/23 00:28:25 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/23 00:41:02 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,45 @@
 
 static void	exit_minishell(void)
 {
-	free_map(&g_map);
-	free_map(&g_sorted_env);
-	exit(g_error);
+	free_map(&g_container->map);
+	free_map(&g_container->sorted_env);
+	exit(g_container->error);
 }
 
 static void	loop(void)
 {
 	t_string	line;
-	t_command	*list;
 	int			ret;
+	t_command	*list;
 
 	while (1)
+	{
+		out("\033[32mminishell$ \033[37m");
+		signal(SIGINT, signal_handler);
+		line = readline();
+		if (syntax_checker(trim(line)) && *line != '\0')
 		{
-			out("minishell$ ");
-			// exit(1);
-			line = readline();
-			// signal(SIGINT, signal_handler);
-			if (syntax_checker(trim(line)) && *line != '\0')
-			{
-				list = parser(trim(line));
-				ret = exec_cmds(list);
-				// ret = 0;
-				// print_struct(list);
-			}
-			free(line);
-			line = NULL;
-			free_commands(&list);
-			if (ret == -1)
-				exit_minishell();
+			list = parser(trim(line));
+			ret = exec_cmds(list);
 		}
+		free(line);
+		line = NULL;
+		free_commands(&list);
+		if (ret == -1)
+			exit_minishell();
+	}
 }
 
 int		main(int argc, t_string *argv, t_string *envp)
 {
-
-	g_map = fill_env(envp);
+	g_container = (t_container *)malloc(sizeof(t_container));
+	g_container->map = fill_env(envp);
 	clone_env();
 	init_caps();
-	g_history_file = -1;
+	g_container->history_file = -1;
 	if (argc && argv)
 		loop();
-	free_map(&g_map);
-	free_map(&g_sorted_env);
+	free_map(&g_container->map);
+	free_map(&g_container->sorted_env);
 	return (0);
 }

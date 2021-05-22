@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_env_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/11 18:57:33 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_map			*fill_env(t_string *envp)
 
 	map = NULL;
 	envp_handler(envp);
-	g_map_fill_first_time = 1;
+	g_container->map_fill_first_time = 1;
 	while (*envp)
 	{
 		env = ft_split_first(*envp, '=');
@@ -27,6 +27,6 @@ t_map			*fill_env(t_string *envp)
 		libre_2d(env);
 		envp++;
 	}
-	g_map_fill_first_time = 0;
+	g_container->map_fill_first_time = 0;
 	return (map);
 }

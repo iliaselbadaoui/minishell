@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 08:53:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/11 09:11:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:40:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_bool			greate_question(t_string line)
 {
-	if (!is_redirection(line[g_counter]) && line[g_counter] &&
-	line[g_counter] != '|' && line[g_counter] != ';' && line[g_counter] != ' ')
+	if (!is_redirection(line[g_container->counter]) && line[g_container->counter] &&
+	line[g_container->counter] != '|' && line[g_container->counter] != ';' && line[g_container->counter] != ' ')
 		return (true);
 	else
 		return (false);
@@ -24,16 +24,16 @@ t_bool			greate_question(t_string line)
 static t_bool	no_quote_file_name(t_string line)
 {
 	escape_spaces(line);
-	if (line[g_counter] == ';' && (!semi_colone_pipe_checker(line) ||
-	g_flag == 2))
+	if (line[g_container->counter] == ';' && (!semi_colone_pipe_checker(line) ||
+	g_container->flag == 2))
 	{
-		g_error = NO_FILE_DIR;
+		g_container->error = NO_FILE_DIR;
 		return (false);
 	}
-	else if (line[g_counter] == '|' && (!semi_colone_pipe_checker(line) ||
-	g_flag == 2))
+	else if (line[g_container->counter] == '|' && (!semi_colone_pipe_checker(line) ||
+	g_container->flag == 2))
 	{
-		g_error = NO_FILE_DIR;
+		g_container->error = NO_FILE_DIR;
 		return (false);
 	}
 	return (true);
@@ -41,15 +41,15 @@ static t_bool	no_quote_file_name(t_string line)
 
 t_bool			check_file_name(t_string line)
 {
-	while (line[g_counter] && line[g_counter] == ' ')
-		g_counter++;
-	if (!line[g_counter])
+	while (line[g_container->counter] && line[g_container->counter] == ' ')
+		g_container->counter++;
+	if (!line[g_container->counter])
 		return (false);
 	if (!char_escape(line))
 		return (false);
-	if (line[g_counter] == '\"' || line[g_counter] == '\'')
+	if (line[g_container->counter] == '\"' || line[g_container->counter] == '\'')
 	{
-		g_char = line[g_counter++];
+		g_container->gchar = line[g_container->counter++];
 		if (!is_quote(true, line))
 			return (false);
 		return (true);

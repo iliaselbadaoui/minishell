@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:00:36 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 16:06:04 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_string	get_env_value(t_string key)
 {
 	t_map	*tmp;
 
-	tmp = g_map;
+	tmp = g_container->map;
 	while (tmp)
 	{
 		if (equals(key, tmp->key))

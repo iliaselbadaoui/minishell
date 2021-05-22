@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:28:45 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static void	free_env(t_string key)
 {
-	if (key_exist(g_sorted_env, key))
+	if (key_exist(g_container->sorted_env, key))
 	{
-		free_by_key(&g_sorted_env, key);
-		free_by_key(&g_map, key);
+		free_by_key(&g_container->sorted_env, key);
+		free_by_key(&g_container->map, key);
 	}
 }
 
 // Print out current path to a file descriptor
-int	pwd(int fd)
+int	pwd(void)
 {
 	char	buff[1024];
 
 	if (getcwd(buff, sizeof(buff)) == NULL)
-		return (1); // Failed
-	write(fd, &buff, length(buff));
-	write(fd, "\n", 1);
-	return (0); // SUCCESS
+		return (EXIT_FAILURE); // Failed
+	write(1, &buff, length(buff));
+	write(1, "\n", 1);
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Remove a key/keys from environment variables
@@ -55,28 +55,28 @@ int	unset(t_string *args)
 		free(key);
 	}
 	if (ret)
-		return (1); // FAILED invalid key/keys
-	return (0); // SUCCESS
+		return (EXIT_FAILURE); // FAILED invalid key/keys
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Print out all environment variables to a file descriptor
-int	env(int fd)
+int	env(void)
 {
 	t_map	*tmp;
 
-	tmp = g_map;
+	tmp = g_container->map;
 	if (tmp == NULL)
-		return (1); // FAILED
+		return (EXIT_FAILURE); // FAILED
 	while (tmp)
 	{
 		if (tmp->value != NULL)
 		{
-			write(fd, tmp->key, length(tmp->key));
-			write(fd, "=", 1);
-			write(fd, tmp->value, length(tmp->value));
-			write(fd, "\n", 1);
+			write(1, tmp->key, length(tmp->key));
+			write(1, "=", 1);
+			write(1, tmp->value, length(tmp->value));
+			write(1, "\n", 1);
 		}
 		tmp = tmp->next;
 	}
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }

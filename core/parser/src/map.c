@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/10 12:44:22 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			add_to_map(t_map **head, t_map *node)
 			tmp = tmp->next;
 		tmp->next = node;
 	}
-	if (!g_map_fill_first_time)
+	if (!g_container->map_fill_first_time)
 		add_to_envp(node->key, node->value);
 }
 

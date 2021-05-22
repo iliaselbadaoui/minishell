@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/01 09:38:26 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,71 +35,6 @@
 # include <termios.h>
 # include <sys/ioctl.h>
 
-typedef enum e_bool
-{
-	false = 0,
-	true = 1,
-	quantic = 2
-}				t_bool;
-
-typedef struct s_map
-{
-	t_string		key;
-	t_string		value;
-	struct s_map	*next;
-}				t_map;
-
-typedef struct s_redirect
-{
-	char		type;
-	int			fd;
-	t_string	file_name;
-}				t_redirect;
-
-typedef struct s_coord
-{
-	int			start;
-	int			end;
-	char		type;
-}				t_coord;
-
-typedef struct s_command
-{
-	int					id;
-	t_string			*args;
-	t_redirect			*redirections;
-	struct s_command	*next;
-}				t_command;
-
-typedef struct s_linked
-{
-	char			*cmd;
-	char			*cmd_tmp;
-	int				editing;
-	int				already;
-	int				is_visited;
-	struct s_linked	*next;
-	struct s_linked	*prev;
-}				t_linked;
-
-t_string		*g_envp;
-char			g_term_buffer[2048];
-int				g_error;
-int				g_flag;
-int				g_map_fill_first_time;
-int				g_counter;
-int				g_args_counter;
-int				g_counter_extra;
-int				g_spliter_counter;
-int				g_spliter_char;
-int				g_envp_count;
-char			g_char;
-int				g_history_file;
-int				g_history_iter;
-t_linked		*g_last;
-t_linked		*g_history;
-t_linked		*g_history_to_free;
-t_linked		*g_history_the_oldest;
 
 t_command		*parser(t_string line);
 void			libre_2d(char **arr);

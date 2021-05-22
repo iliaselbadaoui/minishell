@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:35:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/19 09:42:13 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	check_option(t_string *args, int *i, int *n_option)
 	}
 }
 
-static void	loop(t_string *args, int fd, int i)
+static void	loop(t_string *args, int i)
 {
 	t_string	str;
 	t_bool		tmp;
@@ -61,15 +61,15 @@ static void	loop(t_string *args, int fd, int i)
 			continue ;
 		}
 		if (tmp)
-			write(fd, " ", 1);
-		write(fd, str, ft_strlen(str));
+			write(1, " ", 1);
+		write(1, str, ft_strlen(str));
 		free(str);
 		tmp = true;
 	}
 }
 
 // Main echo Function
-int	echo(t_string *args, int fd)
+int	echo(t_string *args)
 {
 	int	position;
 	int	n_option;
@@ -77,8 +77,8 @@ int	echo(t_string *args, int fd)
 	n_option = 0;
 	position = 0;
 	check_option(args, &position, &n_option);
-	loop(args, fd, position);
+	loop(args, position);
 	if (!n_option)
-		write(fd, "\n", 1);
+		write(1, "\n", 1);
 	return (0);
 }

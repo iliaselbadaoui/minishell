@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 15:53:30 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_characters(t_string str, int i, int fd)
 {
 	if (str[i] == '?')
 	{
-		ft_putnbr_fd(g_error, fd);
+		ft_putnbr_fd(g_container->error, fd);
 		return (i);
 	}
 	else if (str[i] == ' ' || str[i] == '\0' || str[i] == '"')

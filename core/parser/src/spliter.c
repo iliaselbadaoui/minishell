@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:30:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 09:54:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ t_string		*spliter(t_string line, char delimiter)
 	int			i;
 	t_string	*res;
 
-	g_spliter_counter = 0;
-	g_spliter_char = 0;
+	g_container->spliter_counter = 0;
+	g_container->spliter_char = 0;
 	sequences = sequence_calculator(line, delimiter) + 1;
 	res = (t_string *)malloc(sizeof(t_string) * sequences);
 	i = 0;
 	while (i < sequences - 1)
 	{
-		start = g_spliter_counter;
+		start = g_container->spliter_counter;
 		end = get_next_delimiter(line, delimiter);
 		res[i] = substring(line, start, end);
 		i++;
 	}
 	res[i] = NULL;
-	g_spliter_counter = 0;
-	g_spliter_char = 0;
+	g_container->spliter_counter = 0;
+	g_container->spliter_char = 0;
 	return (res);
 }

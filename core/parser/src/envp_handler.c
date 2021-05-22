@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/19 10:44:38 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void			envp_handler(t_string *envp)
 {
-	g_envp = (t_string *)malloc(sizeof(t_string) * 4096);
-	while (envp[g_envp_count])
+	g_container->envp = (t_string *)malloc(sizeof(t_string) * 4096);
+	while (envp[g_container->envp_count])
 	{
-		g_envp[g_envp_count] = ft_strdup(envp[g_envp_count]);
-		g_envp_count++;
+		g_container->envp[g_container->envp_count] = ft_strdup(envp[g_container->envp_count]);
+		g_container->envp_count++;
 	}
-	g_envp[g_envp_count] = NULL;
+	g_container->envp[g_container->envp_count] = NULL;
 }
 
 void			add_to_envp(t_string key, t_string value)
@@ -28,8 +28,8 @@ void			add_to_envp(t_string key, t_string value)
 	t_string	joined;
 
 	joined = ft_strjoin(key, "=");
-	g_envp[g_envp_count] = ft_strjoin(joined, value);
-	g_envp[++g_envp_count] = NULL;
+	g_container->envp[g_container->envp_count] = ft_strjoin(joined, value);
+	g_container->envp[++g_container->envp_count] = NULL;
 	free(joined);
 }
 
@@ -42,20 +42,20 @@ void			remove_from_envp(int index)
 	i = 0;
 	j = 0;
 	new_envp = (t_string *)malloc(sizeof(t_string) * 4096);
-	if (g_envp_count > 0)
-		--g_envp_count;
-	while (g_envp[j])
+	if (g_container->envp_count > 0)
+		--g_container->envp_count;
+	while (g_container->envp[j])
 	{
 		if (j == index)
 			j++;
-		if (g_envp[j])
-			new_envp[i] = ft_strdup(g_envp[j]);
+		if (g_container->envp[j])
+			new_envp[i] = ft_strdup(g_container->envp[j]);
 		else
 			break ;
 		i++;
 		j++;
 	}
 	new_envp[i] = NULL;
-	libre_2d(g_envp);
-	g_envp = new_envp;
+	libre_2d(g_container->envp);
+	g_container->envp = new_envp;
 }

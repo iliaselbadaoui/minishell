@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 15:06:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		down_history(char **line, int line_length)
 	char		*pos;
 	t_linked	*next;
 
-	if (g_history && g_history->next)
+	if (g_container->history && g_container->history->next)
 	{
 		while (line_length)
 		{
@@ -25,8 +25,8 @@ void		down_history(char **line, int line_length)
 			tputs(pos, 1, move_cursor);
 			line_length--;
 		}
-		if (g_history->editing)
-			g_history->cmd_tmp = *line;
+		if (g_container->history->editing)
+			g_container->history->cmd_tmp = *line;
 		next = get_next();
 		if (next)
 		{
@@ -42,9 +42,9 @@ void		down_history(char **line, int line_length)
 				*line = ft_strdup(next->cmd);
 			tputs(tgetstr("ce", NULL), 1, move_cursor);
 			write_to_stdout(*line);
-			if (g_history_iter > 0)
-				g_history_iter--;
-			if (!g_history_iter)
+			if (g_container->history_iter > 0)
+				g_container->history_iter--;
+			if (!g_container->history_iter)
 				free_last();
 		}
 	}

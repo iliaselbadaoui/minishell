@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:04:12 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 16:08:12 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,26 @@ void	sort_env(void)
 	t_map		*next;
 	t_map		*tmp;
 
-	tmp = g_sorted_env;
-	while (g_sorted_env)
+	tmp = g_container->sorted_env;
+	while (g_container->sorted_env)
 	{
-		next = g_sorted_env;
+		next = g_container->sorted_env;
 		while (next)
 		{
-			if (ft_strcmp(g_sorted_env->key, next->key) > 0)
+			if (ft_strcmp(g_container->sorted_env->key, next->key) > 0)
 			{
-				swap = g_sorted_env->key;
-				g_sorted_env->key = next->key;
+				swap = g_container->sorted_env->key;
+				g_container->sorted_env->key = next->key;
 				next->key = swap;
-				swap = g_sorted_env->value;
-				g_sorted_env->value = next->value;
+				swap = g_container->sorted_env->value;
+				g_container->sorted_env->value = next->value;
 				next->value = swap;
 			}
 			next = next->next;
 		}
-		g_sorted_env = g_sorted_env->next;
+		g_container->sorted_env = g_container->sorted_env->next;
 	}
-	g_sorted_env = tmp;
+	g_container->sorted_env = tmp;
 }
 
 void	clone_env(void)
@@ -88,11 +88,11 @@ void	clone_env(void)
 	t_map	*node;
 	t_map	*tmp;
 
-	tmp = g_map;
+	tmp = g_container->map;
 	while (tmp)
 	{
 		node = init_map(ft_strdup(tmp->key), ft_strdup(tmp->value));
-		add_to_map(&g_sorted_env, node);
+		add_to_map(&g_container->sorted_env, node);
 		tmp = tmp->next;
 	}
 	sort_env();

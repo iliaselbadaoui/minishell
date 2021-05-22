@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:18:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 16:08:26 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:17:31 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ int	no_file(t_string path)
 	return (1);
 }
 
-// Signals handler
-void	signal_handler(int signo)
-{
-	if (signo == SIGINT)
-	{
-		out("\nminishell$ ");
-		signal(SIGINT, signal_handler);
-	}
-}
-
 // Export, not a valid identifier
 int	not_valid(t_string key, t_string value)
 {
@@ -68,5 +58,5 @@ int	not_valid(t_string key, t_string value)
 	free(key);
 	if (value)
 		free(value);
-	return (1); // FAILED
+	return (EXIT_FAILURE); // FAILED
 }

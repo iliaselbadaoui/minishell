@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 13:57:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/06 16:28:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static int			count_to_next_delimiter(char *str, char delimiter)
 	int				count;
 
 	count = 0;
-	if (!g_flag)
+	if (!g_container->flag)
 	{
 		while (str[count] && str[count] != delimiter)
 			count++;
 		if (count)
-			g_flag = 1;
+			g_container->flag = 1;
 	}
 	else
 		while (str[count])
@@ -98,5 +98,5 @@ void				create_grid_first(char **arr, char *str, char delimiter)
 			return ;
 		str += count;
 	}
-	g_flag = 0;
+	g_container->flag = 0;
 }

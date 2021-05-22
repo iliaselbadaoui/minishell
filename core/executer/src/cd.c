@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:35:17 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:30:21 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static int	to_home(void)
 {
 	t_string	path;
 
-	path = get_value_by_key(g_map, "HOME");
+	path = get_value_by_key(g_container->map, "HOME");
 	if (!path)
 	{
 		write(2, "minishell: cd: HOME not set\n", 28);
-		return (1); // FAILED
+		return (EXIT_FAILURE); // FAILED
 	}
 	if (*path == '\0')
 		path = getcwd(NULL, 1024);
@@ -56,7 +56,7 @@ static int	to_home(void)
 	update_env("OLDPWD", get_env_value("PWD"));
 	update_env("PWD", path);
 	free(path);
-	return (0); // SUCCESS
+	return (EXIT_SUCCESS); // SUCCESS
 }
 
 // Main CD function
@@ -76,5 +76,5 @@ int	cd(t_string *args)
 	update_env("OLDPWD", get_env_value("PWD"));
 	update_env("PWD", path);
 	free(path);
-	return (0); //SUCCESS
+	return (EXIT_SUCCESS); //SUCCESS
 }

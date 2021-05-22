@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_calculator.c                                  :+:      :+:    :+:   */
+/*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
+/*   Created: 2021/04/12 13:21:33 by mait-si-          #+#    #+#             */
 /*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser.h"
+#include "../executer.h"
 
-int				args_calculator(t_string command)
+int	get_error(int ret)
 {
-	int		count;
-	t_coord	coord;
-
-	if (ft_strlen(command) == 1)
-		return (1);
-	count = 0;
-	g_container->counter = 0;
-	while (command[g_container->counter])
+	g_container->error = ret;
+	if (ret == -1)
+		g_container->error = 0;
+	if (ret == 255)
 	{
-		coord = get_next_arg(command);
-		if (coord.end > coord.start)
-			count++;
+		ret = -1;
+		g_container->error = 255;
 	}
-	return (count);
+	return (ret);
+}
+
+// Signal handler: ctrl+c
+void	signal_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		out("\n\033[32mminishell$ \033[37m");
+		signal(SIGINT, signal_handler);
+	}
+}
+
+// Signals handler: ctrl+c inside a process
+void	proc_signal_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		out("\n");
+		signal(SIGINT, proc_signal_handler);
+	}
 }

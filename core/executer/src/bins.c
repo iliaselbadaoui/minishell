@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bins.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:23:54 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/04/10 14:34:09 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_string	*get_paths(void)
 	t_map		*tmp;
 	t_string	*path;
 
-	tmp = g_map;
+	tmp = g_container->map;
 	path = ft_split(get_value_by_key(tmp, "PATH"), ':');
 	return (path);
 }
@@ -43,10 +43,10 @@ static int	run_cmd(t_string path, t_string *args)
 
 	pid = fork();
 	ret = 0;
-	// signal(SIGINT, signal_handler);
+	signal(SIGINT, proc_signal_handler);
 	if (pid == 0) // Child Process
 	{
-		if (execve(path, args, g_envp) == -1)
+		if (execve(path, args, g_container->envp) == -1)
 			ret = 1;
 		else
 			ret = 0;

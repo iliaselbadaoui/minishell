@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 21:20:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/01 23:12:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_redirect			*redirections_extracter(t_string command)
 	t_coord		coord;
 	t_string	filename;
 
-	g_counter = 0;
+	g_container->counter = 0;
 	count = redirections_calculator(command) + 1;
-	g_counter = 0;
+	g_container->counter = 0;
 	redirections = (t_redirect *)malloc(sizeof(t_redirect) * count);
 	i = 0;
 	while (i < count - 1)
@@ -39,6 +39,6 @@ t_redirect			*redirections_extracter(t_string command)
 		i++;
 	}
 	redirections[i] = (t_redirect){'0', -1, NULL};
-	g_counter = 0;
+	g_container->counter = 0;
 	return (redirections);
 }
