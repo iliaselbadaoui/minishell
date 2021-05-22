@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/21 23:53:29 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/22 14:46:25 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-t_command	*init(t_command *list)
+static t_command	*init(t_command *list)
 {
-	t_command *head;
+	t_command	*head;
+	int			i;
 
 	head = list;
 	while (list)
 	{
-		list->fd[0] = -1;
-		list->fd[1] = -1;
+		i = -1;
+		// Filter commands and args, ex: "ls" "-la" => ls -la
+		while (list->args[++i])
+			list->args[i] = filter(list->args[i]);
 		list = list->next;
 	}
 	return head;

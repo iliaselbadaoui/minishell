@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:33:07 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/22 00:46:05 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/22 14:45:39 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,16 @@ static int	check_builtins(t_command *cmd)
 }
 
 // Execute a command.
-int	execution(t_command *list, t_string *cmd)
+int	execution(t_command *list, t_string cmd)
 {
 	int	ret;
 	int	i;
 
 	ret = 0;
 	i = -1;
-	if (!*cmd)
+	if (!cmd)
 		return (0);
-	*cmd = filter(ft_strdup(*cmd));				// Filter The Command, ex: "echo" => echo
-	if (*cmd[0] != '\0')
+	if (cmd[0] != '\0')
 	{
 		ret = check_builtins(list);			// Check builtins functions, if return is 2, the command not in builtins
 		if (ret != 2)
@@ -71,15 +70,14 @@ int	execution(t_command *list, t_string *cmd)
 				return (ret);
 		}
 		if (ret == 2)
-			return (no_file_directory(*cmd));
+			return (no_file_directory(cmd));
 	}
-	return (command_not_found(*cmd));
+	return (command_not_found(cmd));
 }
 
 int	exec_command(t_command *list)
 {
 	int			ret;
-	t_string	cmd;
 	int			fd_in;
 	int			fd_out;
 
@@ -93,9 +91,7 @@ int	exec_command(t_command *list)
 			return (EXIT_FAILURE);
 
 	// Execution
-	cmd = list->args[0];
-	ret = execution(list, &cmd);
-	free(cmd);
+	ret = execution(list, list->args[0]);
 	ret = get_error(ret);
 
 	dup2(fd_in, 0);
