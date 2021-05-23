@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 13:57:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:55:32 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_split.h"
 
-static int			count_to_next_delimiter(char *str, char delimiter)
+static int	count_to_next_delimiter(char *str, char delimiter)
 {
 	int				count;
 
@@ -30,7 +30,7 @@ static int			count_to_next_delimiter(char *str, char delimiter)
 	return (count);
 }
 
-static int			count_to_next_delimiter_split(char *str, char delimiter)
+static int	count_to_next_delimiter_split(char *str, char delimiter)
 {
 	int		count;
 
@@ -42,7 +42,7 @@ static int			count_to_next_delimiter_split(char *str, char delimiter)
 	return (count);
 }
 
-static void			free_grid(char **arr)
+static void	free_grid(char **arr)
 {
 	while (*arr)
 	{
@@ -52,7 +52,7 @@ static void			free_grid(char **arr)
 	free(arr);
 }
 
-void				create_grid(char **arr, char *str, char delimiter)
+void	create_grid(char **arr, char *str, char delimiter)
 {
 	int		count;
 
@@ -63,7 +63,8 @@ void				create_grid(char **arr, char *str, char delimiter)
 		count = count_to_next_delimiter_split(str, delimiter);
 		if (count)
 		{
-			if (!(*arr = (char *)malloc(count + 1)))
+			*arr = (char *)malloc(count + 1);
+			if (!(*arr))
 			{
 				free_grid(arr);
 				return ;
@@ -76,7 +77,7 @@ void				create_grid(char **arr, char *str, char delimiter)
 	}
 }
 
-void				create_grid_first(char **arr, char *str, char delimiter)
+void	create_grid_first(char **arr, char *str, char delimiter)
 {
 	int		count;
 
@@ -87,7 +88,8 @@ void				create_grid_first(char **arr, char *str, char delimiter)
 		count = count_to_next_delimiter(str, delimiter);
 		if (count)
 		{
-			if (!(*arr = (char *)malloc(count + 1)))
+			*arr = (char *)malloc(count + 1);
+			if (!(*arr))
 			{
 				free_grid(arr);
 				return ;

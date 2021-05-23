@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 12:37:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 13:04:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 13:03:00 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_bool			equals(t_string s1, t_string s2)
+t_bool	equals(t_string s1, t_string s2)
 {
 	t_bool	flag;
 

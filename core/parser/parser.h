@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:37:03 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:05 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:50:04 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # include <termcap.h>
 # include <termios.h>
 # include <sys/ioctl.h>
-
 
 t_command		*parser(t_string line);
 void			libre_2d(char **arr);

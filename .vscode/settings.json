@@ -4,6 +4,7 @@
 		"parser.h": "c",
 		"string.h": "c",
 		"sstream": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"string": "c"
 	}
 }

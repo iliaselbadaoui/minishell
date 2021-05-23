@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 00:28:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:49:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	loop(void)
 	}
 }
 
-int		main(int argc, t_string *argv, t_string *envp)
+int	main(int argc, t_string *argv, t_string *envp)
 {
 	g_container = (t_container *)malloc(sizeof(t_container));
 	g_container->map = fill_env(envp);

@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:09:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:42:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-static void		extracter_helper(t_string *args, t_string command, int i)
+static void	extracter_helper(t_string *args, t_string command, int i)
 {
 	t_coord		coord;
 	t_string	tmp;
@@ -32,7 +32,7 @@ static void		extracter_helper(t_string *args, t_string command, int i)
 	}
 }
 
-t_string		*args_extracter(t_string command)
+t_string	*args_extracter(t_string command)
 {
 	t_string	*args;
 	int			count;

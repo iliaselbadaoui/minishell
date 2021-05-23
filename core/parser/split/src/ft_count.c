@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 14:35:56 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/11/25 12:42:38 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:56:04 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	escape_deilimter(char **str, char delimiter)
 		(*str)++;
 }
 
-int		ft_count(char *str, char delimiter)
+int	ft_count(char *str, char delimiter)
 {
 	int		count;
 

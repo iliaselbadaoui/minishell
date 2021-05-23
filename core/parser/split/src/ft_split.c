@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 11:47:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/06 15:44:43 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:56:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_split.h"
 
-char		**ft_split(char *str, char delimiter)
+char	**ft_split(char *str, char delimiter)
 {
 	char	**res;
 	int		count;
@@ -22,7 +22,8 @@ char		**ft_split(char *str, char delimiter)
 	count = ft_count(str, delimiter) + 1;
 	if (count)
 	{
-		if (!(res = (char **)malloc(count * sizeof(char *))))
+		res = (char **)malloc(count * sizeof(char *));
+		if (!res)
 			return (NULL);
 	}
 	else
@@ -33,7 +34,7 @@ char		**ft_split(char *str, char delimiter)
 	return (res);
 }
 
-char		**ft_split_first(char *str, char delimiter)
+char	**ft_split_first(char *str, char delimiter)
 {
 	char	**res;
 	int		count;
@@ -43,7 +44,8 @@ char		**ft_split_first(char *str, char delimiter)
 	count = 3;
 	if (count)
 	{
-		if (!(res = (char **)malloc(count * sizeof(char *))))
+		res = (char **)malloc(count * sizeof(char *));
+		if (!res)
 			return (NULL);
 	}
 	else

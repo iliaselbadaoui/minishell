@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 13:00:42 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 13:24:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:14:00 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-size_t			length(t_string string)
+size_t	length(t_string string)
 {
 	int		len;
 

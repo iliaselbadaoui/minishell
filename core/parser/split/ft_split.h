@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 11:50:19 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:57 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:51:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef	char	*t_string;
+typedef char *t_string;
 typedef enum e_bool
 {
 	false = 0,

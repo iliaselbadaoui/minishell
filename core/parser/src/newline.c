@@ -6,17 +6,17 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 22:08:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:37:18 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-static void	save_history()
+static void	save_history(void)
 {
 	t_linked	*tmp;
-	
-	g_container->history_file = open(".history", O_RDWR|O_CREAT, 0666);
+
+	g_container->history_file = open(".history", O_RDWR | O_CREAT, 0666);
 	tmp = g_container->history_the_oldest;
 	while (tmp)
 	{
@@ -27,7 +27,7 @@ static void	save_history()
 	close(g_container->history_file);
 }
 
-void		newline(char	*line, int *done)
+void	newline(char *line, int *done)
 {
 	t_linked	*tmp;
 

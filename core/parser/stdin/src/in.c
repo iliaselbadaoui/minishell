@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 13:32:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 12:25:28 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 01:24:44 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ void	fill_line(char **line, char *buffer)
 	ft_free(&tmp);
 }
 
-int		process_line(char **line, char **remain)
+int	process_line(char **line, char **remain)
 {
 	char	*nl;
 	char	*tmp;
 
-	if ((nl = ft_strchr(*line, '\n')))
+	nl = ft_strchr(*line, '\n');
+	if (nl)
 	{
 		*nl = '\0';
 		tmp = *line;
@@ -38,13 +39,14 @@ int		process_line(char **line, char **remain)
 	return (0);
 }
 
-int		process_remain(char **remain, char **line)
+int	process_remain(char **remain, char **line)
 {
 	char	*nl;
 	char	*tmpr;
 	char	*tmpl;
 
-	if ((nl = ft_strchr(*remain, '\n')))
+	nl = ft_strchr(*remain, '\n');
+	if (nl)
 	{
 		*nl = '\0';
 		tmpl = *line;
@@ -62,23 +64,32 @@ int		process_remain(char **remain, char **line)
 	return (0);
 }
 
-int		in(int fd, char **line)
+static int	in_help(char **remain, char **buffer, char **line, int fd)
 {
-	static char *remain[256];
-	char		*buffer;
-	int			bytes;
-
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (read(fd, NULL, 0) || BUFFER_SIZE < 0 || !line || !buffer)
+	*buffer = (char *)malloc(BUFFER_SIZE + 1);
+	if (read(fd, NULL, 0) || BUFFER_SIZE < 0 || !line || !*buffer)
 		return (-1);
 	*line = ft_strdup("\0");
 	if (remain[fd] && process_remain(&remain[fd], line))
 	{
-		ft_free(&buffer);
+		ft_free(buffer);
 		return (1);
 	}
-	while ((bytes = read(fd, buffer, BUFFER_SIZE)))
+	return (0);
+}
+
+int	in(int fd, char **line)
+{
+	static char	*remain[256];
+	char		*buffer;
+	int			bytes;
+
+	if (in_help(remain, &buffer, line, fd) < 0)
+		return (-1);
+	bytes = 1;
+	while (bytes)
 	{
+		bytes = read(fd, buffer, BUFFER_SIZE);
 		buffer[bytes] = '\0';
 		fill_line(line, buffer);
 		if (process_line(line, &remain[fd]))

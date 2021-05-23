@@ -6,15 +6,15 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 13:32:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 15:08:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 01:00:55 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../in.h"
 
-char		*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	char *res;
+	char	*res;
 
 	res = NULL;
 	while (*s)
@@ -26,7 +26,7 @@ char		*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int			ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	len;
 
@@ -38,7 +38,7 @@ int			ft_strlen(const char *str)
 	return (len);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		len;
 	char	*new;
@@ -46,7 +46,8 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	if (!(new = (char *)malloc(len * sizeof(char))))
+	new = (char *)malloc(len * sizeof(char));
+	if (!new)
 		return (NULL);
 	len = 0;
 	while (*s1)
@@ -57,7 +58,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	return (new);
 }
 
-char		*ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	int			len;
 	int			i;
@@ -65,7 +66,8 @@ char		*ft_strdup(const char *s)
 
 	i = -1;
 	len = ft_strlen(s);
-	if ((dst = (char *)malloc(len + 1)))
+	dst = (char *)malloc(len + 1);
+	if (dst)
 	{
 		while (s[++i])
 		{
@@ -77,7 +79,7 @@ char		*ft_strdup(const char *s)
 	return (NULL);
 }
 
-void		ft_free(char **p)
+void	ft_free(char **p)
 {
 	if (*p != 0)
 		free(*p);
