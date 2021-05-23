@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 00:28:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:49:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 16:52:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	loop(void)
 	int			ret;
 	t_command	*list;
 
+	list = NULL;
 	while (1)
 	{
 		out("\033[32mminishell$ \033[37m");
