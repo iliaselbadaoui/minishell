@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:01 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:57:29 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_split.h"
 
-static int			copy_to_next_delimiter(char *grid_case, char *str,
+static int	copy_to_next_delimiter(char *grid_case, char *str,
 char delimiter)
 {
 	int		count;
@@ -40,7 +40,7 @@ char delimiter)
 	return (count);
 }
 
-static int			copy_to_next_delimiter_split(char *grid_case, char *str,
+static int	copy_to_next_delimiter_split(char *grid_case, char *str,
 char delimiter)
 {
 	int		count;
@@ -55,7 +55,7 @@ char delimiter)
 	return (count);
 }
 
-void				fill_grid(char **arr, char *str, char delimiter)
+void	fill_grid(char **arr, char *str, char delimiter)
 {
 	int		count;
 	int		arr_index;
@@ -72,7 +72,7 @@ void				fill_grid(char **arr, char *str, char delimiter)
 	}
 }
 
-void				fill_grid_first(char **arr, char *str, char delimiter)
+void	fill_grid_first(char **arr, char *str, char delimiter)
 {
 	int		count;
 	int		arr_index;

@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 13:37:21 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/28 00:40:17 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:14:13 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-void		libre_2d(char **arr)
+void	libre_2d(char **arr)
 {
 	char	**cp;
 

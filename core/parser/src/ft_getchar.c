@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 12:29:29 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:41:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:52:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-int			ft_getchar()
+int	ft_getchar(void)
 {
 	char			c;
 	int				total;

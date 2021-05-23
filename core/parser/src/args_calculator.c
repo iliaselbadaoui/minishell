@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 14:21:45 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:46:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-int				args_calculator(t_string command)
+int	args_calculator(t_string command)
 {
 	int		count;
 	t_coord	coord;

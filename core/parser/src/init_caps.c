@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:52:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/04/01 11:05:31 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:52:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-int			init_caps()
+int	init_caps(void)
 {
 	char	*type;
 	int		res;

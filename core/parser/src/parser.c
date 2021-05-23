@@ -6,24 +6,25 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 12:34:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:46:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-static void		help(t_command **list, t_string *pipes, int id)
+static void	help(t_command **list, t_string *pipes, int id)
 {
 	t_string	trimed;
 
 	trimed = ft_strdup(trim(pipes[g_container->counter_extra]));
-	add_command_to_end(list, init_command(
-	args_extracter(trimed), redirections_extracter(trimed), id));
+	add_command_to_end(list,
+		init_command(args_extracter(trimed),
+			redirections_extracter(trimed), id));
 	free(trimed);
 	g_container->counter_extra++;
 }
 
-t_command		*parser(t_string line)
+t_command	*parser(t_string line)
 {
 	t_string	*commands;
 	t_string	*pipes;

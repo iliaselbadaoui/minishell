@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 13:04:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/26 12:20:22 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 13:02:39 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_string		trim(t_string string)
+t_string	trim(t_string string)
 {
 	int			start;
 	int			end;

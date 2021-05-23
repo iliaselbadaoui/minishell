@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 17:38:39 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:42:52 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:10:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-void	backspace(char **line,int line_length)
+void	backspace(char **line, int line_length)
 {
 	char	*tmp;
 

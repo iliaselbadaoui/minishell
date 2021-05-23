@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 13:03:38 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/13 13:35:24 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 00:59:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../out.h"
 
-void			outc(char c)
+void	outc(char c)
 {
 	write(1, &c, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 10:29:06 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:41:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_bool	check_before_semi_colone(t_string line)
 	return (true);
 }
 
-t_bool			semi_colone_pipe_checker(t_string line)
+t_bool	semi_colone_pipe_checker(t_string line)
 {
 	if (line[0] == ';' || line[0] == '|')
 		return (false);

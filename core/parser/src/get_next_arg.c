@@ -6,22 +6,23 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:22:11 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:40:28 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:50:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-static void		help_function(t_string line)
+static void	help_function(t_string line)
 {
 	skip_redirection(line);
 	skip_spaces(line);
-	if (line[g_container->counter] == '\'' || line[g_container->counter] == '"')
+	if (line[g_container->counter] == '\''
+		|| line[g_container->counter] == '"')
 		g_container->gchar = line[g_container->counter++];
 	skip_word(line);
 }
 
-t_coord			get_next_arg(t_string line)
+t_coord	get_next_arg(t_string line)
 {
 	t_coord		coord;
 
@@ -34,7 +35,8 @@ t_coord			get_next_arg(t_string line)
 		else
 		{
 			coord.start = g_container->counter;
-			if (line[g_container->counter] == '\'' || line[g_container->counter] == '"')
+			if (line[g_container->counter] == '\''
+				|| line[g_container->counter] == '"')
 				g_container->gchar = line[g_container->counter++];
 			else if (line[g_container->counter - 1] == ' ')
 				coord.start = g_container->counter - 1;

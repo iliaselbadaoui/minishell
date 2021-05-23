@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 11:33:36 by ielbadao          #+#    #+#             */
-/*   Updated: 2020/12/10 13:05:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 11:25:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_bool		includes(t_string string, t_string pattern)
+t_bool	includes(t_string string, t_string pattern)
 {
 	int		i;
 	t_bool	included;

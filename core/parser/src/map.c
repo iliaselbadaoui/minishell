@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 10:52:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:33:23 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser.h"
 
-t_map			*init_map(t_string key, t_string value)
+t_map	*init_map(t_string key, t_string value)
 {
 	t_map		*node;
 
@@ -23,7 +23,7 @@ t_map			*init_map(t_string key, t_string value)
 	return (node);
 }
 
-void			add_to_map(t_map **head, t_map *node)
+void	add_to_map(t_map **head, t_map *node)
 {
 	t_map	*tmp;
 
@@ -40,7 +40,7 @@ void			add_to_map(t_map **head, t_map *node)
 		add_to_envp(node->key, node->value);
 }
 
-t_string		get_value_by_key(t_map *head, t_string key)
+t_string	get_value_by_key(t_map *head, t_string key)
 {
 	while (head)
 	{
@@ -51,7 +51,7 @@ t_string		get_value_by_key(t_map *head, t_string key)
 	return (NULL);
 }
 
-void			free_by_key(t_map **head, t_string key)
+void	free_by_key(t_map **head, t_string key)
 {
 	t_map	*tmp;
 	t_map	*navigator;
@@ -76,7 +76,7 @@ void			free_by_key(t_map **head, t_string key)
 	remove_from_envp(index);
 }
 
-void			free_map(t_map **head)
+void	free_map(t_map **head)
 {
 	t_map	*tmp;
 	t_map	*navigator;
