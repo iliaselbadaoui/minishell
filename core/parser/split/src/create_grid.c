@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 13:57:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:55:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 18:53:04 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	create_grid_first(char **arr, char *str, char delimiter)
 	{
 		escape_deilimter(&str, delimiter);
 		count = count_to_next_delimiter(str, delimiter);
+		printf("COUNT=%d\n", count);
 		if (count)
 		{
 			*arr = (char *)malloc(count + 1);

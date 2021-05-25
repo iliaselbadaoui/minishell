@@ -6,14 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:01 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 16:33:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 18:31:00 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_split.h"
 
-static int	copy_to_next_delimiter(char *grid_case, char *str,
-char delimiter)
+static int	copy_to_next_delimiter(char *grid_case, char *str, char delimiter)
 {
 	int		count;
 

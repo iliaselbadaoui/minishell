@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 20:15:06 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/25 18:14:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	update_env(t_string key, t_string value)
 {
 	if (update_key(g_container->map, key, value) && update_key(g_container->sorted_env, key, value))
 		return ;
-	if (value)
-		value = ft_strdup(value);
-	add_to_map(&g_container->map, init_map(ft_strdup(key), value));
-	add_to_map(&g_container->sorted_env, init_map(ft_strdup(key), value));
+	// if (value)
+	// 	value = ft_strdup(value);
+	add_to_map(&g_container->map, init_map(ft_strdup(key), ft_strdup(value)));
+	add_to_map(&g_container->sorted_env, init_map(ft_strdup(key), ft_strdup(value)));
 }
 
 // Extract key and value from passed argument
