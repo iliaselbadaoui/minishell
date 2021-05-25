@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:23:54 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/25 14:07:19 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:22:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,22 @@ static int	execute(t_string path, t_string *args)
 int	check_bins(t_command *cmd)
 {
 	t_string	*path;
+	t_string	tmp_path;
 	int			i;
 	int			ret;
-	t_string	tmp_path;
 
 	i = -1;
 	ret = 0;
 	// Run the command with a given relative path, ex: ./minishell
-	// if (cmd->args[0][0] == '.')
-	// {
-	// 	path = ft_split_first(cmd->args[0], '.');
-	// 	tmp_path = ft_strjoin(getcwd(NULL, 0), "/");
-	// 	ret = execute(ft_strjoin(tmp_path, path[0]), cmd->args);
-	// 	free(tmp_path);
-	// 	free_2d_arr(path);
-	// 	if (ret == 127)
-	// 		ret = 2;
-	// 	return (ret);
-	// }
+	if (cmd->args[0][0] == '.')
+	{
+		tmp_path = ft_strjoin(getcwd(NULL, 0), "/");
+		ret = execute(ft_strjoin(tmp_path, cmd->args[0]), cmd->args);
+		free(tmp_path);
+		if (ret == 127)
+			ret = 2;
+		return (ret);
+	}
 	// Run the command with a given absolute path, ex: /bin/ls
 	if (cmd->args[0][0] == '/')
 	{
