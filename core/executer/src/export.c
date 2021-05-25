@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/25 18:14:43 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 20:44:29 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ void	update_env(t_string key, t_string value)
 {
 	if (update_key(g_container->map, key, value) && update_key(g_container->sorted_env, key, value))
 		return ;
-	// if (value)
-	// 	value = ft_strdup(value);
-	add_to_map(&g_container->map, init_map(ft_strdup(key), ft_strdup(value)));
-	add_to_map(&g_container->sorted_env, init_map(ft_strdup(key), ft_strdup(value)));
+	add_to_map(&g_container->map, init_map(key, value));
+	add_to_map(&g_container->sorted_env, init_map(key, value));
 }
 
 // Extract key and value from passed argument
@@ -83,7 +81,7 @@ static int	set_data(t_string args, t_string *key, t_string *value)
 		j++;
 	*key = substring(args, 0, j - 1);
 	if (!*key)
-		*key = ft_strdup("");
+		return (not_valid(ft_strdup(args), NULL));
 	if (args[j] == '=')
 	{
 		*value = substring(args, j + 1, ft_strlen(args) - 1);
@@ -119,9 +117,6 @@ int	export(t_string *args)
 		}
 		// ADD/Update Key & Value
 		update_env(key, value);
-		free(key);
-		if (value)
-			free(value);
 	}
 	sort_env();
 	if (ret)
