@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/19 09:42:13 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 20:07:43 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,9 @@ static t_bool	is_valid_option_n(t_string str)
 		while (str[++i] == 'n')
 			continue ;
 		if (str[i] == '\0')
-		{
-			free(str);
 			return (true);
-		}
-		free(str);
 		return (false);
 	}
-	free(str);
 	return (false);
 }
 
@@ -39,7 +34,7 @@ static void	check_option(t_string *args, int *i, int *n_option)
 {
 	while (args[++*i])
 	{
-		if (is_valid_option_n(filter(ft_strdup(args[*i]))))
+		if (is_valid_option_n(args[*i]))
 			(*n_option)++;
 		else
 			return ;
@@ -48,23 +43,18 @@ static void	check_option(t_string *args, int *i, int *n_option)
 
 static void	loop(t_string *args, int i)
 {
-	t_string	str;
 	t_bool		tmp;
 
 	tmp = false;
 	while (args[i])
 	{
-		str = filter(ft_strdup(args[i++]));
-		if (*str == '\0')
-		{
-			free(str);
+		if (args[i][0] == '\0')
 			continue ;
-		}
 		if (tmp)
 			write(1, " ", 1);
-		write(1, str, ft_strlen(str));
-		free(str);
+		write(1, args[i], ft_strlen(args[i]));
 		tmp = true;
+		i++;
 	}
 }
 

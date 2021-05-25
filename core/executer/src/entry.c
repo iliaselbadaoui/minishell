@@ -6,13 +6,13 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:54:14 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/22 14:46:25 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/23 21:18:11 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-static t_command	*init(t_command *list)
+static t_command	*filter_all(t_command *list)
 {
 	t_command	*head;
 	int			i;
@@ -32,12 +32,12 @@ static t_command	*init(t_command *list)
 // Execute all commands, separated by ";"
 // return 0, -1 : SUCCESS
 // return 1, 127, 255, ... : FAILED
-int	exec_cmds(t_command *list)
+int	entry(t_command *list)
 {
 	int	ret;
 
 	ret = 0;
-	list = init(list);
+	list = filter_all(list);
 	// Loop through commands line (separated by ; )
 	while (list)
 	{

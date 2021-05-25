@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:37:28 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 20:28:27 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		free_2d_arr(char **arr);
 void		sort_env(void);
 void		clone_env(void);
 
-int			exec_cmds(t_command *list);
+int			entry(t_command *list);
 int			check_bins(t_command *cmd);
 t_string	filter(t_string str);
 int			get_next_line(int fd, char **line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:53:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 16:53:49 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 15:25:57 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	loop(void)
 		if (syntax_checker(trim(line)) && *line != '\0')
 		{
 			list = parser(trim(line));
-			ret = exec_cmds(list);
+			ret = entry(list);
 		}
 		free(line);
 		line = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 20:15:06 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,12 @@ static int	set_data(t_string args, t_string *key, t_string *value)
 	while (args[j] && args[j] != '=')
 		j++;
 	*key = substring(args, 0, j - 1);
-	if (*key)
-		*key = filter(*key);
-	else
+	if (!*key)
 		*key = ft_strdup("");
 	if (args[j] == '=')
 	{
 		*value = substring(args, j + 1, ft_strlen(args) - 1);
-		if (*value)
-			*value = filter(*value);
-		else
+		if (!*value)
 			*value = ft_strdup("");
 	}
 	else

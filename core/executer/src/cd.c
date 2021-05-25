@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:35:17 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 15:15:36 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,13 @@
 // get path by ~, ~username or -
 static t_string	get_path(t_string arg)
 {
-	t_string	path;
-
-	path = filter(ft_strdup(arg));
-	if (equals(path, "-"))
-	{
-		free(path);
-		path = ft_strdup(get_env_value("OLDPWD"));
-	}
-	else if (equals(path, "~"))
-	{
-		free(path);
-		path = ft_strdup(get_env_value("HOME"));
-	}
-	else if (*path == '~' && equals((path + 1), get_env_value("USER")))
-	{
-		free(path);
-		path = ft_strdup(get_env_value("HOME"));
-	}
-	return (path);
+	if (equals(arg, "-"))
+		return (get_env_value("OLDPWD"));
+	else if (equals(arg, "~"))
+		return (get_env_value("HOME"));
+	else if (*arg == '~' && equals((arg + 1), get_env_value("USER")))
+		return (get_env_value("HOME"));
+	return (arg);
 }
 
 // Go to Home Directory if the argument not set

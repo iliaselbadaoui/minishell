@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 20:16:39 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,18 @@ int	unset(t_string *args)
 {
 	int			i;
 	int			ret;
-	t_string	key;
 
 	i = 0;
 	ret = 0;
 	while (args[++i])
 	{
-		key = filter(ft_strdup(args[i]));
-		if (is_valid_key(key))
-			free_env(key);
+		if (is_valid_key(args[i]))
+			free_env(args[i]);
 		else
 		{
-			printf("minishell: unset: `%s': not a valid identifier\n", key);
+			printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
 			ret++;
 		}
-		free(key);
 	}
 	if (ret)
 		return (EXIT_FAILURE); // FAILED invalid key/keys
