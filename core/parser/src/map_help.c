@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:43:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 11:50:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/25 17:36:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 void	free_map_node(t_map *tmp)
 {
 	free(tmp->key);
+	tmp->key = NULL;
 	free(tmp->value);
+	tmp->value = NULL;
 	free(tmp);
+	tmp = NULL;
 }
 
 int	free_head(t_map **head, t_string key)

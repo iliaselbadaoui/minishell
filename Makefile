@@ -1,5 +1,5 @@
 MakeDir = make
-compile = gcc -Wall -Werror -Wextra
+compile = gcc -Wall -Werror -Wextra -fsanitize=address
 NAME = minishell
 src = main.c
 headers = -Icore/parser/parser.h -Icore/executer/executer.h
@@ -19,7 +19,6 @@ fclean: clean
 	@$(MakeDir) fclean -C core/executer/
 	@$(MakeDir) fclean -C core/parser/
 	@rm -rf $(NAME)
-	@rm -rf .history
 
 re: fclean all
 

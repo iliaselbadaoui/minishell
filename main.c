@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:53:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 15:25:57 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/25 16:39:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,32 @@ static void	loop(void)
 			exit_minishell();
 	}
 }
-
-int	main(int argc, t_string *argv, t_string *envp)
+static void	container_init(void)
 {
 	g_container = (t_container *)malloc(sizeof(t_container));
+	g_container->envp = NULL;
+	g_container->envp_count = 0;
+	g_container->flag = 0;
+	g_container->error = 0;
+	g_container->map_fill_first_time = 0;
+	g_container->counter = 0;
+	g_container->args_counter = 0;
+	g_container->counter_extra = 0;
+	g_container->spliter_counter = 0;
+	g_container->spliter_char = 0;
+	g_container->gchar = 0;
+	g_container->history_file = 0;
+	g_container->history_iter = 0;
+	g_container->last = NULL;
+	g_container->history = NULL;
+	g_container->history_to_free = NULL;
+	g_container->history_the_oldest = NULL;
+	g_container->map = NULL;
+	g_container->sorted_env = NULL;
+}
+int	main(int argc, t_string *argv, t_string *envp)
+{
+	container_init();
 	g_container->map = fill_env(envp);
 	clone_env();
 	init_caps();
