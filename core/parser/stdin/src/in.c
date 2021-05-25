@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 13:32:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 01:24:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/23 23:50:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,16 @@ int	in(int fd, char **line)
 	static char	*remain[256];
 	char		*buffer;
 	int			bytes;
+	int			ret;
 
-	if (in_help(remain, &buffer, line, fd) < 0)
-		return (-1);
-	bytes = 1;
-	while (bytes)
+	ret = in_help(remain, &buffer, line, fd);
+	if (ret == 1 || ret == -1)
+		return (ret);
+	while (1)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
+		if (bytes == 0)
+			break ;
 		buffer[bytes] = '\0';
 		fill_line(line, buffer);
 		if (process_line(line, &remain[fd]))
