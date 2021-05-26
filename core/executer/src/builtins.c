@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/26 16:31:23 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:41:11 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	env(void)
 		return (EXIT_FAILURE); // FAILED
 	while (tmp)
 	{
-		if (tmp->value && tmp->key)
+		if (tmp->value)
 			printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}

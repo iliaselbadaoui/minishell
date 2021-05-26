@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:35:17 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/25 15:15:36 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/26 18:33:55 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ static int	to_home(void)
 		path = ft_strdup(path);
 	if (chdir(path) == -1)
 		return (no_file(path)); // FAILED
-	update_env("OLDPWD", get_env_value("PWD"));
-	update_env("PWD", path);
-	free(path);
+	update_env(ft_strdup("OLDPWD"), ft_strdup(get_env_value("PWD")));
+	update_env(ft_strdup("PWD"), path);
 	return (EXIT_SUCCESS); // SUCCESS
 }
 
@@ -61,8 +60,7 @@ int	cd(t_string *args)
 		return (no_file(path)); // FAILED
 	free(path);
 	path = getcwd(NULL, 1024); // Get current path
-	update_env("OLDPWD", get_env_value("PWD"));
-	update_env("PWD", path);
-	free(path);
+	update_env(ft_strdup("OLDPWD"), ft_strdup(get_env_value("PWD")));
+	update_env(ft_strdup("PWD"), path);
 	return (EXIT_SUCCESS); //SUCCESS
 }

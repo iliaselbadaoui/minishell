@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 13:21:33 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 18:43:52 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	signal_handler(int signo)
 	{
 		out("\n\033[32mminishell$ \033[37m");
 		signal(SIGINT, signal_handler);
+		free(g_container->res);
+		g_container->res = ft_strdup("");
 	}
 }
 

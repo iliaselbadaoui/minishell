@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 12:23:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 22:57:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 18:43:37 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,20 @@ char	*readline(void)
 {
 	int				done;
 	int				total;
-	char			*res;
 
 	done = 1;
 	if (!g_container->history)
 		load_history();
-	res = ft_strdup("");
+	g_container->res = ft_strdup("");
 	while (done)
 	{
 		total = ft_getchar();
 		if (total >= 32 && total < 127)
 		{
 			write(1, &total, sizeof(int));
-			concat_line(&res, (char *)&total);
+			concat_line(&g_container->res, (char *)&total);
 		}
-		keys_handler(total, &res, &done);
+		keys_handler(total, &g_container->res, &done);
 	}
-	return (res);
+	return (g_container->res);
 }

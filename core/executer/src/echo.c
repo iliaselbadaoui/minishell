@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:26 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 20:07:43 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:58:32 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	loop(t_string *args, int i)
 	t_bool		tmp;
 
 	tmp = false;
-	while (args[i])
+	while (args[++i])
 	{
 		if (args[i][0] == '\0')
 			continue ;
@@ -54,7 +54,6 @@ static void	loop(t_string *args, int i)
 			write(1, " ", 1);
 		write(1, args[i], ft_strlen(args[i]));
 		tmp = true;
-		i++;
 	}
 }
 
@@ -67,7 +66,7 @@ int	echo(t_string *args)
 	n_option = 0;
 	position = 0;
 	check_option(args, &position, &n_option);
-	loop(args, position);
+	loop(args, position - 1);
 	if (!n_option)
 		write(1, "\n", 1);
 	return (0);

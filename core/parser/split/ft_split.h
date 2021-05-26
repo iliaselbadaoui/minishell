@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 11:50:19 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 00:51:11 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 18:43:02 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_container
 	int				spliter_char;
 	int				envp_count;
 	char			gchar;
+	char			*res;
 	int				history_file;
 	int				history_iter;
 	t_linked		*last;
