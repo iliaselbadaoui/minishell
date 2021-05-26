@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 13:32:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 18:37:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 12:54:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ char	*ft_strdup(const char *s)
 	int			i;
 	char		*dst;
 
+	if (!s)
+		return (NULL);
 	i = -1;
 	len = ft_strlen(s);
 	dst = (char *)malloc(len + 1);

@@ -5,6 +5,7 @@
 		"string.h": "c",
 		"sstream": "c",
 		"__node_handle": "c",
-		"string": "c"
+		"string": "c",
+		"ft_split.h": "c"
 	}
 }

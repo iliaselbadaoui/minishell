@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:01 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 18:31:00 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 13:22:49 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	copy_to_next_delimiter(char *grid_case, char *str, char delimiter)
 	int		count;
 
 	count = 0;
+	if (!grid_case)
+		return (0);
 	if (!g_container->flag)
 	{
 		while (str[count] && str[count] != delimiter)
@@ -82,7 +84,8 @@ void	fill_grid_first(char **arr, char *str, char delimiter)
 	while (*str)
 	{
 		escape_deilimter(&str, delimiter);
-		count = copy_to_next_delimiter(arr[arr_index], str, delimiter);
+		if (arr[arr_index])
+			count = copy_to_next_delimiter(arr[arr_index], str, delimiter);
 		str += count;
 		arr_index++;
 	}

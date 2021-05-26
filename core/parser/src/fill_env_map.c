@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:51:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 18:28:05 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 09:49:29 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_map	*fill_env(t_string *envp)
 	{
 		env = ft_split_first(*envp, '=');
 		key = ft_strdup(env[0]);
-		printf("DEBUG %s\n", key);
 		value = ft_strdup(env[1]);
 		add_to_map(&map, init_map(key, value));
 		libre_2d(env);
