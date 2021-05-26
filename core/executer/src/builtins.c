@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/25 17:51:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 16:31:23 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,12 @@ int	env(void)
 	t_map	*tmp;
 
 	tmp = g_container->map;
-	if (tmp == NULL)
+	if (!tmp)
 		return (EXIT_FAILURE); // FAILED
 	while (tmp)
 	{
-		if (tmp->value != NULL)
-		{
-			write(1, tmp->key, length(tmp->key));
-			write(1, "=", 1);
-			write(1, tmp->value, length(tmp->value));
-			write(1, "\n", 1);
-		}
+		if (tmp->value && tmp->key)
+			printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (EXIT_SUCCESS); // SUCCESS

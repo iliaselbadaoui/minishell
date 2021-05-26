@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/25 20:44:29 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:08:18 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_bool	update_key(t_map *env, t_string key, t_string value)
 			{
 				if (tmp->value)
 					free(tmp->value);
-				tmp->value = ft_strdup(value);
+				tmp->value = value;
 			}
 			return (true);
 		}
@@ -43,20 +43,15 @@ static int	put_env(void)
 	tmp = g_container->sorted_env;
 	while (tmp)
 	{
-		if (tmp->value == NULL)
+		write(1, "declare -x ", 11);
+		write(1, tmp->key, length(tmp->key));
+		if (tmp->value)
 		{
-			write(1, "declare -x ", 11);
-			write(1, tmp->key, length(tmp->key));
-			write(1, "\n", 1);
-		}
-		else
-		{
-			write(1, "declare -x ", 11);
-			write(1, tmp->key, length(tmp->key));
 			write(1, "=\"", 2);
 			write(1, tmp->value, length(tmp->value));
-			write(1, "\"\n", 2);
+			write(1, "\"", 2);
 		}
+		write(1, "\n", 1);
 		tmp = tmp->next;
 	}
 	return (EXIT_SUCCESS); // SUCCESS
@@ -65,8 +60,12 @@ static int	put_env(void)
 // Update key if exist, if not add it to g_container->map && g_container->sorted_env
 void	update_env(t_string key, t_string value)
 {
-	if (update_key(g_container->map, key, value) && update_key(g_container->sorted_env, key, value))
+	if (update_key(g_container->map, key, value) &&
+		update_key(g_container->sorted_env, key, value))
+	{
+		free(key);
 		return ;
+	}
 	add_to_map(&g_container->map, init_map(key, value));
 	add_to_map(&g_container->sorted_env, init_map(key, value));
 }

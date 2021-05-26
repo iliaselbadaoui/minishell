@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:53:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 16:39:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 16:57:38 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	loop(void)
 			exit_minishell();
 	}
 }
+
 static void	container_init(void)
 {
 	g_container = (t_container *)malloc(sizeof(t_container));
@@ -68,6 +69,7 @@ static void	container_init(void)
 	g_container->map = NULL;
 	g_container->sorted_env = NULL;
 }
+
 int	main(int argc, t_string *argv, t_string *envp)
 {
 	container_init();
