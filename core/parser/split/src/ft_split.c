@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 11:47:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/26 13:21:18 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:05:56 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ char	**ft_split_first(char *str, char delimiter)
 	res[1] = NULL;
 	res[2] = NULL;
 	create_grid_first(res, str, delimiter);
+	if (res[1] == NULL)
+	{
+		res[1] = malloc(1);
+		res[1][0] = 0;
+	}
 	g_container->flag = 0;
 	fill_grid_first(res, str, delimiter);
 	return (res);

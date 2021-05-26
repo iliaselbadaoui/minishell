@@ -1,5 +1,5 @@
 MakeDir = make
-compile = gcc -Wall -Werror -Wextra -fsanitize=address
+compile = gcc -Wall -Werror -Wextra
 NAME = minishell
 src = main.c
 headers = -Icore/parser/parser.h -Icore/executer/executer.h
