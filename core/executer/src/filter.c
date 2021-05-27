@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/23 00:39:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/27 19:38:11 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ static t_string	get_data(void)
 	int			fd;
 	t_string	line;
 
-	fd = open(".tmp", O_RDONLY, 0666);
+	fd = open("/tmp/.tmp", O_RDONLY, 0666);
 	get_next_line(fd, &line);
 	close(fd);
-	fd = open(".tmp", O_RDONLY | O_WRONLY | O_TRUNC, 0666);
+	fd = open("/tmp/.tmp", O_RDONLY | O_WRONLY | O_TRUNC, 0666);
 	close(fd);
 	return (line);
 }
@@ -92,7 +92,7 @@ t_string	filter(t_string str)
 	int			fd;
 
 	i = -1;
-	fd = open(".tmp", O_RDWR | O_APPEND | O_CREAT, 0666);
+	fd = open("/tmp/.tmp", O_RDWR | O_APPEND | O_CREAT, 0666);
 	while (str[++i])
 	{
 		if (str[i] == '\\')
