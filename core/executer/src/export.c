@@ -6,34 +6,11 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:50:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/26 17:08:18 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/27 17:22:17 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
-
-// Update a given environment variable
-static t_bool	update_key(t_map *env, t_string key, t_string value)
-{
-	t_map	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		if (equals(tmp->key, key))
-		{
-			if (value) // if there is a value insert it
-			{
-				if (tmp->value)
-					free(tmp->value);
-				tmp->value = value;
-			}
-			return (true);
-		}
-		tmp = tmp->next;
-	}
-	return (false);
-}
 
 // Print out all envirement variables by order (g_container->sorted_env)
 static int	put_env(void)
@@ -57,11 +34,34 @@ static int	put_env(void)
 	return (EXIT_SUCCESS); // SUCCESS
 }
 
+// Update a given environment variable
+static t_bool	update_key(t_map *env, t_string key, t_string value, int i)
+{
+	t_map	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (equals(tmp->key, key))
+		{
+			if (value) // if there is a value insert it
+			{
+				if (tmp->value && i)
+					free(tmp->value);
+				tmp->value = value;
+			}
+			return (true);
+		}
+		tmp = tmp->next;
+	}
+	return (false);
+}
+
 // Update key if exist, if not add it to g_container->map && g_container->sorted_env
 void	update_env(t_string key, t_string value)
 {
-	if (update_key(g_container->map, key, value) &&
-		update_key(g_container->sorted_env, key, value))
+	if (update_key(g_container->map, key, value, 1) &&
+		update_key(g_container->sorted_env, key, value, 0))
 	{
 		free(key);
 		return ;
