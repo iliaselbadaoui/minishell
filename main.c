@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:53:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/28 16:13:40 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:22:03 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	loop(void)
 		free_commands(&list);
 		if (ret == -1)
 			exit_minishell();
-		// printf("%d\n", g_container->is_segint);
 	}
 }
 

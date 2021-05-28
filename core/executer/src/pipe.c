@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0x10000 <0x10000@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:48:58 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/21 23:58:46 by 0x10000          ###   ########.fr       */
+/*   Updated: 2021/05/28 16:59:06 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../executer.h"
 
-static t_command *get_cmd_positions(t_command *list)
+static t_command	*get_cmd_positions(t_command *list)
 {
 	t_command	*tmp;
 	int			id;
 
 	id = list->id;
 	tmp = list;
-	// first node
 	tmp->pos = 1;
 	tmp = tmp->next;
-	while(tmp)
+	while (tmp)
 	{
-		// last node
 		if (!tmp->next || tmp->next->id != id)
 		{
 			tmp->pos = 2;
@@ -38,15 +36,26 @@ static t_command *get_cmd_positions(t_command *list)
 
 static void	dups(t_command *list, int input, int fds[2])
 {
-	if (list->pos == 1)			// first cmd
+	if (list->pos == 1)
 		dup2(fds[1], 1);
-	else if (list->pos == 0)	// middle cmds
+	else if (list->pos == 0)
 	{
 		dup2(input, 0);
 		dup2(fds[1], 1);
 	}
-	else						// last cmd
+	else
 		dup2(input, 0);
+}
+
+static int	close_all(int input, int fd1, int fd2, int position)
+{
+	if (input != 0)
+		close(input);
+	close(fd2);
+	if (position == 2)
+		close(fd1);
+	input = fd1;
+	return (input);
 }
 
 t_command	*handle_pipes(t_command *cmd)
@@ -60,29 +69,19 @@ t_command	*handle_pipes(t_command *cmd)
 	head = cmd;
 	id = cmd->id;
 	cmd = get_cmd_positions(cmd);
-	// Loop through pipe line (separated by | )
 	while (cmd)
 	{
 		pipe(fds);
 		pid = fork();
 		if (!pid)
 		{
-			/* Child */
-			// Duplicate pipes file descriptors with STDs
 			dups(cmd, input, fds);
-			// Execute the command to pip fd with exit return on child process
 			exit(exec_command(cmd));
 		}
-		// Wait the child till finish
 		wait(&pid);
-		if (input != 0)
-			close(input);
-		close(fds[1]);
-		if (cmd->pos == 2)
-			close(fds[0]);
-		input = fds[0];
+		input = close_all(input, fds[0], fds[1], cmd->pos);
 		if (!cmd->next || cmd->next->id != id)
-			break;
+			break ;
 		cmd = cmd->next;
 	}
 	return (cmd);

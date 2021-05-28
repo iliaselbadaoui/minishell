@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:18:57 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/22 15:17:31 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:01:45 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ int	not_valid(t_string key, t_string value)
 	if (!value)
 		printf("minishell: export: `%s': not a valid identifier\n", key);
 	else
-		printf("minishell: export: `%s=%s': not a valid identifier\n", key, value);
+		printf("minishell: export: `%s=%s': not a valid identifier\n", \
+		key, value);
 	free(key);
 	if (value)
 		free(value);
-	return (EXIT_FAILURE); // FAILED
+	return (EXIT_FAILURE);
 }

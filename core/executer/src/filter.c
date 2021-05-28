@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 14:21:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/27 19:38:11 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:54:35 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	check_characters(t_string str, int i, int fd)
 		write(fd, "$", 1);
 		return (i);
 	}
-	else if (str[i] && (ft_isdigit(str[i]) || (!ft_isalpha(str[i]) && str[i] != '_')))
+	else if (str[i] && (ft_isdigit(str[i]) || \
+	(!ft_isalpha(str[i]) && str[i] != '_')))
 		return (i);
 	return (0);
 }
@@ -41,24 +42,22 @@ static int	print_variable(t_string str, int i, int fd)
 
 	start = ++i;
 	end = start - 1;
-	// Check characters
 	ret = check_characters(str, i--, fd);
 	if (ret)
 		return (ret);
-	// Count variable length
-	while (str[++i] && (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_'))
+	while (str[++i] && (ft_isalpha(str[i]) || \
+	ft_isdigit(str[i]) || str[i] == '_'))
 		end++;
-	// Extract variable name
 	name = substring(str, start, end);
-	// Print variable value
 	value = get_env_value(name);
 	free(name);
 	if (value)
 		write(fd, value, ft_strlen(value));
-	return (i - 1); // Return index (to keep printing the rest of strings)
+	return (i - 1);
 }
 
-// Write everything inside "" exactly as it is, and replace Variables with their values
+// Write everything inside ""
+// exactly as it is, and replace Variables with their values
 static int	double_quote(t_string str, int j, int fd)
 {
 	while (str[++j] && str[j] != '"')
@@ -85,7 +84,8 @@ static t_string	get_data(void)
 	return (line);
 }
 
-// Return a clean string. eg: "Hello "$USER to == '$HOME'  ===>  Hello mait-si- to == $HOME
+// Return a clean string.
+// eg: "Hello "$USER to == '$HOME'  ===>  Hello mait-si- to == $HOME
 t_string	filter(t_string str)
 {
 	int			i;
