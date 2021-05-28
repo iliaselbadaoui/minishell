@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:28:53 by mait-si-          #+#    #+#             */
-/*   Updated: 2021/05/26 17:41:11 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:37:07 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	pwd(void)
 	char	buff[1024];
 
 	if (getcwd(buff, sizeof(buff)) == NULL)
-		return (EXIT_FAILURE); // Failed
+		return (EXIT_FAILURE);
 	write(1, &buff, length(buff));
 	write(1, "\n", 1);
-	return (EXIT_SUCCESS); // SUCCESS
+	return (EXIT_SUCCESS);
 }
 
 // Remove a key/keys from environment variables
@@ -52,8 +52,8 @@ int	unset(t_string *args)
 		}
 	}
 	if (ret)
-		return (EXIT_FAILURE); // FAILED invalid key/keys
-	return (EXIT_SUCCESS); // SUCCESS
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 // Print out all environment variables to a file descriptor
@@ -63,12 +63,12 @@ int	env(void)
 
 	tmp = g_container->map;
 	if (!tmp)
-		return (EXIT_FAILURE); // FAILED
+		return (EXIT_FAILURE);
 	while (tmp)
 	{
 		if (tmp->value)
 			printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
-	return (EXIT_SUCCESS); // SUCCESS
+	return (EXIT_SUCCESS);
 }

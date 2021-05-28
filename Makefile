@@ -9,7 +9,7 @@ all: $(NAME)
 $(NAME):
 	@$(MakeDir) -C core/executer/
 	@$(MakeDir) -C core/parser/
-	@$(compile) $(src) -I $(headers) $(libs) -o $(NAME) -g
+	@$(compile) $(src) -I $(headers) $(libs) -o $(NAME)
 
 clean:
 	@$(MakeDir) clean -C core/executer/

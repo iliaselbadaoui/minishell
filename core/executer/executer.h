@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 13:06:00 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/23 20:28:27 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:00:41 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 # ifndef BUFFER_SIZEE
 #  define BUFFER_SIZEE 32
 # endif
-
-// Tmp functionss
-void		print_struct(t_command *list);
 
 // Builtin Functions
 int			env(void);
@@ -55,6 +52,7 @@ int			get_error(int ret);
 void		free_2d_arr(char **arr);
 void		sort_env(void);
 void		clone_env(void);
+t_string	*get_paths(void);
 
 int			entry(t_command *list);
 int			check_bins(t_command *cmd);
