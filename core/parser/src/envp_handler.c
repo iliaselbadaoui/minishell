@@ -15,6 +15,7 @@
 void	envp_handler(t_string *envp)
 {
 	g_container->envp = (t_string *)malloc(sizeof(t_string) * 4096);
+	g_container->envp_shadow = (t_string *)malloc(sizeof(t_string) * 4096);
 	while (envp[g_container->envp_count])
 	{
 		g_container->envp[g_container->envp_count]
