@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 12:23:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/28 16:10:28 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 20:43:53 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ char	*readline(void)
 			if (g_container->res)
 				concat_line(&g_container->res, (char *)&total);
 			else
+			{
 				g_container->res = ft_strdup("");
+				concat_line(&g_container->res, (char *)&total);
+			}
 		}
 		keys_handler(total, &g_container->res, &done);
 	}

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:21:44 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/25 16:35:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/28 20:41:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,30 @@ void	add_to_envp(t_string key, t_string value)
 	free(joined);
 }
 
+static void	remove_help(int i)
+{
+	free(g_container->envp[i]);
+	g_container->envp[i] = NULL;
+	while (i < g_container->envp_count)
+	{
+		g_container->envp[i] = g_container->envp[i + 1];
+		i++;
+	}
+}
+
 void	remove_from_envp(int index)
 {
-	t_string	*new_envp;
-	int			i;
 	int			j;
 
-	i = 0;
 	j = 0;
-	new_envp = (t_string *)malloc(sizeof(t_string) * 4096);
 	if (g_container->envp_count > 0)
 		--g_container->envp_count;
 	while (g_container->envp[j])
 	{
 		if (j == index)
-			j++;
-		if (g_container->envp[j])
-			new_envp[i] = ft_strdup(g_container->envp[j]);
-		else
+			remove_help(j);
+		if (!g_container->envp[j])
 			break ;
-		i++;
 		j++;
 	}
-	new_envp[i] = NULL;
-	libre_2d(g_container->envp);
-	g_container->envp = new_envp;
 }
