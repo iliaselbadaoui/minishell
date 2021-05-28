@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 11:50:19 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/28 16:14:23 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 20:08:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_linked
 typedef struct s_container
 {
 	t_string		*envp;
+	t_string		*envp_shadow;
 	char			term_buffer[2048];
 	int				error;
 	int				flag;
