@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 11:50:19 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/26 18:43:02 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:14:23 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_container
 	char			*res;
 	int				history_file;
 	int				history_iter;
+	int				is_segint;
+	int				is_process;
 	t_linked		*last;
 	t_linked		*history;
 	t_linked		*history_to_free;

@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 12:23:53 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/26 18:43:37 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:10:28 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ char	*readline(void)
 		if (total >= 32 && total < 127)
 		{
 			write(1, &total, sizeof(int));
-			concat_line(&g_container->res, (char *)&total);
+			if (g_container->res)
+				concat_line(&g_container->res, (char *)&total);
+			else
+				g_container->res = ft_strdup("");
 		}
 		keys_handler(total, &g_container->res, &done);
 	}

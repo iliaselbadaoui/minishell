@@ -6,7 +6,7 @@
 /*   By: mait-si- <mait-si-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:53:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/26 16:57:38 by mait-si-         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:13:40 by mait-si-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,22 @@ static void	loop(void)
 	list = NULL;
 	while (1)
 	{
-		out("\033[32mminishell$ \033[37m");
-		signal(SIGINT, signal_handler);
+		if (!g_container->is_segint)
+			out("\033[32mminishell$ \033[37m");
 		line = readline();
+		g_container->is_segint = 0;
 		if (syntax_checker(trim(line)) && *line != '\0')
 		{
 			list = parser(trim(line));
 			ret = entry(list);
 		}
-		free(line);
+		if (line && g_container->res)
+			free(line);
 		line = NULL;
 		free_commands(&list);
 		if (ret == -1)
 			exit_minishell();
+		// printf("%d\n", g_container->is_segint);
 	}
 }
 
@@ -72,6 +75,8 @@ static void	container_init(void)
 
 int	main(int argc, t_string *argv, t_string *envp)
 {
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, proc_signal_handler);
 	container_init();
 	g_container->map = fill_env(envp);
 	clone_env();
